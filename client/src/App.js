@@ -21,10 +21,9 @@ class App extends Component {
       <div>
         <Switch>
           {/* <Route path="/my-restaurants/new" exact component={RestaurantForm} /> */}
-          <Route path="/restaurantes/new" exact component={RestaurantForm} />
           {/* <Route path="/my-restaurants/:restaurant_id/menu/new" exact component={MenuForm} /> */}
-          <Route path="/" exact render={() => <MenuForm restaurant_id='5cfeb1a24d47ae3bfbef3048' />} />
-          <Route path="/" exact component={MenuForm} />
+          <Route path="/" exact component={RestaurantForm} />
+          <Route path="/:restaurant_id/menu/new" exact component={MenuForm} />
         </Switch>
       </div>
     )

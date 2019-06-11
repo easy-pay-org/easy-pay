@@ -37,7 +37,9 @@ class RestaurantForm extends Component {
         e.preventDefault()
 
         this.services.postRestaurant(this.state.restaurant)
-        // .then(x => window.location.href = "/")
+            .then(restaurant => {
+                window.location.href = `/${restaurant._id}/menu/new`
+            })
     }
 
     render() {

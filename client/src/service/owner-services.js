@@ -17,20 +17,33 @@ export default class services {
       .catch(err => console.log(err))
   }
 
-  getOneCoaster = (user_id, name_restaurant) => {
-    return this.service.get(`getRestaurant/${user_id}/${name_restaurant}`)
-      .then(res => res.data)
-      .catch(err => console.log('Error', err))
-  }
+  // getRestaurant = (user_id, name_restaurant) => {
+  //   return this.service.get(`getRestaurant/${user_id}/${name_restaurant}`)
+  //     .then(res => res.data)
+  //     .catch(err => console.log('Error', err))
+  // }
 
 
 
-  postMenu = (menu, restaurant) => {
-
-    this.service.post('newMenu', menu, restaurant)
+  postMenu = (menu, restaurant_id) => {
+    console.log(menu, '---------------------------------------')
+    this.service.post('newPlate', { menu, restaurant_id })
       .then(res => res.data)
       .catch(err => console.log(err))
-
   }
+
+  // postMenu = (menu) => {
+
+  //   this.service.post('newPlate', menu)
+  //     .then(res => res.data)
+  //     .catch(err => console.log(err))
+  // }
+
+  // updateMenu = (menu) => {
+
+  //   this.service.post('newPlate', menu)
+  //     .then(res => res.data)
+  //     .catch(err => console.log(err))
+  // }
 
 }

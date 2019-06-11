@@ -10,17 +10,21 @@ class MenuForm extends Component {
         this.state = {
 
             menu: {
-                type: 'starters',
+                type: 'first_courses',
                 name: '',
                 price: '',
                 image: '',
                 description: '',
-                restaurant: this.props.restaurant_id
+            },
+            restaurant: {
+                id: this.props.match.params.restaurant_id
             },
             show: false
         }
 
         this.services = new OwnerServices()
+
+
     }
 
     handlechange = e => {
@@ -36,16 +40,17 @@ class MenuForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        this.services.postMenu(this.state.menu, this.props.restaurant)
+        this.services.postMenu(this.state.menu, this.state.restaurant.id)
         //     .then(x => window.location.href = "/coasters")
+
     }
 
+
+    //TODO: Forzar que haya que elegir un campo
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="type">starters</label>
-                    <input onChange={this.handlechange} value='starters' type="radio" id="type" name="type" />
 
                     <label htmlFor="type">first_courses</label>
                     <input onChange={this.handlechange} value='first_courses' type="radio" id="type" name="type" />
