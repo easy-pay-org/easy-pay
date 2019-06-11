@@ -4,78 +4,39 @@ import OwnerServices from '../service/owner-services'
 
 class MenuForm extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
 
-            restaurant: {
-                menu: {
-                    starters: [
-                        {
-                            name: '',
-                            description: '',
-                            value: '',
-                        }
-                    ],
-                    first_courses: [
-                        {
-                            name: '',
-                            description: '',
-                            value: '',
-                            image: {
-                                imgName: '',
-                                imgPath: ''
-                            }
-                        }
-                    ],
-                    second_courses: [
-                        {
-                            name: '',
-                            description: '',
-                            value: '',
-                            image: {
-                                imgName: '',
-                                imgPath: ''
-                            }
-                        }
-                    ],
-                    drinks: [
-                        {
-                            name: '',
-                            description: '',
-                            value: '',
-                            image: {
-                                imgName: '',
-                                imgPath: ''
-                            }
-                        }
-                    ],
-                    desserts: [
-                        {
-                            name: '',
-                            description: '',
-                            value: '',
-                            image: {
-                                imgName: '',
-                                imgPath: ''
-                            }
-                        }
-                    ]
-                }
+            menu: {
+                type: 'starters',
+                name: '',
+                price: '',
+                image: '',
+                description: '',
+                restaurant: this.props.restaurant_id
             },
-
             show: false
         }
 
         this.services = new OwnerServices()
     }
 
+    handlechange = e => {
+        const { name, value } = e.target
+        this.setState({
+            menu: {
+                ...this.state.menu,
+                [name]: value
+            }
+        })
+    }
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log('Formulario de menu')
-        // this.services.postMenu(this.state.restaurant.menu)
+
+        this.services.postMenu(this.state.menu, this.props.restaurant)
         //     .then(x => window.location.href = "/coasters")
     }
 
@@ -83,11 +44,35 @@ class MenuForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label htmlFor="title">Nombre</label>
-                        <input onChange={this.handlechange} value={this.state.coaster.title} type="text" className="form-control" id="title" name="title" />
-                    </div>
-                    <button type="submit" className="btn btn-dark">Enviar</button>
+                    <label htmlFor="type">starters</label>
+                    <input onChange={this.handlechange} value='starters' type="radio" id="type" name="type" />
+
+                    <label htmlFor="type">first_courses</label>
+                    <input onChange={this.handlechange} value='first_courses' type="radio" id="type" name="type" />
+
+                    <label htmlFor="type">second_courses</label>
+                    <input onChange={this.handlechange} value='second_courses' type="radio" id="type" name="type" />
+
+                    <label htmlFor="type">drinks</label>
+                    <input onChange={this.handlechange} value='drinks' type="radio" id="type" name="type" />
+
+                    <label htmlFor="type">desserts</label>
+                    <input onChange={this.handlechange} value='desserts' type="radio" id="type" name="type" />
+
+
+                    <label htmlFor="name">Nombre Plato</label>
+                    <input onChange={this.handlechange} value={this.state.menu.name} type="text" id="name" name="name" />
+
+                    <label htmlFor="price">Precio</label>
+                    <input onChange={this.handlechange} value={this.state.menu.price} type="number" id="price" name="price" />
+
+                    <label htmlFor="image">Imagen</label>
+                    <input onChange={this.handleFileUpload} type="file" id="image" name="image" />
+
+                    <label htmlFor="name">Description</label>
+                    <input onChange={this.handlechange} value={this.state.menu.description} type="text" id="description" name="description" />
+
+                    <button type="submit">Enviar</button>
                 </form>
             </div>
         )

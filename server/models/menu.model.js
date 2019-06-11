@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 const menuSchema = new Schema({
   type: {
     type: String,
-    enum: [starters, first_courses, second_courses, drinks, desserts]
+    enum: ['starters', 'first_courses', 'second_courses', 'drinks', 'desserts']
   },
   name: String,
   description: String,
-  value: Number,
+  price: Number,
   currency_code: {
     type: String,
     default: "EUR"
@@ -16,8 +16,11 @@ const menuSchema = new Schema({
   image: {
     imgName: String,
     imgPath: String
-  }
-
+  },
+  restaurant: [{
+    type: Schema.Types.ObjectId,
+    ref: "Restaurant"
+  }]
 }, {
     timestamps: true
   })

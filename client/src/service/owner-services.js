@@ -5,7 +5,7 @@ export default class services {
   constructor() {
 
     this.service = axios.create({
-      baseURL: 'http://localhost:5000/api/'
+      baseURL: 'http://localhost:3000/api/'
     })
   }
 
@@ -13,10 +13,8 @@ export default class services {
   postRestaurant = (restaurant) => {
 
     return this.service.post('newRestaurant', restaurant)
-      .then(res => {
-        return res.data
-      })
-      .catch(err => console.log({ err }))
+      .then(res => res.data)
+      .catch(err => console.log(err))
   }
 
   getOneCoaster = (user_id, name_restaurant) => {
@@ -24,4 +22,15 @@ export default class services {
       .then(res => res.data)
       .catch(err => console.log('Error', err))
   }
+
+
+
+  postMenu = (menu, restaurant) => {
+
+    this.service.post('newMenu', menu, restaurant)
+      .then(res => res.data)
+      .catch(err => console.log(err))
+
+  }
+
 }

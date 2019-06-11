@@ -19,10 +19,10 @@ const restaurantSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Table"
   }],
-  menu: [{
-    type: Schema.Types.ObjectId,
-    ref: "Menu"
-  }]
+  // menu: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Menu"
+  // }]
 
 }, {
     timestamps: true

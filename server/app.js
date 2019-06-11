@@ -35,7 +35,7 @@ app.use(passport.session());
 
 // configuracion middleware CORS
 // const whitelist = [`${process.env.URLLOCAL}:${process.env.PORT}`]
-const whitelist = ['http://localhost:3000']
+const whitelist = ['http://localhost:5000']
 const corsOptions = {
   origin: (origin, cb) => {
     const originIsWhitelisted = whitelist.includes(origin);

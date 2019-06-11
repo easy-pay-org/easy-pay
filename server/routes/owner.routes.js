@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Restaurant = require('../models/restaurant.model')
 const Table = require('../models/table.model')
+const Menu = require('../models/menu.model.js')
 
 
 router.post('/newRestaurant', (req, res) => {
@@ -24,7 +25,6 @@ router.post('/newRestaurant', (req, res) => {
         Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })
           .then(updatedRestaurant => console.log('updatedRestaurant', updatedRestaurant))
       }
-
 
 
       recursive = () => {
@@ -55,18 +55,13 @@ router.post('/newRestaurant', (req, res) => {
 })
 
 
-// router.post('newTable', (req, res) => {
 
-// })
-
-
-// Restaurant.findByIdAndUpdate({ _id: req.user._id }, { $push: { favList: theMovie._id } }, { new: true })
-//   .then(userUpdated => {
-//     console.log(userUpdated)
-//     res.json({ favourite: true })
-//   })
-//   .catch(error => console.log(error))
-
+router.post('/newMenu', (req, res) => {
+  console.log(req.body)
+  Menu.create(req.body)
+    .then(data => res.json(data))
+    .catch(err => console.log('Error:', err))
+})
 
 
 
