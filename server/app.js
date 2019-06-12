@@ -8,10 +8,11 @@ const logger = require('morgan')
 const path = require('path')
 const cors = require('cors')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport')
 
-// require('./configs/passport.config')
-require('./config/mongoose.config')
+require('./config/passport.config')
+const mongoose = require('./config/mongoose.config')
 
 
 
@@ -25,9 +26,10 @@ const app = express();
 
 // configuracion middleware SESSION
 app.use(session({
-  secret: "Vamo a irno pero vamo a irno como yo quiero, diho",
+  secret: "Vamoairno",
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -40,7 +42,8 @@ const corsOptions = {
   origin: (origin, cb) => {
     const originIsWhitelisted = whitelist.includes(origin);
     cb(null, originIsWhitelisted)
-  }
+  },
+  credentials: true
 }
 app.use(cors(corsOptions))
 

@@ -34,17 +34,21 @@ class MenuForm extends Component {
         this.state = {
 
             menu: {
-                type: 'starters',
+                type: 'first_courses',
                 name: '',
                 price: '',
                 image: '',
                 description: '',
-                restaurant: this.props.restaurant_id
+            },
+            restaurant: {
+                id: this.props.match.params.restaurant_id
             },
             show: false
         }
 
         this.services = new OwnerServices()
+
+
     }
 
 
@@ -61,8 +65,9 @@ class MenuForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        this.services.postMenu(this.state.menu, this.props.restaurant)
+        this.services.postMenu(this.state.menu, this.state.restaurant.id)
         //     .then(x => window.location.href = "/coasters")
+
     }
 
     uploadImg = e => {

@@ -1,65 +1,91 @@
 const express = require('express')
 const router = express.Router()
 
+const User = require('../models/user.model')
 const Restaurant = require('../models/restaurant.model')
 const Table = require('../models/table.model')
 const Menu = require('../models/menu.model.js')
 
 
+
 router.post('/newRestaurant', (req, res) => {
-  const { name, adress, phone, logo, tables_quantity, description } = req.body
-  let table_id
-  let qr_url = 'url test'
+  const { name, address, phone, logo, tables_quantity, description } = req.body.restaurant
+  const user = req.body.user
   let indexTable = 1
 
-  Restaurant.create({ name, adress, phone, description })
+
+  Restaurant.create({ name, address, phone, description })
     .then(restaurant => {
-      console.log('restaurante creado', restaurant)
+
+      // ---------- TODO: Condicion para que esto solo lo tenga un usuario owner -------------------
+      User.findByIdAndUpdate({ _id: user._id }, { restaurant: restaurant._id }, { new: true })
+        .then(updatedUser => console.log('Usuario actualizado con el restaurante', updatedUser))
+
 
       let tables_array = []
+      console.log('restaurante creado', restaurant)
 
-
-      createTables = () => Table.create({ table_id: indexTable, qr_url })
+      createTables = () => Table.create({ table_id: indexTable, qr_url: `${process.env.URLLOCAL}:5000?restaurant=${restaurant._id}&table=${indexTable}` })
 
       pupulateTables = () => {
-        Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })
-          .then(updatedRestaurant => console.log('updatedRestaurant', updatedRestaurant))
+        return Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })
+          .then(updatedRestaurant => {
+            console.log('restaurante actualizado con las mesas', updatedRestaurant)
+          })
       }
-
 
       recursive = () => {
 
-        createTables()
+        return createTables()
           .then(table => {
+            console.log('mesa creada', table)
 
             tables_array.push(table._id)
             indexTable++
 
             if (indexTable <= tables_quantity)
-              recursive()
+              return recursive()
             else
-              pupulateTables()
+              return pupulateTables()
           })
           .catch(error => console.log(error))
       }
 
-      if (tables_quantity > 0)
+
+      if (tables_quantity > 0) {
+
         recursive()
+          .then(() => res.json(restaurant))
+      } else {
+        res.status(401).json({ msg: 'Tienes que añadir al menos una mesa' })
+      }
 
-      res.json(restaurant)
     })
+
     .catch(error => console.log(error))
-
-
 
 })
 
 
 
-router.post('/newMenu', (req, res) => {
-  console.log(req.body)
-  Menu.create(req.body)
-    .then(data => res.json(data))
+
+
+
+router.post('/newPlate', (req, res) => {
+
+  const { type, name, price, image, description } = req.body.menu
+
+  Menu.create({ type, name, price, image, description })
+    .then(menu => {
+
+      console.log('Menu creado', menu)
+
+      Restaurant.findByIdAndUpdate({ _id: req.body.restaurant_id }, { $push: { menu: menu._id } }, { new: true })
+        .then(updateRestaurant => {
+          console.log('el restaurante actualizado con el plato', updateRestaurant)
+          // return res.json(updateRestaurant)
+        })
+    })
     .catch(err => console.log('Error:', err))
 })
 

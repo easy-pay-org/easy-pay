@@ -14,6 +14,10 @@ const userSchema = new Schema({
     type: String,
     enum: ['user', 'owner', 'admin'],
     default: 'user'
+  },
+  restaurant: {
+    type: Schema.Types.ObjectId,
+    ref: "Restaurant"
   }
 }, {
     timestamps: true
@@ -21,3 +25,4 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema)
 module.exports = User
+
