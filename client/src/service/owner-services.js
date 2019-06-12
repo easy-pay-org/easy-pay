@@ -10,14 +10,14 @@ export default class services {
   }
 
 
-  postRestaurant = (restaurant) => {
+  postRestaurant = (restaurant, user) => {
 
-    return this.service.post('newRestaurant', restaurant)
+    return this.service.post('newRestaurant', { restaurant, user }, { withCredentials: true })
       .then(res => res.data)
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response.data.msg))
   }
 
-  // getRestaurant = (user_id, name_restaurant) => {
+  // getRestaurant = (user_id, name_restaurant, { withCredentials: true }) => {
   //   return this.service.get(`getRestaurant/${user_id}/${name_restaurant}`)
   //     .then(res => res.data)
   //     .catch(err => console.log('Error', err))
@@ -26,24 +26,11 @@ export default class services {
 
 
   postMenu = (menu, restaurant_id) => {
-    console.log(menu, '---------------------------------------')
-    this.service.post('newPlate', { menu, restaurant_id })
+    console.log(menu)
+
+    this.service.post('newPlate', { menu, restaurant_id }, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err))
   }
-
-  // postMenu = (menu) => {
-
-  //   this.service.post('newPlate', menu)
-  //     .then(res => res.data)
-  //     .catch(err => console.log(err))
-  // }
-
-  // updateMenu = (menu) => {
-
-  //   this.service.post('newPlate', menu)
-  //     .then(res => res.data)
-  //     .catch(err => console.log(err))
-  // }
 
 }

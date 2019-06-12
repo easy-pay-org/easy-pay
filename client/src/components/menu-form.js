@@ -53,29 +53,29 @@ class MenuForm extends Component {
                 <form onSubmit={this.handleSubmit}>
 
                     <label htmlFor="type">first_courses</label>
-                    <input onChange={this.handlechange} value='first_courses' type="radio" id="type" name="type" />
+                    <input onChange={this.handlechange} value='first_courses' type="radio" id="type" name="type" /><br></br>
 
                     <label htmlFor="type">second_courses</label>
-                    <input onChange={this.handlechange} value='second_courses' type="radio" id="type" name="type" />
+                    <input onChange={this.handlechange} value='second_courses' type="radio" id="type" name="type" /><br></br>
 
                     <label htmlFor="type">drinks</label>
-                    <input onChange={this.handlechange} value='drinks' type="radio" id="type" name="type" />
+                    <input onChange={this.handlechange} value='drinks' type="radio" id="type" name="type" /><br></br>
 
                     <label htmlFor="type">desserts</label>
-                    <input onChange={this.handlechange} value='desserts' type="radio" id="type" name="type" />
+                    <input onChange={this.handlechange} value='desserts' type="radio" id="type" name="type" /><br></br>
 
 
                     <label htmlFor="name">Nombre Plato</label>
-                    <input onChange={this.handlechange} value={this.state.menu.name} type="text" id="name" name="name" />
+                    <input onChange={this.handlechange} value={this.state.menu.name} type="text" id="name" name="name" /><br></br>
 
                     <label htmlFor="price">Precio</label>
-                    <input onChange={this.handlechange} value={this.state.menu.price} type="number" id="price" name="price" />
+                    <input onChange={this.handlechange} value={this.state.menu.price} type="number" id="price" name="price" /><br></br>
 
                     <label htmlFor="image">Imagen</label>
-                    <input onChange={this.handleFileUpload} type="file" id="image" name="image" />
+                    <input onChange={this.handleFileUpload} type="file" id="image" name="image" /><br></br>
 
                     <label htmlFor="name">Description</label>
-                    <input onChange={this.handlechange} value={this.state.menu.description} type="text" id="description" name="description" />
+                    <input onChange={this.handlechange} value={this.state.menu.description} type="text" id="description" name="description" /><br></br>
 
                     <button type="submit">Enviar</button>
                 </form>
