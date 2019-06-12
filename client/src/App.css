@@ -1,33 +1,135 @@
-.App {
-  text-align: center;
+.logo {
+    max-width: 30%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #E8D9B4;
+    margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.upload {
+    height: 0px;
+    overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.width {
+    margin: 10px 0;
+    width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*Bottom Nav*/
+
+div.MuiBottomNavigation-root {
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0px -3px 5px #dfdfdf;
+}
+
+button.MuiBottomNavigationAction-root.Mui-selected {
+    color: #E8D9B4;
+}
+
+/*Top  Nav*/
+header.MuiAppBar-colorDefault {
+    background-color: white;
+    border-radius: 0 0 20px 20px;
+}
+
+div.MuiToolbar-regular {
+    min-height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header.MuiPaper-elevation4 {
+    box-shadow: 0px 3px 5px #dfdfdf;
+}
+
+span.MuiBadge-colorSecondary {
+    color: #fff;
+    background-color: #E8D9B4;
+}
+
+button.MuiIconButton-colorInherit {
+    color: rgb(117, 117, 117);
+}
+
+/* Form */
+
+.content {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 50px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+input.MuiInputBase-input,
+textarea.MuiInputBase-input {
+    font-size: 0.8em;
+}
+
+button.MuiButton-containedPrimary:hover {
+    background-color: #E8D9B4;
+}
+
+button.MuiButton-containedPrimary {
+    color: #fff;
+    background-color: #E8D9B4;
+    margin-top: 20px;
+    width: 40%;
+}
+
+div.MuiFormControl-marginNormal {
+    margin-top: 16px;
+    margin-bottom: 8px;
+
+}
+
+label.MuiInputLabel-root.Mui-focused {
+    color: #E8D9B4;
+}
+
+div.MuiFormControl-root {
+    width: 100%;
+}
+
+.width button.MuiButton-contained {
+    color: rgba(116, 116, 116, 0.87)
+}
+
+.btn-bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.col-2-header {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.col-2-header a {
+    font-size: 0.8em;
+    text-decoration: none;
+    color: black;
+    text-transform: lowercase;
+    border-bottom: 1px solid black;
+
 }

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const restaurantSchema = new Schema({
   name: String,
-  adress: String,
+  address: String,
   phone: String,
   description: String,
   background_color: String,
@@ -15,10 +15,10 @@ const restaurantSchema = new Schema({
     imgName: String,
     imgPath: String
   },
-  tables: [{
+  tables: {
     type: Schema.Types.ObjectId,
     ref: "Table"
-  }],
+  },
   // menu: [{
   //   type: Schema.Types.ObjectId,
   //   ref: "Menu"

@@ -7,10 +7,18 @@ import { Switch, Route } from 'react-router-dom'
 
 
 
+
+
+// Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
+
+
 class App extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+
+    }
   }
 
 
@@ -24,7 +32,7 @@ class App extends Component {
           <Route path="/restaurantes/new" exact component={RestaurantForm} />
           {/* <Route path="/my-restaurants/:restaurant_id/menu/new" exact component={MenuForm} /> */}
           <Route path="/" exact render={() => <MenuForm restaurant_id='5cfeb1a24d47ae3bfbef3048' />} />
-          <Route path="/" exact component={MenuForm} />
+          <Route path="/addMenu" exact component={MenuForm} />
         </Switch>
       </div>
     )
