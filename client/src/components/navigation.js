@@ -24,7 +24,7 @@ class navigation extends Component {
 
     return (
 
-      <div >
+      <div className="display">
 
         <Link to="/">Inicio</Link> <br></br>
 

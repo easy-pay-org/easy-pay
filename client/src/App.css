@@ -2,11 +2,16 @@
     max-width: 30%;
 }
 
+.display {
+    display: none;
+}
+
 h2 {
     font-size: 1em;
     text-transform: uppercase;
     color: #E8D9B4;
-    margin: 0;
+    margin: 10px 0;
+    width: 100%;
 }
 
 .upload {
@@ -41,7 +46,7 @@ header.MuiAppBar-colorDefault {
 }
 
 div.MuiToolbar-regular {
-    min-height: 60px;
+    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -49,6 +54,7 @@ div.MuiToolbar-regular {
 
 header.MuiPaper-elevation4 {
     box-shadow: 0px 3px 5px #dfdfdf;
+    position: fixed;
 }
 
 span.MuiBadge-colorSecondary {
@@ -63,11 +69,14 @@ button.MuiIconButton-colorInherit {
 /* Form */
 
 .content {
-
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 20px 50px;
+    padding: 0 20px;
+    height: calc(100vh - 150px);
+    overflow: scroll;
+    position: relative;
+    top: 75px;
 }
 
 .form {
@@ -90,7 +99,7 @@ button.MuiButton-containedPrimary:hover {
 button.MuiButton-containedPrimary {
     color: #fff;
     background-color: #E8D9B4;
-    margin-top: 20px;
+    margin: 20px 0;
     width: 40%;
 }
 
@@ -121,7 +130,7 @@ div.MuiFormControl-root {
 .col-2-header {
     display: flex;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     justify-content: space-between;
 }
 
@@ -132,4 +141,229 @@ div.MuiFormControl-root {
     text-transform: lowercase;
     border-bottom: 1px solid black;
 
+}
+
+.col-2-header h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #E8D9B4;
+    margin: 0;
+    width: 50%;
+}
+
+
+/* Login  */
+.section-1 {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-1 img {
+    width: 38%;
+    margin-bottom: 20px;
+}
+
+.section-1 p {
+    color: white;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    padding: 0 80px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.section-1 form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.section-1 form .MuiFormControl-root {
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background: #140f26eb;
+}
+
+.section-1 form .MuiFormControl-root .MuiInputBase-input {
+    height: 40px;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+}
+
+.section-1 form .MuiFormControl-root label+.MuiInput-formControl {
+    margin-top: 0;
+    color: white;
+    padding: 0 10px;
+    font-size: 1em;
+}
+
+.section-1 form .MuiFormControl-root svg {
+    color: white;
+}
+
+.section-1 form .MuiFormControl-root svg:first-child {
+    margin-right: 10px;
+}
+
+
+.section-1 .input-front {
+    margin-bottom: 20px;
+    background: #140f26eb;
+    height: 50px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0px 0px 5px #0e0205;
+}
+
+.section-1 .input-front svg {
+    margin-right: 10px;
+
+}
+
+.section-1 button {
+    height: 40px;
+    background-image: linear-gradient(to right top, #645aff, #5f4dfb, #5c3ef6, #592cf1, #5712eb);
+    border: 0;
+    border-radius: 5px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 600;
+    box-shadow: 0px 0px 5px #0e0205;
+}
+
+footer {
+    bottom: 0;
+    position: absolute;
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer a {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Home Owner*/
+.hero {
+    display: flex;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.6em;
+    color: white;
+    letter-spacing: 3px;
+    background: url('/img/homeOwner.jpg') center no-repeat/ cover;
+}
+
+.content-home {
+    height: calc(100vh - 150px);
+    overflow: scroll;
+    position: relative;
+    top: 75px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.container h2 {
+    text-align: center;
+    margin: 20px;
+}
+
+section.container .MuiFab-primary {
+    background-color: #757575;
+    margin: 30px;
+}
+
+section.container .MuiFab-primary:hover {
+    background-color: #757575;
+}
+
+/* Card */
+
+.cards {
+    display: flex;
+    border-radius: 20px 0px 20px 0px;
+    box-shadow: 0px 3px 5px #b1b1b1;
+}
+
+.cards figure {
+    width: 50%;
+}
+
+.cards figure img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 0px 0px 0px;
+}
+
+.cards h2 {
+    margin: 0;
+    text-align: left;
+    color: black;
+}
+
+.cards section {
+    width: 65%;
+    padding-left: 10px;
+    padding: 10px;
+}
+
+.cards section p {
+    font-size: 0.8em;
+    color: #757575;
+    text-transform: lowercase;
+    margin: 5px 0;
+}
+
+.cards section div {
+    display: flex;
+}
+
+.cards section a {
+    background: #e8d9b4;
+    padding: 5px;
+    width: 40%;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    text-transform: lowercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 10px;
+    font-size: 0.8em;
+    box-shadow: 0px 1px 3px #7c7c7c;
+}
+
+.cards section a:last-child {
+    background: #757575;
+    padding: 5px;
+    width: 40%;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    text-transform: lowercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 10px;
 }

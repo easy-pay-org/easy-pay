@@ -1,7 +1,20 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-
+import { Redirect, Link } from 'react-router-dom'
 import AuthServices from '../../service/auth-services'
+import styled from 'styled-components'
+import { Input } from '@material-ui/core'
+import { AccountCircle, Https } from '@material-ui/icons'
+
+
+
+
+
+const Body = styled.div`
+    height: 100vh;
+    width: 100vw;
+    background: url('../../../img/login.jpg') center no-repeat/ cover;
+
+`
 
 class Login extends Component {
 
@@ -44,23 +57,50 @@ class Login extends Component {
             return <Redirect to='/' />
         } else {
             return (
-                <div>
+                <Body>
+                    <div className='section-1'>
+                        <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
+                        <p>"your restaurant has never been this efficient"</p>
 
-                    <h1>Iniciar sesión</h1>
+                        <form onSubmit={this.handleSubmit}>
 
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="username">Usuario</label>
-                            <input onChange={this.handleChange} value={this.state.username} type="text" id="username" name="username" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Contraseña</label>
-                            <input onChange={this.handleChange} value={this.state.password} type="password" id="password" name="password" />
-                        </div>
-                        <button type="submit">¡Acceder</button>
-                    </form>
 
-                </div>
+                            <Input
+                                id="username"
+                                onChange={this.handleChange}
+                                value={this.state.username}
+                                className="input-front"
+                                type="text"
+                                name="username"
+                                placeholder='username'
+                                startAdornment={
+                                    <AccountCircle />
+                                }
+                            />
+                            <Input
+                                id="password"
+                                onChange={this.handleChange}
+                                value={this.state.password}
+                                className="input-front"
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                                startAdornment={
+                                    <Https />
+                                }
+                            />
+
+
+                            <button type="submit">Login</button>
+                        </form>
+                        <footer>
+                            <Link to={'/'}>Forgot Details?</Link>
+                            <Link to={'/'}>Create Account</Link>
+                        </footer>
+                    </div>
+
+
+                </Body>
             )
         }
     }

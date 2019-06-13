@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
+
 import './App.css';
 
 import RestaurantForm from './components/restaurant-form'
@@ -9,6 +10,7 @@ import Navigation from './components/navigation'
 import AuthServices from './service/auth-services'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
+import HomeOwner from './components/home'
 
 
 
@@ -53,6 +55,11 @@ class App extends Component {
           <Route path="/owner/restaurant/new" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} />
           <Route path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
 
+          {/* mio prueba */}
+          <Route path="/menu/new" exact component={MenuForm} />
+          <Route path="/restaurant" exact component={RestaurantForm} />
+          <Route path="/" exact component={HomeOwner} />
+          {/* mio prueba */}
           <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
           <Route path="/login" render={() => <Login setTheUser={this.setUser} />} />
         </Switch>
