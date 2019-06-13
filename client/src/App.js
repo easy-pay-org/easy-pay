@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
+
 import './App.css';
 
 import Home from './components/owner/home'
@@ -10,10 +11,14 @@ import Navigation from './components/navigation'
 import AuthServices from './service/auth-services'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
+<<<<<<< HEAD
 import ProtectedRoute from './components/auth/protected-route'
 import RestaurantEdit from './components/owner/restaurant-edit'
 import TablesList from './components/owner/tables-list'
 
+=======
+import HomeOwner from './components/home'
+>>>>>>> 02382eb558d03848b5e3b9fa23131e79cd9b6a82
 
 
 

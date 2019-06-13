@@ -24,7 +24,7 @@ class navigation extends Component {
 
     return (
 
-      <div >
+      <div className="display">
 
         <Link to="/owner/home">Inicio</Link> <br></br>
 
