@@ -26,7 +26,7 @@ class navigation extends Component {
 
       <div >
 
-        <Link to="/">Inicio</Link> <br></br>
+        <Link to="/owner/home">Inicio</Link> <br></br>
 
         <Link to="/signup">Registrarse</Link> <br></br>
         <Link to="/login">Iniciar sesión</Link> <br></br>

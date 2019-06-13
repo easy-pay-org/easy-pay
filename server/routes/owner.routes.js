@@ -14,7 +14,7 @@ router.post('/newRestaurant', (req, res) => {
   let indexTable = 1
 
 
-  Restaurant.create({ name, address, phone, description })
+  Restaurant.create({ name, address, phone, logo, description })
     .then(restaurant => {
 
       // ---------- TODO: Condicion para que esto solo lo tenga un usuario owner -------------------
@@ -85,6 +85,8 @@ router.post('/newPlate', (req, res) => {
           console.log('el restaurante actualizado con el plato', updateRestaurant)
           // return res.json(updateRestaurant)
         })
+
+      return res.json(menu)
     })
     .catch(err => console.log('Error:', err))
 })

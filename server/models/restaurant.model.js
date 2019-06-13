@@ -11,10 +11,7 @@ const restaurantSchema = new Schema({
     imgName: String,
     imgPath: String
   },
-  logo: {
-    imgName: String,
-    imgPath: String
-  },
+  logo: String,
   tables: [{
     type: Schema.Types.ObjectId,
     ref: "Table"

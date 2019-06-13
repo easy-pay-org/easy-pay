@@ -23,18 +23,6 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 
-
-// configuracion middleware SESSION
-app.use(session({
-  secret: "Vamoairno",
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 // configuracion middleware CORS
 // const whitelist = [`${process.env.URLLOCAL}:${process.env.PORT}`]
 const whitelist = ['http://localhost:5000']
@@ -48,6 +36,18 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 
+// configuracion middleware SESSION
+app.use(session({
+  secret: "Vamoairno",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -55,13 +55,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
-
-app.use(require('node-sass-middleware')({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  sourceMap: true
-}));
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -84,5 +77,9 @@ app.use('/api', authRoutes);
 
 const ownerRoutes = require('./routes/owner.routes');
 app.use('/api', ownerRoutes);
+
+// Middleware subida de archivos Cloudinary
+const fileRoutes = require('./routes/file-upload.routes')
+app.use('/api', fileRoutes);
 
 module.exports = app;

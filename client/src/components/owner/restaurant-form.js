@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import OwnerServices from '../service/owner-services'
-import TopNav from '../components/top-nav'
-import BottomNav from '../components/bottom-nav'
+import OwnerServices from '../../service/owner-services'
+import TopNav from '../top-nav'
+import BottomNav from '../bottom-nav'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
-
 
 
 
@@ -49,10 +47,10 @@ class RestaurantForm extends Component {
 
         this.services.postRestaurant(this.state.restaurant, this.props.userInSession)
             .then((restaurant) => {
-                console.log(restaurant._id)
+
                 this.setState({
                     restaurant: {
-                        ...this.state.coaster,
+                        ...this.state.restaurant,
                         id: restaurant._id
                     },
                     redirect: true
@@ -62,13 +60,36 @@ class RestaurantForm extends Component {
 
     uploadImg = e => {
         e.preventDefault()
-        document.getElementById('logo').click()
 
+        document.getElementById('logo').click()
     }
 
+
+
+    handleFileUpload = e => {
+
+        const uploadData = new FormData();
+        uploadData.append("imageUrl", e.target.files[0]);
+
+        this.services.handleUpload(uploadData)
+            .then(response => {
+                this.setState({
+                    restaurant: {
+                        ...this.state.restaurant, logo: response.secure_url
+                    }
+                })
+
+            })
+            .catch(err => console.log(err))
+    }
+
+
+
     render() {
+
         if (this.state.redirect) {
             return <Redirect to={`/owner/${this.state.restaurant.id}/menu/new`} />
+
         } else {
             return (
                 <div>

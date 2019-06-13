@@ -3,12 +3,17 @@ import { Switch, Route } from 'react-router-dom'
 
 import './App.css';
 
-import RestaurantForm from './components/restaurant-form'
-import MenuForm from './components/menu-form'
+import Home from './components/owner/home'
+import RestaurantForm from './components/owner/restaurant-form'
+import MenuForm from './components/owner/menu-form'
 import Navigation from './components/navigation'
 import AuthServices from './service/auth-services'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
+import ProtectedRoute from './components/auth/protected-route'
+import RestaurantEdit from './components/owner/restaurant-edit'
+import TablesList from './components/owner/tables-list'
+
 
 
 
@@ -23,6 +28,7 @@ class App extends Component {
     super(props)
     this.state = { loggedInUser: null }
     this.services = new AuthServices()
+    this.fetchUser()
   }
 
   setUser = userObj => this.setState({ loggedInUser: userObj })
@@ -31,7 +37,9 @@ class App extends Component {
     if (this.state.loggedInUser === null) {
       this.services.loggedin()
         .then(response => {
-          this.setState({ loggedInUser: response })
+          this.setState({ loggedInUser: response }, () => {
+
+          })
         })
         .catch(x => this.setState({ loggedInUser: false }))
     }
@@ -39,22 +47,28 @@ class App extends Component {
 
 
   render() {
-
-    this.fetchUser()
-
+    // console.log(this.state.loggedInUser)
     return (
 
       <div>
 
+        {/* {this.state.loggedInUser && <p>Pepe</p>} */}
         <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
 
         <Switch>
-          {/* <Route path="/owner/restaurant/new" exact component={RestaurantForm} /> */}
+
+          <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={Home} />
+
           <Route path="/owner/restaurant/new" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} />
+          <Route path="/owner/restaurant/edit" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} />
           <Route path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
 
-          <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
-          <Route path="/login" render={() => <Login setTheUser={this.setUser} />} />
+          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
+          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/edit" component={RestaurantEdit} />
+
+          <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
+          <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
+
         </Switch>
 
       </div>

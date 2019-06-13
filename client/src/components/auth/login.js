@@ -31,6 +31,7 @@ class Login extends Component {
         e.preventDefault()
 
         const { username, password } = this.state
+
         this.services.login(username, password)
             .then(response => {
                 this.setState({ username: '', password: '', redirect: true })

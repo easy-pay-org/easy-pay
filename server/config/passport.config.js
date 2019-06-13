@@ -8,33 +8,45 @@ passport.serializeUser((loggedInUser, cb) => {
 });
 
 passport.deserializeUser((userIdFromSession, cb) => {
-    User.findById(userIdFromSession, (err, userDocument) => {
-        if (err) {
-            cb(err);
-            return;
-        }
-        cb(null, userDocument);
-    });
+    User.findById(userIdFromSession)
+        .populate({
+            path: 'restaurant',
+            populate: { path: 'tables menu' }
+        })
+        .exec((err, userDocument) => {
+            if (err) {
+                cb(err);
+                return;
+            }
+            cb(null, userDocument);
+        })
 });
 
 passport.use(new LocalStrategy((username, password, next) => {
-    User.findOne({ username }, (err, foundUser) => {
-        if (err) {
-            next(err);
-            return;
-        }
+    User.findOne({ username })
 
-        if (!foundUser) {
-            next(null, false, { message: 'Nombre de usuario incorrecto.' });
-            return;
-        }
+        .populate({
+            path: 'restaurant',
+            populate: { path: 'tables menu' }
+        })
 
-        if (!bcrypt.compareSync(password, foundUser.password)) {
-            next(null, false, { message: 'Contraseña incorrecta.' });
-            return;
-        }
+        .exec((err, foundUser) => {
+            if (err) {
+                next(err);
+                return;
+            }
+            console.log(foundUser)
+            if (!foundUser) {
+                next(null, false, { message: 'Nombre de usuario incorrecto.' });
+                return;
+            }
 
-        next(null, foundUser);
-    });
+            if (!bcrypt.compareSync(password, foundUser.password)) {
+                next(null, false, { message: 'Contraseña incorrecta.' });
+                return;
+            }
+
+            next(null, foundUser);
+        })
 }));
 

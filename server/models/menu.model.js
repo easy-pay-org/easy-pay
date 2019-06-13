@@ -13,10 +13,7 @@ const menuSchema = new Schema({
     type: String,
     default: "EUR"
   },
-  image: {
-    imgName: String,
-    imgPath: String
-  }
+  image: String
 }, {
     timestamps: true
   })
