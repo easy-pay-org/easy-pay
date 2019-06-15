@@ -18,8 +18,8 @@ router.post('/newRestaurant', (req, res) => {
     .then(restaurant => {
 
       // ---------- TODO: Condicion para que esto solo lo tenga un usuario owner -------------------
-      User.findByIdAndUpdate({ _id: user._id }, { restaurant: restaurant._id }, { new: true })
-        .then(updatedUser => console.log('Usuario actualizado con el restaurante', updatedUser))
+      // User.findByIdAndUpdate({ _id: user._id }, { restaurant: restaurant._id }, { new: true })
+      //   .then(updatedUser => console.log('Usuario actualizado con el restaurante', updatedUser))
 
 
       let tables_array = []
@@ -29,8 +29,12 @@ router.post('/newRestaurant', (req, res) => {
 
       pupulateTables = () => {
         return Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })
+          .populate({
+            path: 'tables',
+          })
           .then(updatedRestaurant => {
             console.log('restaurante actualizado con las mesas', updatedRestaurant)
+            return updatedRestaurant
           })
       }
 
@@ -52,10 +56,22 @@ router.post('/newRestaurant', (req, res) => {
       }
 
 
+
       if (tables_quantity > 0) {
 
         recursive()
-          .then(() => res.json(restaurant))
+          // .then(() => res.json(restaurant))
+          .then((restaurant) => {
+            console.log('El restaurante creado ---------->', restaurant)
+            req.user.restaurant = restaurant
+            console.log('El usuario actualizado ---------->', req.user)
+            res.json(req.user)
+          })
+
+
+        User.findByIdAndUpdate({ _id: user._id }, { restaurant: restaurant._id }, { new: true })
+          .then(updatedUser => console.log('Usuario actualizado con el restaurante', updatedUser))
+
       } else {
         res.status(401).json({ msg: 'Tienes que añadir al menos una mesa' })
       }
@@ -104,16 +120,23 @@ router.post('/newPlate', (req, res) => {
 
   Menu.create({ type, name, price, image, description })
     .then(menu => {
+      console.log('El menu creado ---------->', menu)
 
-      console.log('Menu creado', menu)
 
       Restaurant.findByIdAndUpdate({ _id: req.body.restaurant_id }, { $push: { menu: menu._id } }, { new: true })
-        .then(updateRestaurant => {
-          console.log('el restaurante actualizado con el plato', updateRestaurant)
-          // return res.json(updateRestaurant)
+        .populate({
+          path: 'menu',
+        })
+        .then(updatedRestaurant => {
+          console.log('el restaurante actualizado con el plato', updatedRestaurant)
+          // return res.json(updatedRestaurant)
+          req.user.restaurant = updatedRestaurant
+          console.log('El usuario actualizado ---------->', req.user)
+          res.json(req.user)
         })
 
-      return res.json(menu)
+      // console.log('Menu creado', menu)
+      // return res.json(menu)
     })
     .catch(err => console.log('Error:', err))
 })

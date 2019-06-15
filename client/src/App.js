@@ -57,15 +57,16 @@ class App extends Component {
       <div>
 
         {/* {this.state.loggedInUser && <p>Pepe</p>} */}
-        <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
+        <Navigation setTheUser={this.setUser} />
 
         <Switch>
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={Home} />
 
-          <Route path="/owner/restaurant/new" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} />
-          {/* <Route path="/owner/restaurant/edit" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} /> */}
-          <Route path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
+          {/* <Route path="/owner/restaurant/new" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} /> */}
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
+          {/* <Route path="/owner/:restaurant_id/menu/new" exact component={MenuForm} /> */}
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />

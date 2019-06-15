@@ -69,9 +69,12 @@ class MenuForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
+        // cambiado para que se actualice el menu populado 
         this.services.postMenu(this.state.menu, this.state.restaurant.id)
-            .then((menu) => {
+            .then((user) => {
+                console.log('menu creado en el usuario', user)
 
+                this.props.setTheUser(user)
                 this.setState({
                     menu: {
                         ...this.state.menu,
@@ -83,6 +86,19 @@ class MenuForm extends Component {
                     }
                 })
             })
+        // .then((menu) => {
+
+        //     this.setState({
+        //         menu: {
+        //             ...this.state.menu,
+        //             type: 'first_courses',
+        //             name: '',
+        //             price: '',
+        //             image: '',
+        //             description: '',
+        //         }
+        //     })
+        // })
     }
 
     uploadImg = e => {

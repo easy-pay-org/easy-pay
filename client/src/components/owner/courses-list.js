@@ -28,8 +28,9 @@ class CoursesList extends Component {
 
   render() {
 
-    const { courseType } = this.state
+    // const { courseType } = this.state
     const { menu } = this.props.loggedInUser.restaurant
+    console.log('menu -->', menu)
 
     return (
       <div>

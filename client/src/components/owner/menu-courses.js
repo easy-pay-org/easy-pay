@@ -9,24 +9,27 @@ class CoursesList extends Component {
     super(props)
     this.state = {
       // tables: this.props.loggedInUser.restaurant.tables,
+      menu: this.props.menu,
+      coursesType: this.props.coursesType,
       show: false
     }
   }
 
 
   render() {
-
-    const { menu, coursesType } = this.props
+    console.log(this.props)
+    const { menu, coursesType } = this.state
+    console.log('menu antes de filtrar --->', menu)
+    console.log('tipo de plato --->', coursesType)
 
     const filteredMenu = menu.filter(course => course.type === coursesType)
+
+    console.log('menu filtrado --->', filteredMenu)
 
     if (filteredMenu.length) {
       return (
         <div>
-
-          <h1>Menu no esta vacio</h1>
           {filteredMenu.map((course, idx) => <CardCourses key={idx} course={course} />)}
-
         </div>
       )
 

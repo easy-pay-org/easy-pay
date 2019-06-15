@@ -21,6 +21,7 @@ export default function SimpleTabs(props) {
 
   
   const { menu } = props
+  console.log('menu --->', menu)
 
   return (
     <div >

@@ -15,6 +15,7 @@ class Home extends Component {
 
 
   render() {
+    console.log(this.props.loggedInUser)
     const { restaurant } = this.state
 
     return (

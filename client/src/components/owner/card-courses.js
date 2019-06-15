@@ -15,7 +15,7 @@ class CardCourses extends Component {
   render() {
 
     const { course } = this.props
-    console.log(course)
+    // console.log(course)
 
 
     return (
@@ -23,7 +23,7 @@ class CardCourses extends Component {
 
         <div className='cards order'>
           <figure>
-            <img src={course.image} alt='course_image'/>
+            <img src={course.image} alt='course_image' />
           </figure>
           <section>
             <div className='sum'>

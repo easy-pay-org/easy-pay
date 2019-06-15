@@ -45,17 +45,33 @@ class RestaurantForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        this.services.postRestaurant(this.state.restaurant, this.props.userInSession)
-            .then((restaurant) => {
+        // cambiado para que se actualice el restaurante populado en el usuario
+        this.services.postRestaurant(this.state.restaurant, this.props.loggedInUser)
+            .then((user) => {
+                // console.log('restaurant creado en el usuario', user)
+                console.log('restaurant creado', user.restaurant)
 
+                console.log('mesas', user.restaurant.tables)
+                // this.props.setTheUser(user)
                 this.setState({
                     restaurant: {
                         ...this.state.restaurant,
-                        id: restaurant._id
+                        id: user.restaurant._id
                     },
                     redirect: true
                 })
             })
+        // this.services.postRestaurant(this.state.restaurant, this.props.userInSession)
+        // .then((restaurant) => {
+
+        //     this.setState({
+        //         restaurant: {
+        //             ...this.state.restaurant,
+        //             id: restaurant._id
+        //         },
+        //         redirect: true
+        //     })
+        // })
     }
 
     uploadImg = e => {

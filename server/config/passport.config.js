@@ -11,7 +11,7 @@ passport.deserializeUser((userIdFromSession, cb) => {
     User.findById(userIdFromSession)
         .populate({
             path: 'restaurant',
-            populate: { path: 'tables menu' }
+            // populate: { path: 'tables' }
         })
         .exec((err, userDocument) => {
             if (err) {
@@ -27,7 +27,6 @@ passport.use(new LocalStrategy((username, password, next) => {
 
         .populate({
             path: 'restaurant',
-            populate: { path: 'tables menu' }
         })
 
         .exec((err, foundUser) => {

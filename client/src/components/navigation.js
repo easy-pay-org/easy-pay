@@ -33,8 +33,6 @@ class navigation extends Component {
         <Link onClick={this.logout} to="/">Cerrar sesión</Link> <br></br>
 
         <Link to="/owner/restaurant/new">Crear Restaurante</Link> <br></br>
-        <Link to={"/owner/5d035bb025e24e1a4a9fbbbe/courses/"}>Platos</Link>
-
 
       </div >
 
