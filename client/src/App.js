@@ -11,14 +11,11 @@ import Navigation from './components/navigation'
 import AuthServices from './service/auth-services'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
-<<<<<<< HEAD
-import ProtectedRoute from './components/auth/protected-route'
 import RestaurantEdit from './components/owner/restaurant-edit'
 import TablesList from './components/owner/tables-list'
-
-=======
-import HomeOwner from './components/home'
->>>>>>> 02382eb558d03848b5e3b9fa23131e79cd9b6a82
+import ProtectedRoute from './components/auth/protected-route'
+import OrderTable from './components/owner/order-table'
+import CoursesList from './components/owner/courses-list'
 
 
 
@@ -52,7 +49,9 @@ class App extends Component {
 
 
   render() {
-    // console.log(this.state.loggedInUser)
+
+    this.fetchUser()
+
     return (
 
       <div>
@@ -65,11 +64,14 @@ class App extends Component {
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={Home} />
 
           <Route path="/owner/restaurant/new" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} />
-          <Route path="/owner/restaurant/edit" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} />
+          {/* <Route path="/owner/restaurant/edit" exact render={() => <RestaurantForm userInSession={this.state.loggedInUser} />} /> */}
           <Route path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
-          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/edit" component={RestaurantEdit} />
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
+          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
+          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} />
+
 
           <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
           <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />

@@ -68,6 +68,33 @@ router.post('/newRestaurant', (req, res) => {
 
 
 
+router.post('/updateRestaurant', (req, res) => {
+
+  const { name, address, phone, logo, description, id } = req.body
+
+  Restaurant.findByIdAndUpdate({ _id: id }, { name, address, phone, logo, description }, { new: true })
+    .populate('tables menu')
+    .then(updatedRestaurant => {
+      console.log('Restaurante actualizado', updatedRestaurant)
+
+      // version 1 de la solucion
+      // User.findById(req.user._id)
+      //   .populate({
+      //     path: 'restaurant',
+      //     populate: { path: 'tables menu' }
+      //   })
+      // .exec((err, user) => {
+
+      //   res.json(user)
+      // })
+
+      // Version 2: enviamos el usuario actualizado en vez del restaurante
+      req.user.restaurant = updatedRestaurant
+      console.log(req.user)
+      res.json(req.user)
+    })
+    .catch(err => console.log('Error:', err))
+})
 
 
 

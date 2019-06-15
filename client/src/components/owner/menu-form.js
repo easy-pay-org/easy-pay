@@ -56,7 +56,7 @@ class MenuForm extends Component {
     }
 
 
-    handlechange = e => {
+    handleChange = e => {
         const { name, value } = e.target
         this.setState({
             menu: {
@@ -118,7 +118,7 @@ class MenuForm extends Component {
                     <header className="col-2-header">
                         <h2>Agregar Platos</h2>
                         {/* ver lista de platos agregados */}
-                        <a href="/" >Ver lista</a>
+                        <Link to={`/owner/${this.state.restaurant.id}/courses/`} >Ver lista</Link>
                     </header>
 
                     <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
@@ -145,7 +145,7 @@ class MenuForm extends Component {
                             placeholder="Introduzca el nombre"
                             label="Nombre Plato"
                             value={this.state.menu.name}
-                            onChange={this.handlechange}
+                            onChange={this.handleChange}
                             type="text"
                             InputLabelProps={{
                                 shrink: true,
@@ -162,7 +162,7 @@ class MenuForm extends Component {
                             placeholder="Introduzca el precio"
                             label="Precio del plato"
                             value={this.state.menu.price}
-                            onChange={this.handlechange}
+                            onChange={this.handleChange}
                             InputLabelProps={{
                                 shrink: true,
 
@@ -191,7 +191,7 @@ class MenuForm extends Component {
                             multiline
                             rows="2"
                             value={this.state.menu.description}
-                            onChange={this.handlechange}
+                            onChange={this.handleChange}
                             margin="normal"
                             variant="outlined"
                             InputLabelProps={{

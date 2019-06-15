@@ -16,20 +16,20 @@ class RestaurantEdit extends Component {
     super(props)
 
     this.state = {
-
+      user: this.props.loggedInUser,
       restaurant: {
         name: this.props.loggedInUser.restaurant.name,
         address: this.props.loggedInUser.restaurant.address,
         phone: this.props.loggedInUser.restaurant.phone,
         description: this.props.loggedInUser.restaurant.description,
-        logo: '',
+        logo: this.props.loggedInUser.restaurant.logo,
         tables_quantity: this.props.loggedInUser.restaurant.tables.length,
-        id: this.props.loggedInUser.restaurant.id
+        id: this.props.loggedInUser.restaurant._id
       },
-
       redirect: false,
       show: false
     }
+    console.log(this.props.loggedInUser)
     this.services = new OwnerServices()
   }
 
@@ -46,14 +46,14 @@ class RestaurantEdit extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    this.services.postRestaurant(this.state.restaurant, this.props.userInSession)
-      .then((restaurant) => {
+    this.services.updateRestaurant(this.state.restaurant)
+      .then((user) => {
+        console.log('restaurant updated en el usuario', user)
 
+        // TODO:
+        // En principio no haría falta hacerlo, pero si no no se actualiza el estado de App. ¿Por qué?
+        this.props.setTheUser(user)
         this.setState({
-          restaurant: {
-            ...this.state.restaurant,
-            id: restaurant._id
-          },
           redirect: true
         })
       })
@@ -88,10 +88,8 @@ class RestaurantEdit extends Component {
 
   render() {
 
-    console.log(this.props.loggedInUser)
-
     if (this.state.redirect) {
-      return <Redirect to={`/owner/${this.state.restaurant.id}/menu/new`} />
+      return <Redirect to={`/owner/home`} />
 
     } else {
       return (

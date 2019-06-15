@@ -18,6 +18,14 @@ export default class services {
   }
 
 
+  updateRestaurant = (restaurant) => {
+
+    return this.service.post('updateRestaurant', restaurant, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
+
   getRestaurant = (user_id, name_restaurant) => {
 
     return this.service.get(`getRestaurant/${user_id}/${name_restaurant}`, { withCredentials: true })
@@ -27,7 +35,7 @@ export default class services {
 
 
   postMenu = (menu, restaurant_id) => {
-    
+
     return this.service.post('newPlate', { menu, restaurant_id }, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err))

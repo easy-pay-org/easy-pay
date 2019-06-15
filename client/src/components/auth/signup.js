@@ -82,7 +82,7 @@ class Signup extends Component {
                                     <AccountCircle />
                                 }
                             />
-                            <Input
+                            {/* <Input
                                 required
                                 id="email"
                                 onChange={this.handleChange}
@@ -94,7 +94,7 @@ class Signup extends Component {
                                 startAdornment={
                                     <Email />
                                 }
-                            />
+                            /> */}
                             <Input
                                 required
                                 id="password"
