@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import OwnerServices from '../../service/owner-services'
-import TopNav from '../top-nav'
-import BottomNav from '../bottom-nav'
+import OwnerServices from '../../../service/owner-services'
+import TopNav from '../../top-nav'
+import BottomNav from '../../bottom-nav'
 import { InputAdornment, FormControl, InputLabel, Button, TextField, NativeSelect, Input } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import styled from 'styled-components'
 
 
-const Finished = styled.a`
+const Finished = styled.div`
     padding: 6px 16px;
     font-size: 0.875rem;
     min-width: 64px;
@@ -219,11 +219,11 @@ class MenuForm extends Component {
                             <Button variant="contained" type="submit" color="primary">Añadir
                         </Button>
                             {/* Redirige al home del restaurante  */}
-                            {/* <Finished> */}
-                            <Link to="/owner/home">
-                                Finalizar
+                            <Finished>
+                                <Link to="/owner/home">
+                                    Finalizar
                             </Link>
-                            {/* </Finished> */}
+                            </Finished>
                         </div>
 
                     </form>

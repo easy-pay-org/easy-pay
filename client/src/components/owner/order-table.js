@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+import TopNav from '../top-nav'
+import BottomNav from '../bottom-nav'
+import Product from './cards/card-order'
+import Button from '@material-ui/core/Button'
+
+
 
 
 class OrderTable extends Component {
@@ -14,13 +20,42 @@ class OrderTable extends Component {
 
 
   render() {
+    const { tables } = this.state
+    console.log(tables)
     return (
+
+
+
       <div>
-        <h1>Order Table</h1>
+
+        <div>
+          <TopNav />
+          <section className="content-home">
+            <header className="hero-order">
+              <h1>Order in tables 1</h1>
+            </header>
+            <section className="container">
+
+              <h2>Order Details</h2>
+              <Product />
+
+
+            </section>
+            <section className='footer'>
+              <h1>Total: $30.00</h1>
+              <Button variant="contained" type="submit" color="primary">Guardar
+                        </Button>
+            </section>
+
+
+          </section>
+
+          <BottomNav />
+        </div>
       </div>
+
     )
   }
-
 }
 
 export default OrderTable

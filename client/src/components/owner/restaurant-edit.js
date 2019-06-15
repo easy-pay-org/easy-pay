@@ -187,7 +187,7 @@ class RestaurantEdit extends Component {
                   shrink: true,
                 }}
               />
-              <Button variant="contained" type="submit" color="primary">Siguiente
+              <Button variant="contained" type="submit" color="primary">Guardar
                         </Button>
 
             </form>

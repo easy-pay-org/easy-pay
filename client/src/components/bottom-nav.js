@@ -1,9 +1,9 @@
 import React from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import Home from '@material-ui/icons/Home'
-import InsertChart from '@material-ui/icons/InsertChart'
-import AccountBox from '@material-ui/icons/AccountBox'
+import {  Home, AccountBox, AspectRatio, ShoppingBasket } from '@material-ui/icons'
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -19,9 +19,30 @@ export default function SimpleBottomNavigation() {
 
     return (
         <BottomNavigation value={value} onChange={handleChange}>
-            <BottomNavigationAction label="Home" value="home" icon={<Home />} />
+            {/* Para owners */}
+            {/* <BottomNavigationAction label="Home" value="home" icon={<Home />}
+                component={Link}
+                to="/" />
             <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
-            <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} />
+            <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
+                to="/" /> */}
+            {/* Para Usuario */}
+            <BottomNavigationAction label="Home" value="home" icon={<Home />}
+                component={Link}
+                to="/" />
+            <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
+                component={Link}
+                to="/" />
+
+            <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
+                component={Link}
+                to="/" />
+
+            <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
+                to="/" />
+
+
+
         </BottomNavigation>
     )
 }

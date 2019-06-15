@@ -21,10 +21,10 @@ class CardRestaurant extends Component {
                 </figure>
                 <section>
                     <h2>Restaurante Pepe</h2>
-                    <p>Calle Los Angeles 19, Madrid</p>
+                    <p>Calle Las Flores 15, Madrid</p>
                     <div>
                         <Link>Entrar</Link>
-                        <Link>Editar</Link>
+                        <Link >Editar</Link>
                     </div>
                 </section>
 
@@ -37,3 +37,11 @@ class CardRestaurant extends Component {
 }
 
 export default CardRestaurant
+
+
+// < h2 > Restaurante { restaurant.name }</h2 >
+//     <p>{restaurant.address}</p>
+// <img src={restaurant.logo} alt='logos'></img>
+// <Link to={`/owner/${restaurant._id}/tables`}>Go</Link>
+// <Link to={`/owner/${restaurant._id}/edit`}>Edit</Link> 
+
