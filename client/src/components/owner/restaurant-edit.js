@@ -18,13 +18,13 @@ class RestaurantEdit extends Component {
     this.state = {
 
       restaurant: {
-        name: this.props.loggedInUser.restaurant.name,
-        address: this.props.loggedInUser.restaurant.address,
-        phone: this.props.loggedInUser.restaurant.phone,
-        description: this.props.loggedInUser.restaurant.description,
+        name: '',
+        address: '',
+        phone: '',
+        description: '',
         logo: '',
-        tables_quantity: this.props.loggedInUser.restaurant.tables.length,
-        id: this.props.loggedInUser.restaurant.id
+        tables_quantity: '',
+        id: ''
       },
 
       redirect: false,
@@ -189,7 +189,7 @@ class RestaurantEdit extends Component {
                   shrink: true,
                 }}
               />
-              <Button variant="contained" type="submit" color="primary">Siguiente
+              <Button variant="contained" type="submit" color="primary">Guardar
                         </Button>
 
             </form>

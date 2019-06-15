@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-
-
+import TopNav from '../top-nav'
+import BottomNav from '../bottom-nav'
+import Tables from './cards/card-tables'
 
 class Tableslist extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      tables: this.props.loggedInUser.restaurant.tables,
+      tables: "",
       show: false
     }
   }
@@ -19,22 +19,38 @@ class Tableslist extends Component {
     console.log(tables)
     return (
 
+
+
       <div>
 
-        {
-          tables.map((table, idx) => {
-            return (
-              <div key={idx}>
-                <img src="https://u.tfstatic.com/restaurant_photos/707/270707/169/612/autour-de-la-table-la-salle-du-restaurant-ac1ca.jpg" alt="foto-mesa"></img>
-                <p>Table {table.table_id}</p>
-                <p>view your table order</p>
+        <div>
+          <TopNav />
+          <section className="content-home">
+            <header className="hero-tables">
+              <h1>Your Tables</h1>
+            </header>
+            <section className="container">
 
-              </div>
-            )
-          })
-        }
+              <h2>Choose the table</h2>
 
+              <Tables />
+
+
+            </section>
+
+
+          </section>
+
+          <BottomNav />
+        </div>
       </div>
+
+
+
+
+
+
+
     )
 
   }

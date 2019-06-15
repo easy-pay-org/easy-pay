@@ -1,9 +1,5 @@
 .logo {
-    max-width: 30%;
-}
-
-.display {
-    display: none;
+    max-width: 40%;
 }
 
 h2 {
@@ -12,6 +8,12 @@ h2 {
     color: #E8D9B4;
     margin: 10px 0;
     width: 100%;
+}
+
+h6 {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
 }
 
 .upload {
@@ -32,17 +34,32 @@ div.MuiBottomNavigation-root {
     bottom: 0;
     width: 100%;
     border-radius: 20px 20px 0 0;
-    box-shadow: 0px -3px 5px #dfdfdf;
+    box-shadow: 0px -1px 5px #00000059;
 }
 
 button.MuiBottomNavigationAction-root.Mui-selected {
     color: #E8D9B4;
 }
 
+a.MuiBottomNavigationAction-root.Mui-selected {
+    color: #e7d8b4;
+
+}
+
+a.MuiBottomNavigationAction-root {
+    flex: 1;
+    color: rgba(0, 0, 0, 0.54);
+    padding: 6px 12px 8px;
+    max-width: 168px;
+    min-width: 0px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, padding-top 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
 /*Top  Nav*/
 header.MuiAppBar-colorDefault {
     background-color: white;
     border-radius: 0 0 20px 20px;
+    text-align: center;
 }
 
 div.MuiToolbar-regular {
@@ -53,7 +70,7 @@ div.MuiToolbar-regular {
 }
 
 header.MuiPaper-elevation4 {
-    box-shadow: 0px 3px 5px #dfdfdf;
+    box-shadow: 0px 1px 5px #00000059;
     position: fixed;
 }
 
@@ -65,6 +82,8 @@ span.MuiBadge-colorSecondary {
 button.MuiIconButton-colorInherit {
     color: rgb(117, 117, 117);
 }
+
+
 
 /* Form */
 
@@ -84,7 +103,7 @@ button.MuiIconButton-colorInherit {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    align-items: center;
+
 }
 
 input.MuiInputBase-input,
@@ -130,7 +149,7 @@ div.MuiFormControl-root {
 .col-2-header {
     display: flex;
     width: 100%;
-    margin-bottom: 30px;
+    margin: 15px 0 30px 0;
     justify-content: space-between;
 }
 
@@ -151,6 +170,10 @@ div.MuiFormControl-root {
     width: 50%;
 }
 
+.ddJAQt a {
+    text-decoration: none;
+    color: white;
+}
 
 /* Login  */
 .section-1 {
@@ -263,7 +286,7 @@ footer a {
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    font-size: 0.6em;
+    font-size: 0.8em;
     color: white;
     letter-spacing: 3px;
     background: url('/img/homeOwner.jpg') center no-repeat/ cover;
@@ -303,6 +326,7 @@ section.container .MuiFab-primary:hover {
     display: flex;
     border-radius: 20px 0px 20px 0px;
     box-shadow: 0px 3px 5px #b1b1b1;
+    margin-bottom: 10px;
 }
 
 .cards figure {
@@ -313,6 +337,7 @@ section.container .MuiFab-primary:hover {
     width: 100%;
     height: 100%;
     border-radius: 20px 0px 0px 0px;
+    object-fit: cover;
 }
 
 .cards h2 {
@@ -366,4 +391,177 @@ section.container .MuiFab-primary:hover {
     letter-spacing: 1px;
     font-weight: 600;
     margin: 10px;
+}
+
+/* Tables */
+
+.hero-tables {
+    display: flex;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: white;
+    letter-spacing: 3px;
+    background: url('/img/tables.jpg') center no-repeat/ cover;
+}
+
+.display {
+    display: none;
+}
+
+/* Order */
+.hero-order {
+    display: flex;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: white;
+    letter-spacing: 3px;
+    background: url('/img/order.jpg') center no-repeat/ cover;
+}
+
+.order figure {
+    width: 30%;
+}
+
+.sum div.MuiFormControl-marginNormal {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.sum label.MuiFormLabel-root {
+    color: black;
+    padding: 0;
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.00938em;
+}
+
+section .footer {
+    margin: 20px;
+    text-align: center;
+}
+
+h2 span {
+    font-size: 1em;
+    color: #000000;
+}
+
+/*Editar plato*/
+.ibtUwt a {
+    color: white;
+    text-decoration: none;
+}
+
+button.MuiButtonBase-root.MuiButton-root.logout.MuiButton-contained.MuiButton-containedPrimary {
+    background: black;
+}
+
+/* Lista de platos */
+.JvvdC a {
+    text-decoration: none;
+    color: white;
+}
+
+header.MuiPaper-root.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrimary {
+    position: inherit;
+}
+
+.MuiTypography-root.MuiTypography-body1 {
+    margin-top: 20px;
+    padding: 0 !important;
+}
+
+a.btn-del {
+    background: #F58C8C !important;
+}
+
+div a.btn-edit {
+    background: #757575;
+}
+
+/* Lista de platos Tab */
+span.PrivateTabIndicator-colorSecondary-90 {
+    background-color: #e7d8b4;
+}
+
+header.MuiAppBar-colorPrimary {
+    color: black;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+div.MuiTabs-flexContainer {
+    display: flex;
+    justify-content: center;
+}
+
+/* Menu User*/
+.fTpgqy a {
+    text-decoration: none;
+    color: white;
+}
+
+.hero-menu {
+    display: flex;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: white;
+    letter-spacing: 3px;
+    background: url('/img/usermenu.jpg') center no-repeat/ cover;
+}
+
+
+
+.sum div.MuiFormControl-root {
+    width: 80%;
+}
+
+/*User bag*/
+
+.hero-bag {
+    display: flex;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: white;
+    letter-spacing: 3px;
+    background: url('/img/usermenu.jpg') center no-repeat/ cover;
+}
+
+.footer-bag {
+
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.form2 {
+    margin: 20px 50px;
+}
+
+button.btn-order {
+    width: 80%;
+    background: #eed391;
+    color: white;
+}
+
+button.pay {
+    width: 80%;
+    background: black;
+    color: white;
 }

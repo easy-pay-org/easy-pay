@@ -5,10 +5,6 @@ import styled from 'styled-components'
 import { Input } from '@material-ui/core'
 import { AccountCircle, Https } from '@material-ui/icons'
 
-
-
-
-
 const Body = styled.div`
     height: 100vh;
     width: 100vw;
@@ -91,12 +87,11 @@ class Login extends Component {
                                 }
                             />
 
-
                             <button type="submit">Login</button>
                         </form>
                         <footer>
                             <Link to={'/'}>Forgot Details?</Link>
-                            <Link to={'/'}>Create Account</Link>
+                            <Link to={'/signup'}>Create Account</Link>
                         </footer>
                     </div>
 

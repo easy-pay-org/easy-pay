@@ -86,7 +86,7 @@ class Signup extends Component {
                                 required
                                 id="email"
                                 onChange={this.handleChange}
-                                value={this.state.password}
+                                value={this.state.email}
                                 className="input-front"
                                 type="email"
                                 name="email"
@@ -114,7 +114,7 @@ class Signup extends Component {
                         </form>
                         <footer>
                             <Link to={'/'}>Forgot Details?</Link>
-                            <Link to={'/'}>Create Account</Link>
+                            <Link to={'/login'}>Login</Link>
                         </footer>
                     </div>
                 </Body>
