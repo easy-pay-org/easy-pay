@@ -26,13 +26,13 @@ class navigation extends Component {
 
       <div className="display">
 
-        <Link to="/owner/home">Inicio</Link> <br></br>
+        <Link to="/">Inicio</Link> <br></br>
 
         <Link to="/signup">Registrarse</Link> <br></br>
         <Link to="/login">Iniciar sesión</Link> <br></br>
         <Link onClick={this.logout} to="/">Cerrar sesión</Link> <br></br>
 
-        <Link to="/owner/restaurant/new">Crear Restaurante</Link> <br></br>
+        {/* <Link to="/owner/restaurant/new">Crear Restaurante</Link> <br></br> */}
 
       </div >
 

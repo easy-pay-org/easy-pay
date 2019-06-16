@@ -22,6 +22,7 @@ import UserHome from './components/user/home'
 import UserEdit from './components/user/user-edit'
 import UserMenu from './components/user/menu'
 import UserBag from './components/user/user-bag'
+import Redirects from './components/auth/redirects'
 
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
@@ -62,6 +63,8 @@ class App extends Component {
         <Navigation setTheUser={this.setUser} />
 
         <Switch>
+
+          <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
 

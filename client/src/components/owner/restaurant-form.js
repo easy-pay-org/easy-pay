@@ -52,7 +52,7 @@ class RestaurantForm extends Component {
                 console.log('restaurant creado', user.restaurant)
 
                 console.log('mesas', user.restaurant.tables)
-                // this.props.setTheUser(user)
+                this.props.setTheUser(user)
                 this.setState({
                     restaurant: {
                         ...this.state.restaurant,
@@ -61,17 +61,7 @@ class RestaurantForm extends Component {
                     redirect: true
                 })
             })
-        // this.services.postRestaurant(this.state.restaurant, this.props.userInSession)
-        // .then((restaurant) => {
 
-        //     this.setState({
-        //         restaurant: {
-        //             ...this.state.restaurant,
-        //             id: restaurant._id
-        //         },
-        //         redirect: true
-        //     })
-        // })
     }
 
     uploadImg = e => {
