@@ -41,6 +41,18 @@ export default class services {
       .catch(err => console.log(err))
   }
 
+  updateMenu = (menu) => {
+    return this.service.post('updateMenu', { menu }, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
+  deleteMenu = (menu) => {
+    return this.service.post('deleteMenu', { menu }, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
 
 
   handleUpload = theFile => {

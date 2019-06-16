@@ -17,7 +17,7 @@ import TablesList from './components/owner/tables-list'
 import OrderTable from './components/owner/order-table'
 import MenuEdit from './components/owner/menus/menu-edit'
 import PerfilEdit from './components/owner/perfil-edit'
-import CousesList from './components/owner/courses/courses-list'
+import CoursesList from './components/owner/courses/courses-list'
 import UserHome from './components/user/home'
 import UserEdit from './components/user/user-edit'
 import UserMenu from './components/user/menu'
@@ -66,12 +66,14 @@ class App extends Component {
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
 
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/:course_id/edit" exact component={MenuEdit} />
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
-          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
-          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} />
+
 
 
           <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />

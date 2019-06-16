@@ -15,6 +15,7 @@ class CousesList extends Component {
             // tables: this.props.loggedInUser.restaurant.tables,
             show: false
         }
+        console.log('setTheUser en course-list', this.props.setTheUser)
     }
 
 
@@ -29,8 +30,8 @@ class CousesList extends Component {
 
     render() {
 
-        const { menu } = this.props.loggedInUser.restaurant
-        console.log('menu -->', menu)
+        const { restaurant } = this.props.loggedInUser
+        // const { menu } = this.props.loggedInUser.restaurant
 
         return (
 
@@ -43,7 +44,8 @@ class CousesList extends Component {
                     <div className="col-2-header">
                         <h2>Lista de platos</h2>
                     </div>
-                    <TabCouses menu={menu} />
+                    {/* <TabCouses menu={menu} /> */}
+                    <TabCouses restaurant={restaurant} setTheUser={this.props.setTheUser} />
 
                 </section>
 

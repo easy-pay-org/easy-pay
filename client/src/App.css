@@ -407,9 +407,9 @@ section.container .MuiFab-primary:hover {
     background: url('/img/tables.jpg') center no-repeat/ cover;
 }
 
-/* .display {
-    display: none;
-} */
+.display {
+    /* display: none; */
+}
 
 /* Order */
 .hero-order {

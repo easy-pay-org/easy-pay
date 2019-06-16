@@ -14,17 +14,21 @@ class CardRestaurant extends Component {
 
     render() {
 
+        const { restaurant } = this.props
+        console.log(this.props)
+        console.log(restaurant.tables[0])
+
         return (
             <div className='cards'>
                 <figure>
                     <img src='../../img/homeOwner.jpg' alt='restaurant' />
                 </figure>
                 <section>
-                    <h2>Restaurante Pepe</h2>
-                    <p>Calle Las Flores 15, Madrid</p>
+                    <h2>{restaurant.name}</h2>
+                    <p>{restaurant.address}</p>
                     <div>
-                        <Link>Entrar</Link>
-                        <Link >Editar</Link>
+                        <Link to={`/owner/${restaurant._id}/tables`}>Entrar</Link>
+                        <Link to={`/owner/${restaurant._id}/edit`}>Editar</Link>
                     </div>
                 </section>
 

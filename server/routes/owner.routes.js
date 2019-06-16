@@ -142,6 +142,46 @@ router.post('/newPlate', (req, res) => {
 })
 
 
+router.post('/updateMenu', (req, res) => {
+
+  const { name, price, description, id } = req.body.menu
+
+  Menu.findByIdAndUpdate({ _id: id }, { name, price, description }, { new: true })
+    .then(updatedCourse => {
+      console.log('Menu actualizado', updatedCourse)
+
+      // Version 2: enviamos el usuario actualizado en vez del restaurante
+
+
+      req.user.restaurant.menu.id = updatedCourse
+      console.log('menu del usuario actualizado', req.user.restaurant.menu.id)
+      res.json(req.user)
+    })
+    .catch(err => console.log('Error:', err))
+})
+
+
+router.post('/deleteMenu', (req, res) => {
+
+  const { menu } = req.body
+  // console.log('menu', menu)
+  // console.log('id', menu._id)
+
+  Menu.findByIdAndDelete(menu._id)
+    .then(() => {
+
+      req.user.restaurant.menu.forEach((course, idx) => {
+        if (course._id == menu._id) {
+          req.user.restaurant.menu.splice(idx, 1)
+        }
+      })
+
+      console.log('menu actualizado en el usuario', req.user.restaurant)
+      res.json(req.user)
+    })
+
+
+})
 
 
 module.exports = router

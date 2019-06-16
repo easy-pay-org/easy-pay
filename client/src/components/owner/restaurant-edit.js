@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import OwnerServices from '../../service/owner-services'
 import TopNav from '../top-nav'
@@ -187,8 +188,9 @@ class RestaurantEdit extends Component {
                   shrink: true,
                 }}
               />
-              <Button variant="contained" type="submit" color="primary">Guardar
-                        </Button>
+              <Button variant="contained" type="submit" color="primary">Guardar</Button>
+
+              <Link to={`/owner/${this.state.restaurant.id}/courses`} variant="contained" type="submit" color="primary">Courses</Link>
 
             </form>
           </section>

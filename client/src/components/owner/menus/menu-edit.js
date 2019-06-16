@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import OwnerServices from '../../../service/owner-services'
 import TopNav from '../../top-nav'
@@ -7,6 +8,7 @@ import BottomNav from '../../bottom-nav'
 import { InputAdornment, FormControl, InputLabel, Button, TextField, NativeSelect, Input } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import styled from 'styled-components'
+import { ContactsOutlined } from '@material-ui/icons';
 
 
 const Finished = styled.div`
@@ -35,16 +37,13 @@ class MenuEdit extends Component {
         super(props)
 
         this.state = {
-
             menu: {
                 type: 'first_courses',
                 name: '',
                 price: '',
                 image: '',
                 description: '',
-            },
-            restaurant: {
-                id: this.props.match.params.restaurant_id
+                id: this.props.match.params.course_id
             },
             redirect: false,
             show: false
@@ -52,7 +51,24 @@ class MenuEdit extends Component {
 
         this.services = new OwnerServices()
 
+    }
 
+
+    componentDidMount() {
+        const menu = this.props.loggedInUser.restaurant.menu
+        const course_id = this.state.menu.id
+        const course = menu.filter(course => course._id === course_id)[0]
+
+        this.setState({
+            menu: {
+                ...this.state.menu,
+                type: course.type,
+                name: course.name,
+                price: course.price,
+                image: course.image,
+                description: course.description
+            }
+        })
     }
 
 
@@ -69,18 +85,13 @@ class MenuEdit extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        this.services.postMenu(this.state.menu, this.state.restaurant.id)
-            .then((menu) => {
+        this.services.updateMenu(this.state.menu)
+            .then((user) => {
+                console.log("usario con menu actualizado", user.restaurant.menu)
 
+                this.props.setTheUser(user)
                 this.setState({
-                    menu: {
-                        ...this.state.menu,
-                        type: 'first_courses',
-                        name: '',
-                        price: '',
-                        image: '',
-                        description: '',
-                    }
+                    redirect: true
                 })
             })
     }
@@ -91,7 +102,6 @@ class MenuEdit extends Component {
     }
 
     handleFileUpload = e => {
-
         const uploadData = new FormData();
         uploadData.append("imageUrl", e.target.files[0]);
 
@@ -110,111 +120,119 @@ class MenuEdit extends Component {
 
     render() {
 
-        return (
+        // const menu = this.props
+        // console.log('restaurant----->', this.props.loggedInUser.restaurant)
 
-            <div>
-                <TopNav />
-                <section className="content">
-                    <header className="col-2-header">
-                        <h2>Editar platos</h2>
-                        {/* ver lista de platos agregados */}
-                        <a href="/">Ver lista</a>
-                    </header>
+        if (this.state.redirect) {
 
-                    <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
-                        <FormControl>
-                            <InputLabel shrink htmlFor="type">
-                                Categoría
+            return <Redirect to={`/owner/${this.props.match.params.restaurant_id}/courses`} />
+
+        } else {
+            return (
+
+                <div>
+                    <TopNav />
+                    <section className="content">
+                        <header className="col-2-header">
+                            <h2>Editar platos</h2>
+                            {/* ver lista de platos agregados */}
+                            <a href="/">Ver lista</a>
+                        </header>
+
+                        <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
+                            <FormControl>
+                                <InputLabel shrink htmlFor="type">
+                                    Categoría
                                 </InputLabel>
-                            <NativeSelect
-                                onChange={this.handleChange}
-                                input={<Input name="type" id="type" />}
-                            >
-                                <option value="" />
-                                <option value={'first_courses'}>Entrantes</option>
-                                <option value={'second_courses'}>Segundos</option>
-                                <option value={'drinks'}>Bebidas</option>
-                                <option value={'desserts'}>Postre</option>
-                            </NativeSelect>
-                        </FormControl>
+                                <NativeSelect
+                                    value={this.state.menu.type}
+                                    onChange={this.handleChange}
+                                    input={<Input name="type" id="type" />}
+                                >
+                                    <option value={'first_courses'}>Entrantes</option>
+                                    <option value={'second_courses'}>Segundos</option>
+                                    <option value={'drinks'}>Bebidas</option>
+                                    <option value={'desserts'}>Postre</option>
+                                </NativeSelect>
+                            </FormControl>
 
-                        <TextField
-                            required
-                            id="name"
-                            name="name"
-                            placeholder="Introduzca el nombre"
-                            label="Nombre Plato"
-                            value={this.state.menu.name}
-                            onChange={this.handlechange}
-                            type="text"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            margin="normal"
-                            variant="outlined"
+                            <TextField
+                                required
+                                id="name"
+                                name="name"
+                                placeholder="Introduzca el nombre"
+                                label="Nombre Plato"
+                                value={this.state.menu.name}
+                                onChange={this.handlechange}
+                                type="text"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                margin="normal"
+                                variant="outlined"
 
-                        />
-                        <TextField
-                            required
-                            id="price"
-                            name="price"
-                            type="number"
-                            placeholder="Introduzca el precio"
-                            label="Precio del plato"
-                            value={this.state.menu.price}
-                            onChange={this.handlechange}
-                            InputLabelProps={{
-                                shrink: true,
+                            />
+                            <TextField
+                                required
+                                id="price"
+                                name="price"
+                                type="number"
+                                placeholder="Introduzca el precio"
+                                label="Precio del plato"
+                                value={this.state.menu.price}
+                                onChange={this.handlechange}
+                                InputLabelProps={{
+                                    shrink: true,
 
-                            }}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">€</InputAdornment>,
-                            }}
-                            margin="normal"
-                            variant="outlined"
-                        />
+                                }}
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">€</InputAdornment>,
+                                }}
+                                margin="normal"
+                                variant="outlined"
+                            />
 
-                        <label htmlFor="image" className="upload">
-                            <input onChange={this.handleFileUpload} type="file" id="image" name="image" />
-                        </label>
-                        <div className="width">
-                            <Button variant="contained" color="default" onClick={this.uploadImg} >Subir imagen<CloudUploadIcon />
-                            </Button>
-                        </div>
+                            <label htmlFor="image" className="upload">
+                                <input onChange={this.handleFileUpload} type="file" id="image" name="image" />
+                            </label>
+                            <div className="width">
+                                <Button variant="contained" color="default" onClick={this.uploadImg} >Subir imagen<CloudUploadIcon />
+                                </Button>
+                            </div>
 
-                        <TextField
-                            required
-                            id="description"
-                            name="description"
-                            label="Descripción"
-                            placeholder="Introduzca una descripción"
-                            multiline
-                            rows="2"
-                            value={this.state.menu.description}
-                            onChange={this.handlechange}
-                            margin="normal"
-                            variant="outlined"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                        <div className="btn-bottom">
-                            {/* Agrega los platos al menu  */}
-                            <Button variant="contained" type="submit" color="primary">Añadir
-                        </Button>
-                            {/* Redirige al home del restaurante  */}
-                            <Finished>
-                                <Link to="/owner/home">
-                                    Finalizar
+                            <TextField
+                                required
+                                id="description"
+                                name="description"
+                                label="Descripción"
+                                placeholder="Introduzca una descripción"
+                                multiline
+                                rows="2"
+                                value={this.state.menu.description}
+                                onChange={this.handlechange}
+                                margin="normal"
+                                variant="outlined"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                            <div className="btn-bottom">
+                                {/* Agrega los platos al menu  */}
+                                <Button variant="contained" type="submit" color="primary">Actualizar</Button>
+                                {/* Redirige al home del restaurante  */}
+                                <Finished>
+                                    <Link to="/owner/home">
+                                        Finalizar
                             </Link>
-                            </Finished>
-                        </div>
+                                </Finished>
+                            </div>
 
-                    </form>
-                </section>
-                <BottomNav />
-            </div>
-        )
+                        </form>
+                    </section>
+                    <BottomNav />
+                </div>
+            )
+        }
     }
 }
 

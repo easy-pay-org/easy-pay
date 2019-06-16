@@ -11,7 +11,7 @@ passport.deserializeUser((userIdFromSession, cb) => {
     User.findById(userIdFromSession)
         .populate({
             path: 'restaurant',
-            // populate: { path: 'tables' }
+            populate: { path: 'tables menu' }
         })
         .exec((err, userDocument) => {
             if (err) {

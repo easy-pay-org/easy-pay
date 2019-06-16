@@ -78,7 +78,7 @@ class MenuForm extends Component {
                 this.setState({
                     menu: {
                         ...this.state.menu,
-                        type: 'first_courses',
+                        // type: 'first_courses',
                         name: '',
                         price: '',
                         image: '',

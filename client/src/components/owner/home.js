@@ -20,8 +20,7 @@ class HomeOwner extends Component {
 
 
   render() {
-    console.log(this.props.loggedInUser)
-    const { restaurant } = this.state
+    const restaurant = this.props.loggedInUser.restaurant
 
     return (
 
@@ -36,7 +35,7 @@ class HomeOwner extends Component {
             <section className="container">
 
               <h2>Your restaurant</h2>
-              <CardRestaurant />
+              <CardRestaurant restaurant={restaurant} />
               <Fab color="primary" aria-label="Add" >
                 <AddIcon />
                 <Link to={"/owner/restaurant/new"} />

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+
 import styled from 'styled-components'
 import CoursesCard from '../cards/card-courses'
 const Finished = styled.div`
@@ -29,19 +31,22 @@ class CoursesMenu extends Component {
 
         this.state = {
             // tables: this.props.loggedInUser.restaurant.tables,
-            menu: this.props.menu,
-            coursesType: this.props.coursesType,
+            // menu: this.props.restaurant.menu,
+            // coursesType: this.props.coursesType,
+            redirect: false,
             show: false
         }
     }
 
 
     render() {
-
-        console.log(this.props)
-        const { menu, coursesType } = this.state
-        console.log('menu antes de filtrar --->', menu)
-        console.log('tipo de plato --->', coursesType)
+        const { restaurant } = this.props
+        // const { menu, coursesType } = this.state
+        const menu = this.props.restaurant.menu
+        const coursesType = this.props.coursesType
+        // console.log('menu antes de filtrar --->', menu)
+        // console.log('tipo de plato --->', coursesType)
+        // console.log('restaurante--->', restaurant)
 
         const filteredMenu = menu.filter(course => course.type === coursesType)
         console.log('menu filtrado --->', filteredMenu)
@@ -53,7 +58,7 @@ class CoursesMenu extends Component {
                 <div>
 
                     <section>
-                        {filteredMenu.map((course, idx) => <CoursesCard key={idx} course={course} />)}
+                        {filteredMenu.map((course, idx) => <CoursesCard key={idx} course={course} restaurant={restaurant} setTheUser={this.props.setTheUser} />)}
                     </section>
                     <div className="btn-bottom">
                         <Finished>

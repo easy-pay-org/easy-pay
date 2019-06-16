@@ -19,8 +19,10 @@ export default function SimpleTabs(props) {
         setValue(newValue);
     }
 
-    const { menu } = props
-    console.log('menu --->', menu)
+    const { restaurant } = props
+
+    console.log('setTheUser en course-tab', props.setTheUser)
+
 
     return (
         <div >
@@ -32,10 +34,11 @@ export default function SimpleTabs(props) {
                     <Tab label="Postres" />
                 </Tabs>
             </AppBar>
-            {value === 0 && <TabContainer><CoursesMenu menu={menu} coursesType={'first_courses'} /></TabContainer>}
-            {value === 1 && <TabContainer><CoursesMenu menu={menu} coursesType={'second_courses'} /></TabContainer>}
-            {value === 2 && <TabContainer><CoursesMenu menu={menu} coursesType={'drinks'} /></TabContainer>}
-            {value === 3 && <TabContainer><CoursesMenu menu={menu} coursesType={'desserts'} /></TabContainer>}
+
+            {value === 0 && <TabContainer><CoursesMenu restaurant={restaurant} coursesType={'first_courses'} setTheUser={props.setTheUser} /></TabContainer>}
+            {value === 1 && <TabContainer><CoursesMenu restaurant={restaurant} coursesType={'second_courses'} setTheUser={props.setTheUser} /></TabContainer>}
+            {value === 2 && <TabContainer><CoursesMenu restaurant={restaurant} coursesType={'drinks'} setTheUser={props.setTheUser} /></TabContainer>}
+            {value === 3 && <TabContainer><CoursesMenu restaurant={restaurant} coursesType={'desserts'} setTheUser={props.setTheUser} /></TabContainer>}
         </div>
     );
 }

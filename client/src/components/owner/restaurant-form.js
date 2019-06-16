@@ -202,8 +202,7 @@ class RestaurantForm extends Component {
                                     shrink: true,
                                 }}
                             />
-                            <Button variant="contained" type="submit" color="primary">Siguiente
-                        </Button>
+                            <Button variant="contained" type="submit" color="primary">Siguiente</Button>
 
                         </form>
                     </section>
