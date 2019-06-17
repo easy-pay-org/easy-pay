@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
+
 
 import styled from 'styled-components'
 import CoursesCard from '../cards/card-courses'
@@ -68,7 +68,7 @@ class CoursesMenu extends Component {
 
         } else {
             return (
-                <h2>No existen platos</h2>
+                <p>No existen platos</p>
             )
         }
     }

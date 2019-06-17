@@ -151,6 +151,7 @@ div.MuiFormControl-root {
     width: 100%;
     margin: 15px 0 30px 0;
     justify-content: space-between;
+    align-items: center;
 }
 
 .col-2-header a {
@@ -426,6 +427,7 @@ section.container .MuiFab-primary:hover {
 
 .order figure {
     width: 30%;
+    object-fit: cover;
 }
 
 .sum div.MuiFormControl-marginNormal {
@@ -471,26 +473,41 @@ button.MuiButtonBase-root.MuiButton-root.logout.MuiButton-contained.MuiButton-co
 
 header.MuiPaper-root.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrimary {
     position: inherit;
+    margin-bottom: 20px;
 }
 
 .MuiTypography-root.MuiTypography-body1 {
-    margin-top: 20px;
+
     padding: 0 !important;
 }
 
-a.btn-del {
+button.btn-del {
     background: #F58C8C !important;
+    color: white;
+    padding: 0 20px;
+    box-shadow: 0px 1px 3px #9f9f9f;
 }
 
-div a.btn-edit {
+button.btn-edit {
     background: #757575;
+    color: white;
+    padding: 5px 20px;
+    box-shadow: 0px 1px 3px #9f9f9f;
+}
+
+.cards section .bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-2-header button.MuiButton-containedPrimary {
+    color: #fff;
+    background-color: #E8D9B4;
+    margin: 0;
+    width: 40%;
 }
 
 /* Lista de platos Tab */
-span.PrivateTabIndicator-colorSecondary-90 {
-    background-color: #e7d8b4;
-}
-
 header.MuiAppBar-colorPrimary {
     color: black;
     background-color: #ffffff;

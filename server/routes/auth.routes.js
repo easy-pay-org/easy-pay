@@ -12,6 +12,7 @@ authRoutes.post('/signup', (req, res, next) => {
     const password = req.body.password;
     const role = req.body.role;
 
+
     if (!username || !password) {
         res.status(400).json({ message: 'Provide username and password' });
         return;

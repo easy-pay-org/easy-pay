@@ -21,7 +21,7 @@ class OrderTable extends Component {
 
   render() {
     const { tables } = this.state
-    console.log(tables)
+    console.log('ffffff', tables)
     return (
 
 
@@ -51,7 +51,8 @@ class OrderTable extends Component {
 
           </section>
 
-          <BottomNav user={this.props.loggedInUser} />        </div>
+          <BottomNav user={this.props.loggedInUser} />
+        </div>
       </div>
 
     )

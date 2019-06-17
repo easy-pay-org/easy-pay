@@ -54,7 +54,7 @@ const TopNav = (props) => {
                     <Link to="/">
                         <img src='/img/logo.png' alt="logo" className="logo" />
                     </Link>
-                    <Link to={`/${props.user.match.params.restaurant_id}/${props.user.match.params.table_id}`}>
+                    <Link to={`/${props.user.match.params.restaurant_id}/${props.user.match.params.table_id}/chat`}>
                         <IconButton aria-label="Show 11 new notifications" color="inherit"  >
                             <Badge color="secondary">
                                 <Message />

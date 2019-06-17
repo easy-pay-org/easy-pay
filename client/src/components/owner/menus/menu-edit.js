@@ -8,7 +8,7 @@ import BottomNav from '../../bottom-nav'
 import { InputAdornment, FormControl, InputLabel, Button, TextField, NativeSelect, Input } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import styled from 'styled-components'
-import { ContactsOutlined } from '@material-ui/icons';
+
 
 
 const Finished = styled.div`
@@ -221,9 +221,7 @@ class MenuEdit extends Component {
                                 <Button variant="contained" type="submit" color="primary">Actualizar</Button>
                                 {/* Redirige al home del restaurante  */}
                                 <Finished>
-                                    <Link to="/owner/home">
-                                        Finalizar
-                            </Link>
+                                    <Link to="/owner/home">Finalizar</Link>
                                 </Finished>
                             </div>
 

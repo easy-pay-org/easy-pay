@@ -43,10 +43,10 @@ class UserMenu extends Component {
 
 
             <div>
-             <TopNav user={this.props} />
+                <TopNav user={this.props} />
                 <section className="content-home">
                     <header className="hero-menu">
-                        <h1>Welcome to Keth Caffe</h1>
+                        <h1>Welcome to {this.state.menu.name}</h1>
                     </header>
 
                     <UserTab menu={this.state.menu} />
@@ -54,11 +54,10 @@ class UserMenu extends Component {
                     <section className="container">
 
                     </section>
-
-
                 </section>
+
                 <BottomNav user={this.props.loggedInUser} />
-            </div>
+            </div >
         )
     }
 }

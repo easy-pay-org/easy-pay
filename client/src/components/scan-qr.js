@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import QrReader from 'react-qr-scanner'
 
-
 class Test extends Component {
   constructor(props) {
     super(props)
@@ -22,8 +21,8 @@ class Test extends Component {
   }
   render() {
     const previewStyle = {
-      height: 540,
-      width: 520,
+      height: 240,
+      width: 320,
     }
 
     return (

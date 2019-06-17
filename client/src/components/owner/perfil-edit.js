@@ -159,7 +159,8 @@ class PerfilEdit extends Component {
 
                     </form>
                 </section>
-                <BottomNav user={this.props.loggedInUser} />            </div>
+                <BottomNav user={this.props.loggedInUser} />
+            </div>
         )
     }
 }

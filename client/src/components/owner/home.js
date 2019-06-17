@@ -28,7 +28,7 @@ class HomeOwner extends Component {
 
   render() {
     console.log(this.props.loggedInUser)
-    
+
     const restaurant = this.props.loggedInUser.restaurant
 
 
@@ -42,7 +42,6 @@ class HomeOwner extends Component {
 
           <div>
             <TopNav user={this.props} />
-
             <section className="content-home">
               <header className="hero">
                 <h1>Welcome to Easypay</h1>
@@ -67,8 +66,9 @@ class HomeOwner extends Component {
 
             </section>
 
-            
-            <BottomNav user={this.props.loggedInUser} />          </div>
+
+            <BottomNav user={this.props.loggedInUser} />
+          </div>
 
         </div>
       )

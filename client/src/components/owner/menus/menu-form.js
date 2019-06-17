@@ -228,7 +228,7 @@ class MenuForm extends Component {
 
                     </form>
                 </section>
-                <BottomNav user={this.props.loggedInUser} />
+                <BottomNav  user={this.props.loggedInUser}/>
             </div>
         )
     }
