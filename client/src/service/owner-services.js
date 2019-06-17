@@ -10,6 +10,18 @@ export default class services {
   }
 
 
+  // Files
+
+  handleUpload = theFile => {
+    return this.service.post('/upload', theFile, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err));
+  }
+
+
+
+  // Restaurant
+
   postRestaurant = (restaurant, user) => {
 
     return this.service.post('newRestaurant', { restaurant, user }, { withCredentials: true })
@@ -34,6 +46,9 @@ export default class services {
   }
 
 
+
+  // Menu
+
   postMenu = (menu, restaurant_id) => {
 
     return this.service.post('newPlate', { menu, restaurant_id }, { withCredentials: true })
@@ -53,12 +68,27 @@ export default class services {
       .catch(err => console.log(err.response.data.msg))
   }
 
-
-
-  handleUpload = theFile => {
-    return this.service.post('/upload', theFile, { withCredentials: true })
+  getMenu = (restaurant_id) => {
+    return this.service.get(`getRestaurantMenu/${restaurant_id}`, { restaurant_id }, { withCredentials: true })
       .then(res => res.data)
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.response.data.msg))
   }
+
+
+
+  // Bag
+
+  postOrder = (order) => {
+    return this.service.post('newOrder', { order }, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err))
+  }
+
+  getOrder = () => {
+    return this.service.get('getOrder', { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
 
 }

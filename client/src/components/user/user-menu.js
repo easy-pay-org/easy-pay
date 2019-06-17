@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { Button } from '@material-ui/core'
+import OwnerServices from '../../service/owner-services'
+import { Redirect } from 'react-router-dom'
+
 
 import UserCard from './user-card'
 
@@ -9,61 +13,52 @@ class UserMenu extends Component {
         super(props)
 
         this.state = {
-
-
+            order: [],
+            redirect: false,
+            show: false
         }
 
+        this.services = new OwnerServices()
     }
-
-
-    handlechange = e => {
-        const { name, value } = e.target
-        this.setState({
-            menu: {
-                ...this.state.menu,
-                [name]: value
-            }
-        })
-    }
-
-    handleSubmit = e => {
-        e.preventDefault()
-
-        this.services.postMenu(this.state.menu, this.state.restaurant.id)
-            .then((menu) => {
-
-                this.setState({
-                    menu: {
-                        ...this.state.menu,
-                        type: 'first_courses',
-                        name: '',
-                        price: '',
-                        image: '',
-                        description: '',
-                    }
-                })
-            })
-    }
-
-
-
 
 
     render() {
 
-        return (
 
-            <div>
+        const { menu, coursesType } = this.props
+        // console.log('coursesType', coursesType)
+        // console.log('menu', menu)
 
-                <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
+        const filteredMenu = menu.filter(course => course.type === coursesType)
+        // console.log('filteredMenu', filteredMenu)
+
+        if (menu.length) {
+
+            return (
+
+                <div>
+
+                    {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
                     <section className='container'>
-                        <UserCard />
+                        {filteredMenu.map((course, idx) => {
+                            console.log('id del plato enviado---->', course._id)
+                            return <UserCard key={idx} course={course} />
+                        })}
                     </section>
 
-                </form>
+                    {/* <Button onClick={this.handlechange} variant="contained" color="primary">Añadir</Button> */}
 
-            </div>
-        )
+                    {/* </form> */}
+
+                </div>
+            )
+
+        } else {
+
+            return (
+                <h2>No existen platos</h2>
+            )
+        }
     }
 }
 

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
@@ -28,6 +27,8 @@ class HomeOwner extends Component {
 
 
   render() {
+    console.log(this.props.loggedInUser)
+    
     const restaurant = this.props.loggedInUser.restaurant
 
 
@@ -65,6 +66,7 @@ class HomeOwner extends Component {
 
             </section>
 
+            
             <BottomNav />
           </div>
 

@@ -7,6 +7,8 @@ const protectedRoute = ({ component: Component, user, setUser, ...rest }) => {
         <Route
             {...rest}
             render={props => {
+
+                // if (user && user.role === 'owner') {
                 if (user) {
                     return <Component {...props} loggedInUser={user} setTheUser={setUser} />
                 } else {

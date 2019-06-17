@@ -18,7 +18,11 @@ const userSchema = new Schema({
   restaurant: {
     type: Schema.Types.ObjectId,
     ref: "Restaurant"
-  }
+  },
+  order: [{
+    type: Schema.Types.ObjectId,
+    ref: "Order"
+  }]
 }, {
     timestamps: true
   })

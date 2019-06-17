@@ -1,69 +1,79 @@
 import React, { Component } from 'react'
 import { TextField, Button } from '@material-ui/core'
 
+import OwnerServices from '../../service/owner-services'
+
+
 class CardCourses extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            restaurant: {
-                name: '',
-                address: '',
-                phone: '',
-                description: '',
-                logo: '',
-                tables_quantity: '',
-                id: ''
+            menu: {
+                nombre: this.props.course.name,
+                precio: this.props.course.price,
+                description: this.props.course.description,
+                quantity: '',
             },
             redirect: false,
             show: false
         }
+
+        this.services = new OwnerServices()
     }
+
     handlechange = e => {
         const { name, value } = e.target
+
         this.setState({
-            restaurant: {
-                ...this.state.restaurant,
-                [name]: value
+            menu: {
+                ...this.state.menu,
+                quantity: value
             }
         })
     }
+
     handleSubmit = e => {
         e.preventDefault()
 
-        this.services.postRestaurant(this.state.restaurant, this.props.userInSession)
-            .then((restaurant) => {
 
-                this.setState({
-                    restaurant: {
-                        ...this.state.restaurant,
-                        id: restaurant._id
-                    },
-                    redirect: true
-                })
+        const { menu } = this.state
+
+        this.services.postOrder(menu)
+            .then((order) => {
+
+                console.log('La orden', order)
             })
+
+
+
     }
 
 
     render() {
 
+        console.log('props del plato recibido', this.props)
+
+        const { course } = this.props
+
         return (
             <div className='cards order'>
                 <figure>
-                    <img src='../../img/tables.jpg' alt='restaurant' />
+                    <img src={course.image} alt="plato" />
                 </figure>
                 <section>
 
-                    <h2>Tiramisu <span>$10.00</span></h2>
+                    <h2>{course.name} <span>${course.price}</span></h2>
 
-                    <p>Lorem Ipsum has been the industry’s standard dummy.</p>
+                    <p>{course.description}.</p>
 
                     <div className='sum'>
                         <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
                             <TextField
-                                id="standard-number"
+                                id="quantity"
+                                name="quantity"
                                 label="Cantidad"
-                                value={this.state.restaurant.phone}
+                                value={this.state.menu.quantity}
                                 onChange={this.handlechange}
                                 type="number"
                                 InputLabelProps={{
@@ -71,9 +81,8 @@ class CardCourses extends Component {
                                 }}
                                 margin="normal"
                             />
+                            <Button variant="contained" type="submit" color="primary">Añadir</Button>
                         </form>
-                        <Button variant="contained" type="submit" color="primary">Añadir
-                        </Button>
                     </div>
                 </section>
 

@@ -7,8 +7,6 @@ import BottomNav from '../bottom-nav'
 
 
 
-
-
 const Body = styled.div`
     height: 100vh;
     width: 100vw;

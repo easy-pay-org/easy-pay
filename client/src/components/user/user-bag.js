@@ -3,22 +3,57 @@ import TopNav from '../top-nav'
 import BottomNav from '../bottom-nav'
 import Product from '../owner/cards/card-order'
 import { Button, FormControl, InputLabel, NativeSelect, Input } from '@material-ui/core'
+
+import OwnerServices from '../../service/owner-services'
+
+
 class UserBag extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            tables: "",
-            show: false
+            // tables: "",
+            order: [],
+            totalAmount: 0,
+            // show: false
         }
+
+        this.services = new OwnerServices()
+    }
+
+
+    componentDidMount() {
+        this.services.getOrder()
+            .then(theOrder => {
+                // console.log('La orden del usuario es', theOrder)
+
+                this.setState({
+                    order: theOrder
+                })
+            })
+    }
+
+    totalPrice() {
+        return this.state.order.reduce((acc, course) => acc + (course.precio * course.quantity), 0)
+    }
+
+    updateOrder = (courseUpdated, idx) => {
+
+        let orderCopy = [...this.state.order]
+        orderCopy[idx] = courseUpdated
+        this.setState({ order: orderCopy })
+
     }
 
 
     render() {
-        const { tables } = this.state
-        console.log(tables)
-        return (
+        // const { tables } = this.state
+        // console.log(tables)
 
+        const { order } = this.state
+        console.log('la orden', order)
+
+        return (
 
 
             <div>
@@ -32,7 +67,13 @@ class UserBag extends Component {
                         <section className="container">
 
                             <h2>Su comanda...</h2>
-                            <Product />
+
+                            {
+                                order.map((course, idx) => {
+                                    // console.log('El plato que le envio a la carta', course)
+                                    return <Product key={idx} index={idx} course={course} updateOrder={this.updateOrder} state={this.state} />
+                                })
+                            }
 
 
 
@@ -41,7 +82,7 @@ class UserBag extends Component {
 
                             <Button variant="contained" type="submit" className='btn-order'>Pedir
                             </Button>
-                            <h1>Total: $30.00</h1>
+                            <h1>Total: ${this.totalPrice()}</h1>
                         </section>
 
 

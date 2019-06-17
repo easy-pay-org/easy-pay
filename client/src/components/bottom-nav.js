@@ -1,48 +1,86 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import {  Home, AccountBox, AspectRatio, ShoppingBasket } from '@material-ui/icons'
+import { Home, AccountBox, AspectRatio, ShoppingBasket } from '@material-ui/icons'
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+
+// import OwnerServices from '../service/owner-services'
 
 
 
 
 
-export default function SimpleBottomNavigation() {
+class SimpleBottomNavigation extends Component {
 
-    const [value, setValue] = React.useState('recents');
+    constructor(props) {
+        super(props)
+        this.state = {
+            value: 'recents',
+            order: [],
+            redirect: false
+        }
 
-
-    function handleChange(event, newValue) {
-        setValue(newValue);
+        // this.services = new OwnerServices()
     }
 
-    return (
-        <BottomNavigation value={value} onChange={handleChange}>
-            {/* Para owners */}
-            {/* <BottomNavigationAction label="Home" value="home" icon={<Home />}
+
+    handleChange = (event, newValue) => {
+        this.setState({ value: newValue })
+
+    }
+
+    handlesubmit = e => {
+        e.preventDefault()
+
+        // this.services.getOrder()
+        //     .then(order => {
+        //         console.log('La orden del usuario es', order)
+
+        //     })
+        this.setState({ redirect: true })
+    }
+
+    render() {
+
+        if (this.state.redirect) {
+            return <Redirect to={"/5d06617eef11635da379b0a5/1/bag"} />
+
+        } else {
+            return (
+                <BottomNavigation value={this.state.value} onChange={this.handleChange}>
+                    {/* Para owners */}
+                    {/* <BottomNavigationAction label="Home" value="home" icon={<Home />}
                 component={Link}
                 to="/" />
             <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
             <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
                 to="/" /> */}
-            {/* Para Usuario */}
-            <BottomNavigationAction label="Home" value="home" icon={<Home />}
-                component={Link}
-                to="/" />
-            <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
-                component={Link}
-                to="/" />
+                    {/* Para Usuario */}
+                    <BottomNavigationAction label="Home" value="home" icon={<Home />}
+                        component={Link}
+                        to="/home" />
+                    <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
+                        component={Link}
+                        to="/5d06617eef11635da379b0a5/1" />
 
-            <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
-                component={Link}
-                to="/" />
-
-            <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                to="/" />
+                    <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
+                        // onClick={this.handlesubmit}
+                        component={Link}
+                        to="/5d06617eef11635da379b0a5/1/order" />
 
 
 
-        </BottomNavigation>
-    )
+                    <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
+                        to="/" />
+
+
+
+                </BottomNavigation>
+            )
+        }
+    }
 }
+
+
+export default SimpleBottomNavigation

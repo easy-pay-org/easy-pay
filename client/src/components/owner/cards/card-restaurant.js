@@ -21,7 +21,7 @@ class CardRestaurant extends Component {
         return (
             <div className='cards'>
                 <figure>
-                    <img src='../../img/homeOwner.jpg' alt='restaurant' />
+                    <img src={restaurant.logo} alt='restaurant' />
                 </figure>
                 <section>
                     <h2>{restaurant.name}</h2>

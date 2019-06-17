@@ -5,6 +5,7 @@ const User = require('../models/user.model')
 const Restaurant = require('../models/restaurant.model')
 const Table = require('../models/table.model')
 const Menu = require('../models/menu.model.js')
+const Order = require('../models/order.model')
 
 
 
@@ -114,6 +115,9 @@ router.post('/updateRestaurant', (req, res) => {
 
 
 
+
+
+
 router.post('/newPlate', (req, res) => {
 
   const { type, name, price, image, description } = req.body.menu
@@ -179,9 +183,64 @@ router.post('/deleteMenu', (req, res) => {
       console.log('menu actualizado en el usuario', req.user.restaurant)
       res.json(req.user)
     })
-
+    .catch(err => console.log('Error:', err))
 
 })
+
+router.get('/getRestaurantMenu/:menu_id', (req, res) => {
+
+  Restaurant.findById(req.params.menu_id)
+    .populate({
+      path: 'menu',
+    })
+    .then(restaurant => {
+      res.json(restaurant.menu)
+    })
+    .catch(err => console.log('Error:', err))
+})
+
+
+// Order
+
+router.post('/newOrder', (req, res) => {
+
+  const { nombre, precio, description, quantity } = req.body.order
+  const user = req.user
+
+  Order.create({ nombre, precio, description, quantity })
+    .then(order => {
+      console.log('La orden', order)
+
+      User.findByIdAndUpdate({ _id: user._id }, { $push: { order: order._id } }, { new: true })
+        .then(updatedUser => {
+          console.log('Usuario actualizado con la orden', updatedUser)
+          res.json(order)
+        })
+
+
+    })
+    .catch(err => console.log('Error:', err))
+
+})
+
+
+router.get('/getOrder', (req, res) => {
+
+  const user = req.user
+
+  User.findById({ _id: user._id })
+    .populate({
+      path: 'order',
+    })
+    .then(user => {
+
+      console.log('el menu del usuario', user.order)
+      res.json(user.order)
+    })
+    .catch(err => console.log('Error:', err))
+
+})
+
 
 
 module.exports = router

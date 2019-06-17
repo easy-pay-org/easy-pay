@@ -11,13 +11,16 @@ function TabContainer(props) {
     )
 }
 
-export default function SimpleTabs() {
+export default function SimpleTabs(props) {
 
     const [value, setValue] = React.useState(0);
 
     function handleChangeTab(event, newValue) {
         setValue(newValue);
     }
+
+
+    const { menu } = props
 
     return (
         <div >
@@ -29,10 +32,11 @@ export default function SimpleTabs() {
                     <Tab label="Postres" />
                 </Tabs>
             </AppBar>
-            {value === 0 && <TabContainer><UserMenu type={'first-courses'} /> </TabContainer>}
-            {value === 1 && <TabContainer>Segundo</TabContainer>}
-            {value === 2 && <TabContainer>Bebidas</TabContainer>}
-            {value === 3 && <TabContainer>Postres</TabContainer>}
+
+            {value === 0 && <TabContainer><UserMenu menu={menu} coursesType={'first_courses'} /> </TabContainer>}
+            {value === 1 && <TabContainer><UserMenu menu={menu} coursesType={'second_courses'} /></TabContainer>}
+            {value === 2 && <TabContainer><UserMenu menu={menu} coursesType={'drinks'} /></TabContainer>}
+            {value === 3 && <TabContainer><UserMenu menu={menu} coursesType={'desserts'} /></TabContainer>}
         </div>
-    );
+    )
 }

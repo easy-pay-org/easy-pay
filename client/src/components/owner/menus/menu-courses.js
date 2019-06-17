@@ -41,12 +41,9 @@ class CoursesMenu extends Component {
 
     render() {
         const { restaurant } = this.props
-        // const { menu, coursesType } = this.state
+
         const menu = this.props.restaurant.menu
         const coursesType = this.props.coursesType
-        // console.log('menu antes de filtrar --->', menu)
-        // console.log('tipo de plato --->', coursesType)
-        // console.log('restaurante--->', restaurant)
 
         const filteredMenu = menu.filter(course => course.type === coursesType)
         console.log('menu filtrado --->', filteredMenu)
