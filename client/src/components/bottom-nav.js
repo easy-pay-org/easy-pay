@@ -44,7 +44,7 @@ class SimpleBottomNavigation extends Component {
     render() {
 
         if (this.state.redirect) {
-            return <Redirect to={"/5d06617eef11635da379b0a5/1/bag"} />
+            return <Redirect to={"/5d07d8a8bc97aa0e25cdcbd7/1/bag"} />
 
         } else {
             return (
@@ -62,12 +62,12 @@ class SimpleBottomNavigation extends Component {
                         to="/home" />
                     <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
                         component={Link}
-                        to="/5d06617eef11635da379b0a5/1" />
+                        to="/5d07d8a8bc97aa0e25cdcbd7/1" />
 
                     <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
                         // onClick={this.handlesubmit}
                         component={Link}
-                        to="/5d06617eef11635da379b0a5/1/order" />
+                        to="/5d07d8a8bc97aa0e25cdcbd7/1/order" />
 
 
 

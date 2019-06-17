@@ -76,7 +76,8 @@ class UserEdit extends Component {
         return (
 
             <div>
-                <TopNav />
+                <TopNav user={this.props} />
+
                 <section className="content">
                     <header className="col-2-header">
                         <h2>Editar Perfil</h2>
@@ -200,7 +201,7 @@ class UserEdit extends Component {
 
                     </form>
                 </section>
-                <BottomNav />
+                <BottomNav user={this.props.loggedInUser} />
             </div>
         )
     }
@@ -208,3 +209,4 @@ class UserEdit extends Component {
 
 
 export default UserEdit
+

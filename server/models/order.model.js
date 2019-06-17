@@ -2,9 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 orderSchema = new Schema({
-  nombre: String,
-  precio: Number,
+  name: String,
+  price: Number,
   description: String,
+  image: String,
   quantity: Number,
 }, {
     timestamps: true

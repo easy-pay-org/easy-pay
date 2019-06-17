@@ -10,9 +10,10 @@ class CardCourses extends Component {
         super(props)
         this.state = {
             menu: {
-                nombre: this.props.course.name,
-                precio: this.props.course.price,
+                name: this.props.course.name,
+                price: this.props.course.price,
                 description: this.props.course.description,
+                image: this.props.course.image,
                 quantity: '',
             },
             redirect: false,
@@ -36,17 +37,13 @@ class CardCourses extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-
         const { menu } = this.state
-
+        console.log('--------------------->', menu)
         this.services.postOrder(menu)
             .then((order) => {
 
                 console.log('La orden', order)
             })
-
-
-
     }
 
 

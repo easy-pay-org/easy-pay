@@ -26,7 +26,6 @@ class UserBag extends Component {
         this.services.getOrder()
             .then(theOrder => {
                 // console.log('La orden del usuario es', theOrder)
-
                 this.setState({
                     order: theOrder
                 })
@@ -34,7 +33,7 @@ class UserBag extends Component {
     }
 
     totalPrice() {
-        return this.state.order.reduce((acc, course) => acc + (course.precio * course.quantity), 0)
+        return this.state.order.reduce((acc, course) => acc + (course.price * course.quantity), 0)
     }
 
     updateOrder = (courseUpdated, idx) => {
@@ -44,6 +43,21 @@ class UserBag extends Component {
         this.setState({ order: orderCopy })
 
     }
+
+    handleOrder = () => {
+
+        this.services.updateOrder(this.state.order)
+            .then(orderUpdated => {
+                console.log('order actualizado', orderUpdated)
+
+                let orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
+
+                // let orderCopy = [...this.state.order]
+                // orderCopy.splice(0, 1)
+                this.setState({ order: orderFiltered })
+            })
+    }
+
 
 
     render() {
@@ -59,7 +73,7 @@ class UserBag extends Component {
             <div>
 
                 <div>
-                    <TopNav />
+                    <TopNav user={this.props} />
                     <section className="content-home">
                         <header className="hero-bag">
                             <h1>Thank you</h1>
@@ -71,7 +85,8 @@ class UserBag extends Component {
                             {
                                 order.map((course, idx) => {
                                     // console.log('El plato que le envio a la carta', course)
-                                    return <Product key={idx} index={idx} course={course} updateOrder={this.updateOrder} state={this.state} />
+                                    // return <Product key={idx} index={idx} course={course} updateOrder={this.updateOrder} state={this.state} />
+                                    return <Product key={idx} index={idx} course={course} updateOrder={this.updateOrder} />
                                 })
                             }
 
@@ -80,8 +95,7 @@ class UserBag extends Component {
                         </section>
                         <section className='footer-bag'>
 
-                            <Button variant="contained" type="submit" className='btn-order'>Pedir
-                            </Button>
+                            <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button>
                             <h1>Total: ${this.totalPrice()}</h1>
                         </section>
 
@@ -103,15 +117,14 @@ class UserBag extends Component {
                                         <option value={'desserts'}>Efectivo</option>
                                     </NativeSelect>
                                 </FormControl>
+                                <Button variant="contained" type="submit" className='pay'>Pagar</Button>
                             </form>
-                            <Button variant="contained" type="submit" className='pay'>Pagar
-                            </Button>
                         </section>
 
 
                     </section>
 
-                    <BottomNav />
+                    <BottomNav user={this.props.loggedInUser} />
                 </div>
             </div>
 

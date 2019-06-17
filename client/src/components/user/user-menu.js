@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from '@material-ui/core'
-import OwnerServices from '../../service/owner-services'
+// import OwnerServices from '../../service/owner-services'
 import { Redirect } from 'react-router-dom'
 
 
@@ -18,7 +18,7 @@ class UserMenu extends Component {
             show: false
         }
 
-        this.services = new OwnerServices()
+        // this.services = new OwnerServices()
     }
 
 

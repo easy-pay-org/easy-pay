@@ -129,7 +129,7 @@ class MenuForm extends Component {
         return (
 
             <div>
-                <TopNav />
+                <TopNav user={this.props} />
                 <section className="content">
                     <header className="col-2-header">
                         <h2>Agregar Platos</h2>
@@ -228,7 +228,7 @@ class MenuForm extends Component {
 
                     </form>
                 </section>
-                <BottomNav />
+                <BottomNav user={this.props.loggedInUser} />
             </div>
         )
     }

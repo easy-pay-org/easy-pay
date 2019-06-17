@@ -30,7 +30,7 @@ class navigation extends Component {
 
         {/* <Link to="/signup">Registrarse</Link> <br></br>
         <Link to="/login">Iniciar sesión</Link> <br></br> */}
-        {/* <Link onClick={this.logout} to="/">Cerrar sesión</Link> <br></br> */}
+        <Link onClick={this.logout} to="/">Cerrar sesión</Link> <br></br>
         {/* <Link to="/owner/restaurant/new">Crear Restaurante</Link> <br></br> */}
 
       </div >

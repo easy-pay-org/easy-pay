@@ -10,10 +10,12 @@ class CardOrder extends Component {
         super(props)
         this.state = {
             course: {
-                nombre: this.props.course.nombre,
-                precio: this.props.course.precio,
+                name: this.props.course.name,
+                price: this.props.course.price,
                 description: this.props.course.description,
+                image: this.props.course.image,
                 quantity: this.props.course.quantity,
+                _id: this.props.course._id
             },
             show: false
         }
@@ -42,19 +44,18 @@ class CardOrder extends Component {
 
 
     render() {
-        const { course } = this.state
-        // console.log('el plato de esta carta es', course)
+        const { course } = this.props
 
         return (
             <div className='cards order'>
                 <figure>
-                    <img src='../../img/tables.jpg' alt='restaurant' />
+                    <img src={course.image} alt='restaurant' />
                 </figure>
                 <section>
-                    <h2>{course.nombre} <span>${course.precio}</span></h2>
+                    <h2>{course.name} <span>${course.price}</span></h2>
                     <p>{course.description}.</p>
                     <div className='sum'>
-                        <h6>Total: {course.precio}$</h6>
+                        <h6>Total: {course.price}$</h6>
                         {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
                         <TextField
                             id="standard-number"

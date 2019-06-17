@@ -57,13 +57,13 @@ class UserHome extends Component {
         } else {
             return (
                 <Body>
-                    <TopNav />
+                    <TopNav user={this.props} />
                     <div className='section-1'>
                         <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
                         <p>"scans the QR of the table and orders "</p>
 
                     </div>
-                    <BottomNav />
+                    <BottomNav user={this.props.loggedInUser} />
                 </Body>
             )
         }

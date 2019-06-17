@@ -76,13 +76,20 @@ export default class services {
 
 
 
-  // Bag
+  // Order
 
   postOrder = (order) => {
     return this.service.post('newOrder', { order }, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err))
   }
+
+  updateOrder = (order) => {
+    return this.service.post('updateOrder', { order }, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err))
+  }
+
 
   getOrder = () => {
     return this.service.get('getOrder', { withCredentials: true })

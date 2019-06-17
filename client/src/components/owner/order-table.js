@@ -29,7 +29,7 @@ class OrderTable extends Component {
       <div>
 
         <div>
-          <TopNav />
+          <TopNav user={this.props} />
           <section className="content-home">
             <header className="hero-order">
               <h1>Order in tables 1</h1>
@@ -37,7 +37,8 @@ class OrderTable extends Component {
             <section className="container">
 
               <h2>Order Details</h2>
-              <Product />
+              {/* <Product />
+              return <Product key={idx} index={idx} course={course} updateOrder={this.updateOrder} /> */}
 
 
             </section>
@@ -50,8 +51,7 @@ class OrderTable extends Component {
 
           </section>
 
-          <BottomNav />
-        </div>
+          <BottomNav user={this.props.loggedInUser} />        </div>
       </div>
 
     )

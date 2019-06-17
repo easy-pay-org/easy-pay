@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import AuthServices from '../../service/auth-services'
 import styled from 'styled-components'
-import { AccountCircle, Email, Https, Group } from '@material-ui/icons'
+import { AccountCircle, Https, Group } from '@material-ui/icons'
 import { FormControl, NativeSelect, Input, InputLabel } from '@material-ui/core'
 
 
@@ -19,7 +19,7 @@ class Signup extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { username: '', password: '', redirect: false }
+        this.state = { username: '', password: '', role: '', redirect: false }
         this.services = new AuthServices()
     }
 
@@ -31,10 +31,10 @@ class Signup extends Component {
     handleSubmit = e => {
 
         e.preventDefault()
-        const { username, password } = this.state
-        this.services.signup(username, password)
+        const { username, password, role } = this.state
+        this.services.signup(username, password, role)
             .then(response => {
-                this.setState({ username: '', password: '', redirect: true })
+                this.setState({ username: '', password: '', role: '', redirect: true })
                 this.props.setTheUser(response)
             })
             .catch(error => console.log(error.response.data.message))
@@ -65,6 +65,7 @@ class Signup extends Component {
                                         }
                                     />}
                                 >
+                                    <option value={''}></option>
                                     <option value={'user'}>usuario</option>
                                     <option value={'owner'}>propietario</option>
                                 </NativeSelect>

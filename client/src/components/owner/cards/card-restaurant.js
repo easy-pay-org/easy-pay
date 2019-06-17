@@ -16,7 +16,6 @@ class CardRestaurant extends Component {
 
         const { restaurant } = this.props
         console.log(this.props)
-        console.log(restaurant.tables[0])
 
         return (
             <div className='cards'>

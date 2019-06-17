@@ -99,7 +99,8 @@ class RestaurantForm extends Component {
         } else {
             return (
                 <div>
-                    <TopNav />
+                    <TopNav user={this.props} />
+
                     <section className="content">
                         <h2>Crear restaurante</h2>
                         <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
@@ -196,7 +197,7 @@ class RestaurantForm extends Component {
 
                         </form>
                     </section>
-                    <BottomNav />
+                    <BottomNav user={this.props.loggedInUser} />
                 </div>
             )
         }

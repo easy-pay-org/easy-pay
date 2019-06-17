@@ -25,11 +25,9 @@ class Redirects extends Component {
 
     if (role === 'user')
       return <Redirect to={"/home"} />
-    // return <Redirect to={"/owner/home"} />
 
     else if (role === 'owner')
       return <Redirect to={"/owner/home"} />
-    // return <Redirect to={"/client/home"} />
 
     else
       return (<div><h1>Redirects</h1></div>)

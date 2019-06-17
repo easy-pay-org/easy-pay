@@ -37,7 +37,7 @@ class CousesList extends Component {
 
             <div>
 
-                <TopNav />
+                <TopNav user={this.props} />
 
                 <section className="content">
 
@@ -49,7 +49,7 @@ class CousesList extends Component {
 
                 </section>
 
-                <BottomNav />
+                <BottomNav user={this.props.loggedInUser} />
 
             </div>
         )

@@ -90,7 +90,10 @@ router.post('/updateRestaurant', (req, res) => {
   const { name, address, phone, logo, description, id } = req.body
 
   Restaurant.findByIdAndUpdate({ _id: id }, { name, address, phone, logo, description }, { new: true })
-    .populate('tables menu')
+    .populate({
+      path: 'restaurant',
+      populate: { path: 'tables menu' }
+    })
     .then(updatedRestaurant => {
       console.log('Restaurante actualizado', updatedRestaurant)
 
@@ -204,10 +207,10 @@ router.get('/getRestaurantMenu/:menu_id', (req, res) => {
 
 router.post('/newOrder', (req, res) => {
 
-  const { nombre, precio, description, quantity } = req.body.order
+  const { name, price, description, image, quantity } = req.body.order
   const user = req.user
 
-  Order.create({ nombre, precio, description, quantity })
+  Order.create({ name, price, description, image, quantity })
     .then(order => {
       console.log('La orden', order)
 
@@ -222,6 +225,69 @@ router.post('/newOrder', (req, res) => {
     .catch(err => console.log('Error:', err))
 
 })
+
+
+
+
+
+
+
+
+router.post('/updateOrder', (req, res) => {
+
+  const { order } = req.body
+  // let indexCourse = 0
+
+
+  // updateCourses = () => {
+  //   return Order.findByIdAndUpdate({ _id: order[indexCourse].id }, { quantity: order[indexCourse].quantity }, { new: true })
+  // }
+
+  // recursive = () => {
+
+  //   return updateCourses()
+  //     .then(updatedCourse => {
+  //       req.user.order[indexCourse] = updatedCourse
+
+  //       if (indexCourse < order.length - 1) {
+  //         indexCourse++
+  //         return recursive()
+  //       }
+
+  //     })
+  //     .catch(error => console.log(error))
+  // }
+
+
+  // if (order.length > 0) {
+
+  //   recursive()
+  //     .then(() => {
+  //       res.json(req.user.order)
+  //     })
+
+  // } else {
+  //   res.status(401).json({ msg: 'Tienes que añadir al menos un plato' })
+  // }
+  Promise.all(order.map(o => Order.findByIdAndUpdate({ _id: o._id }, { quantity: +(o.quantity) }, { new: true })))
+    .then(arrOrder => res.json(arrOrder))
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ msg: 'algo mal' })
+    })
+
+
+
+})
+
+
+
+
+
+
+
+
+
 
 
 router.get('/getOrder', (req, res) => {

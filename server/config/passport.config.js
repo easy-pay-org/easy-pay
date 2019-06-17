@@ -10,9 +10,8 @@ passport.serializeUser((loggedInUser, cb) => {
 passport.deserializeUser((userIdFromSession, cb) => {
     User.findById(userIdFromSession)
         .populate({
-            // path: 'restaurant order',
-            path: 'order',
-            // populate: { path: 'tables menu' }
+            path: 'restaurant',
+            populate: { path: 'tables menu' }
         })
         .exec((err, userDocument) => {
             if (err) {
@@ -27,9 +26,7 @@ passport.use(new LocalStrategy((username, password, next) => {
     User.findOne({ username })
 
         .populate({
-            // path: 'restaurant order',
-            path: 'order',
-            // populate: { path: 'tables menu' }
+            path: 'restaurant',
         })
 
         .exec((err, foundUser) => {
@@ -51,4 +48,3 @@ passport.use(new LocalStrategy((username, password, next) => {
             next(null, foundUser);
         })
 }));
-

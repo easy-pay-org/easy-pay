@@ -131,7 +131,7 @@ class MenuEdit extends Component {
             return (
 
                 <div>
-                    <TopNav />
+                    <TopNav user={this.props} />
                     <section className="content">
                         <header className="col-2-header">
                             <h2>Editar platos</h2>
@@ -229,7 +229,7 @@ class MenuEdit extends Component {
 
                         </form>
                     </section>
-                    <BottomNav />
+                    <BottomNav user={this.props.loggedInUser} />
                 </div>
             )
         }
