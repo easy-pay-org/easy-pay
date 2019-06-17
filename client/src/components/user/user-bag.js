@@ -24,7 +24,7 @@ class UserBag extends Component {
             <div>
 
                 <div>
-                    <TopNav />
+                    <TopNav user={this.props}  />
                     <section className="content-home">
                         <header className="hero-bag">
                             <h1>Thank you</h1>
@@ -70,7 +70,7 @@ class UserBag extends Component {
 
                     </section>
 
-                    <BottomNav />
+                    <BottomNav user={this.props.loggedInUser} />
                 </div>
             </div>
 

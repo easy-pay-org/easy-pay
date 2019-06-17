@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-
+import { Link, Redirect } from 'react-router-dom'
 import OwnerServices from '../../service/owner-services'
 import TopNav from '../top-nav'
 import BottomNav from '../bottom-nav'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import { TextField, Button } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import styled from 'styled-components'
+const Finished = styled.div`
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #000000;
+    margin-top: 20px;
+    width: 40%;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+    text-align:center;
+    margin: 20px 0;
+`;
 
 
 class RestaurantEdit extends Component {
@@ -95,7 +111,7 @@ class RestaurantEdit extends Component {
     } else {
       return (
         <div>
-          <TopNav />
+          <TopNav user={this.props}  />
           <section className="content">
             <h2>Editar restaurante</h2>
             <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
@@ -188,13 +204,16 @@ class RestaurantEdit extends Component {
                   shrink: true,
                 }}
               />
+              <div className="btn-bottom">
               <Button variant="contained" type="submit" color="primary">Guardar</Button>
-
-              <Link to={`/owner/${this.state.restaurant.id}/courses`} variant="contained" type="submit" color="primary">Courses</Link>
+              <Finished>
+                <Link to={`/owner/${this.state.restaurant.id}/courses`} variant="contained" type="submit" color="primary">Courses</Link>
+              </Finished>
+              </div>
 
             </form>
           </section>
-          <BottomNav />
+          <BottomNav user={this.props.loggedInUser} />
         </div>
       )
     }

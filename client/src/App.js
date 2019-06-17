@@ -23,9 +23,13 @@ import UserEdit from './components/user/user-edit'
 import UserMenu from './components/user/menu'
 import UserBag from './components/user/user-bag'
 import Redirects from './components/auth/redirects'
+import ProtectedRouteClient from './components/auth/protected-route-client'
+
+import Chat from './components/chat/Chat'
+
 
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
-
+import Test from './components/scan-qr'
 
 class App extends Component {
 
@@ -68,14 +72,23 @@ class App extends Component {
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
 
+          <Route path="/test" exact component={Test} />
+
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/:course_id/edit" exact component={MenuEdit} />
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
+
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
+
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} />
+
+          <ProtectedRoute user={this.state.loggedInUser} path="/:table/:num/chat" exact component={Chat} />
+
+
+          <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
 
 
 

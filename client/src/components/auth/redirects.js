@@ -24,10 +24,10 @@ class Redirects extends Component {
     const { role } = this.props.user
 
     if (role === 'user')
-      return <Redirect to={"/owner/home"} />
+      return <Redirect to={"/home"} />
 
     else if (role === 'owner')
-      return <Redirect to={"/client/home"} />
+      return <Redirect to={"/owner/home"} />
 
     else
       return (<div><h1>Redirects</h1></div>)

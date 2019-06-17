@@ -23,7 +23,7 @@ class Tableslist extends Component {
     return (
 
       <div>
-        <TopNav />
+        <TopNav user={this.props} />
 
         <section className="content-home">
           <header className="hero-tables">
@@ -40,7 +40,7 @@ class Tableslist extends Component {
 
         </section>
 
-        <BottomNav />
+        <BottomNav  user={this.props.loggedInUser}/>
       </div>
 
 

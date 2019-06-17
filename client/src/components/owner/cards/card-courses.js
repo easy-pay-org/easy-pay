@@ -56,10 +56,10 @@ class CardCourses extends Component {
                         </figure>
                         <section>
                             <div className='sum'>
-                                <h2>{course.name} <span>${course.price}</span></h2>
+                                <h2>{course.name} <span>€{course.price}</span></h2>
                             </div>
                             <p>{course.description}.</p>
-                            <div >
+                            <div className='bottom'>
                                 {/* <Link to={`/owner/${restaurant._id}/menu/edit`} className='btn-edit'> Editar </Link> */}
                                 <Button id="editar" onClick={this.handleChange} name='editar' className='btn-edit'>Editar</Button>
                                 <Button id="borrar" onClick={this.handleChange} name='borrar' className='btn-del'>Borrar</Button>

@@ -40,7 +40,7 @@ class HomeOwner extends Component {
         <div>
 
           <div>
-            <TopNav />
+            <TopNav user={this.props}  />
             <section className="content-home">
               <header className="hero">
                 <h1>Welcome to Easypay</h1>
@@ -65,7 +65,8 @@ class HomeOwner extends Component {
 
             </section>
 
-            <BottomNav />
+
+            <BottomNav user={this.props.loggedInUser} />
           </div>
 
         </div>

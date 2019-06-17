@@ -21,7 +21,7 @@ class OrderTable extends Component {
 
   render() {
     const { tables } = this.state
-    console.log(tables)
+    console.log('ffffff', tables)
     return (
 
 
@@ -29,7 +29,7 @@ class OrderTable extends Component {
       <div>
 
         <div>
-          <TopNav />
+          <TopNav user={this.props} />
           <section className="content-home">
             <header className="hero-order">
               <h1>Order in tables 1</h1>
@@ -37,6 +37,7 @@ class OrderTable extends Component {
             <section className="container">
 
               <h2>Order Details</h2>
+
               <Product />
 
 
@@ -50,7 +51,7 @@ class OrderTable extends Component {
 
           </section>
 
-          <BottomNav />
+          <BottomNav user={this.props.loggedInUser} />
         </div>
       </div>
 

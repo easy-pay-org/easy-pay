@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import OwnerServices from '../../../service/owner-services'
 import TopNav from '../../top-nav'
 import BottomNav from '../../bottom-nav'
 import TabCouses from '../courses/courses-tab'
-
-
+import { Link } from 'react-router-dom'
 
 class CousesList extends Component {
 
@@ -37,19 +35,22 @@ class CousesList extends Component {
 
             <div>
 
-                <TopNav />
+                <TopNav user={this.props} />
 
                 <section className="content">
 
                     <div className="col-2-header">
                         <h2>Lista de platos</h2>
+                        <Link to={`/owner/${restaurant._id}/menu/new`}>
+                            Add courses
+                            </Link>
                     </div>
                     {/* <TabCouses menu={menu} /> */}
                     <TabCouses restaurant={restaurant} setTheUser={this.props.setTheUser} />
 
                 </section>
 
-                <BottomNav />
+                <BottomNav user={this.props.loggedInUser} />
 
             </div>
         )
