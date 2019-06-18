@@ -13,7 +13,7 @@ export default class services {
   // Files
 
   handleUpload = theFile => {
-    return this.service.post('/upload', theFile, { withCredentials: true })
+    return this.service.post('upload', theFile, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err));
   }
