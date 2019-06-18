@@ -7,7 +7,7 @@ import BottomNav from '../bottom-nav'
 
 import styled from 'styled-components'
 import io from "socket.io-client"
-const socket = io("http://localhost:3000", { path: "/api/socket" })
+const socket = io(process.env.REACT_APP_URL, { path: "/api/socket" })
 
 
 
