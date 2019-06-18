@@ -51,7 +51,7 @@ class Signup extends Component {
                         <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
                         <p>"your restaurant has never been this efficient"</p>
 
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} autoComplete="off">
                             <FormControl>
                                 <InputLabel shrink htmlFor="role">
                                 </InputLabel>

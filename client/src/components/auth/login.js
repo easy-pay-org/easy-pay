@@ -59,14 +59,13 @@ class Login extends Component {
                         <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
                         <p>"your restaurant has never been this efficient"</p>
 
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} autoComplete="off">
 
 
                             <Input
                                 id="username"
                                 onChange={this.handleChange}
-                                value={this.state.username}
-                                className="input-front"
+                                value={this.state.username} className="input-front"
                                 type="text"
                                 name="username"
                                 placeholder='username'
