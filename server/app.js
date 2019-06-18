@@ -20,6 +20,7 @@ const mongoose = require('./config/mongoose.config')
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+
 const app = express();
 
 
@@ -81,5 +82,10 @@ app.use('/api', ownerRoutes);
 // Middleware subida de archivos Cloudinary
 const fileRoutes = require('./routes/file-upload.routes')
 app.use('/api', fileRoutes);
+
+app.use((req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 
 module.exports = app;
