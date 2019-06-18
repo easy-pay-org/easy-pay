@@ -75,13 +75,13 @@ class SimpleBottomNavigation extends Component {
                         <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
                             component={Link}
                             // to="/5d07d8a8bc97aa0e25cdcbd7/1" />
-                        // to="localhost:5000/5d07d8a8bc97aa0e25cdcbd7/1" />
+                            // to="localhost:5000/5d07d8a8bc97aa0e25cdcbd7/1" />
                             to="/qr" />
 
                         <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
                             // onClick={this.handlesubmit}
                             component={Link}
-                            to="/5d06617eef11635da379b0a5/1/order" />
+                            to="/5d07e9358f0aa17b2c62cc32/1/order" />
 
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
                             to="/" />
