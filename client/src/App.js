@@ -68,7 +68,6 @@ class App extends Component {
 
         <Switch>
 
-
           <Route path="/qr" exact component={Qr} />
 
           <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />

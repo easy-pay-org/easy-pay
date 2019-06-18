@@ -5,7 +5,7 @@ export default class services {
   constructor() {
 
     this.service = axios.create({
-      baseURL: 'http://localhost:3000/api/'
+      baseURL: process.env.REACT_APP_URL
     })
   }
 
@@ -13,7 +13,7 @@ export default class services {
   // Files
 
   handleUpload = theFile => {
-    return this.service.post('/upload', theFile, { withCredentials: true })
+    return this.service.post('upload', theFile, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err));
   }
