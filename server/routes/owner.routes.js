@@ -26,7 +26,7 @@ router.post('/newRestaurant', (req, res) => {
       let tables_array = []
       console.log('restaurante creado', restaurant)
 
-      createTables = () => Table.create({ table_id: indexTable, qr_url: `${process.env.URLLOCAL}:5000?restaurant=${restaurant._id}&table=${indexTable}` })
+      createTables = () => Table.create({ table_id: indexTable, qr_url: "http://localhost:5000?restaurant=${restaurant._id}&table=${indexTable}" })
 
       pupulateTables = () => {
         return Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })

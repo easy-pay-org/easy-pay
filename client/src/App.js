@@ -24,7 +24,7 @@ import UserEdit from './components/user/user-edit'
 import UserMenu from './components/user/menu'
 import UserBag from './components/user/user-bag'
 import Redirects from './components/auth/redirects'
-import Test from './components/scan-qr'
+import Qr from './components/scan-qr'
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
 import Chat from './components/chat/Chat'
@@ -69,7 +69,7 @@ class App extends Component {
         <Switch>
 
 
-          <Route path="/qr" exact component={Test} />
+          <Route path="/qr" exact component={Qr} />
 
           <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
