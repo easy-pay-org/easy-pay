@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import QrReader from 'react-qr-scanner'
+import { Redirect } from 'react-router-dom'
+
 
 class Test extends Component {
   constructor(props) {
@@ -7,15 +9,31 @@ class Test extends Component {
     this.state = {
       delay: 100,
       result: 'No result',
+      redirect: false
     }
 
     this.handleScan = this.handleScan.bind(this)
   }
   handleScan(data) {
-    this.setState({
-      result: data,
-    })
+
+
+
+    if (data) {
+      data = data.slice(7)
+      console.log(data)
+
+      this.setState({
+        result: data,
+        redirect: true
+      })
+    }
+
+    // this.setState({
+    //   result: data,
+    // })
+
   }
+
   handleError(err) {
     console.error(err)
   }
@@ -25,17 +43,22 @@ class Test extends Component {
       width: 320,
     }
 
-    return (
-      <div>
-        <QrReader
-          delay={this.state.delay}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
-        />
-        <p>{this.state.result}</p>
-      </div>
-    )
+    if (this.state.redirect) {
+      return <Redirect to={`/${this.state.result}`} />
+
+    } else {
+      return (
+        <div>
+          <QrReader
+            delay={this.state.delay}
+            style={previewStyle}
+            onError={this.handleError}
+            onScan={this.handleScan}
+          />
+          <p>{this.state.result}</p>
+        </div>
+      )
+    }
   }
 }
 

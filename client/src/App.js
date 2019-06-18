@@ -67,13 +67,14 @@ class App extends Component {
         <Navigation setTheUser={this.setUser} />
 
         <Switch>
-          <Route path="/test" exact component={Test} />
+
+
+          <Route path="/qr" exact component={Test} />
 
           <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
 
-          <Route path="/test" exact component={Test} />
 
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
@@ -100,6 +101,11 @@ class App extends Component {
 
           <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
           <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
+
+
+
+
+
 
         </Switch>
 
