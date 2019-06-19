@@ -43,10 +43,6 @@ class SimpleBottomNavigation extends Component {
         this.setState({ redirect: true })
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 619f423bece27ab779c9af64b86f4beca5bd4dbe
     handleTable = (restaurant_id, table_id) => {
         console.log(restaurant_id, table_id)
 

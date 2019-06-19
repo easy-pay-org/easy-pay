@@ -8,11 +8,13 @@ const logger = require('morgan')
 const path = require('path')
 const cors = require('cors')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session);
+
+const MongoStore = require('connect-mongo')(session)
+const mongoose = require('./config/mongoose.config')
+
 const passport = require('passport')
 
 require('./config/passport.config')
-const mongoose = require('./config/mongoose.config')
 
 // Stripe ---------------------------------------------------------------------
 // const { Swig } = require('swig');

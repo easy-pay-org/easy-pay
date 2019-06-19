@@ -264,7 +264,7 @@ div.MuiFormControl-root {
 
 footer {
     bottom: 0;
-    position: absolute;
+    position: inherit;
     margin: 20px 0;
     width: 100%;
     display: flex;
