@@ -14,6 +14,12 @@ const passport = require('passport')
 require('./config/passport.config')
 const mongoose = require('./config/mongoose.config')
 
+// Stripe ---------------------------------------------------------------------
+// const { Swig } = require('swig');
+// const swig = new Swig();
+// app.engine('html', swig.renderFile);
+// app.set('view engine', 'html');
+// Stripe ---------------------------------------------------------------------
 
 
 
@@ -59,7 +65,7 @@ app.use(cookieParser());
 
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -81,6 +87,11 @@ app.use('/api', ownerRoutes);
 // Middleware subida de archivos Cloudinary
 const fileRoutes = require('./routes/file-upload.routes')
 app.use('/api', fileRoutes);
+
+// Payment
+const payRoutes = require('./routes/payment.routes')
+app.use('/api', payRoutes)
+
 
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");

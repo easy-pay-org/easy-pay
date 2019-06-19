@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-
 import './App.css';
 
 import HomeOwner from './components/owner/home'
@@ -25,10 +24,11 @@ import UserMenu from './components/user/menu'
 import UserBag from './components/user/user-bag'
 import Redirects from './components/auth/redirects'
 import Qr from './components/scan-qr'
+import Payment from './components/user/payment'
+import { Elements, StripeProvider } from 'react-stripe-elements';
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
 import Chat from './components/chat/Chat'
-
 
 
 class App extends Component {
@@ -68,6 +68,16 @@ class App extends Component {
 
         <Switch>
 
+          <Route path="/pay" exact render={() =>
+
+            <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
+              <Elements>
+                <Payment />
+              </Elements>
+            </StripeProvider>
+
+          } />
+
           <Route path="/qr" exact component={Qr} />
 
           <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
@@ -84,17 +94,27 @@ class App extends Component {
 
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
-          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} />
-
           <ProtectedRoute user={this.state.loggedInUser} path="/:table/:num/chat" exact component={Chat} />
-
 
           <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
 
 
           <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
           <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id" exact component={UserMenu} />
-          <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+
+
+
+          {
+            this.state.loggedInUser ?
+
+              (this.state.loggedInUser.role === 'user') ?
+
+                <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+                :
+                < ProtectedRoute user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={OrderTable} />
+              :
+              null
+          }
 
 
 

@@ -26,11 +26,7 @@ router.post('/newRestaurant', (req, res) => {
       let tables_array = []
       console.log('restaurante creado', restaurant)
 
-<<<<<<< HEAD
-      createTables = () => Table.create({ table_id: indexTable, qr_url: "http://localhost:5000?restaurant=${restaurant._id}&table=${indexTable}" })
-=======
       createTables = () => Table.create({ table_id: indexTable, qr_url: `http://localhost:5000?restaurant=${restaurant._id}&table=${indexTable}` })
->>>>>>> a7535c1290c2e386ea0b93a3740dae2c840c8b4c
 
       pupulateTables = () => {
         return Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })

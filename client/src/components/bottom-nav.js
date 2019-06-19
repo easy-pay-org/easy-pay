@@ -41,6 +41,16 @@ class SimpleBottomNavigation extends Component {
         this.setState({ redirect: true })
     }
 
+
+    handleTable = (restaurant_id, table_id) => {
+        console.log(restaurant_id, table_id)
+
+        this.setState(
+            { table_id },
+            { restaurant_id }
+        )
+    }
+
     render() {
 
         if (this.state.redirect) {
@@ -81,7 +91,7 @@ class SimpleBottomNavigation extends Component {
                         <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
                             // onClick={this.handlesubmit}
                             component={Link}
-                            to="/5d07e9358f0aa17b2c62cc32/1/order" />
+                            to={`/${this.state.restaurant_id}}/${this.state.table_id}/order`} />
 
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
                             to="/" />

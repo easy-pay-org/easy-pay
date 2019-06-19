@@ -23,7 +23,7 @@ class CardTables extends Component {
                     <h2>Table {table_id}</h2>
                     <p>View your table order</p>
                     <div>
-                        <Link to={`/owner/${restaurant_id}}/${table_id}`}> Go </Link>
+                        <Link to={`/${restaurant_id}}/${table_id}`}> Go </Link>
                     </div>
                 </section>
 
