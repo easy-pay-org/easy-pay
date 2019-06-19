@@ -28,8 +28,7 @@ import Payment from './components/user/payment'
 import { Elements, StripeProvider } from 'react-stripe-elements';
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
-import Chat from './components/chat/Chat'
-
+import Order from './components/sockets/Order'
 
 class App extends Component {
 
@@ -94,7 +93,8 @@ class App extends Component {
 
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
-          <ProtectedRoute user={this.state.loggedInUser} path="/:table/:num/chat" exact component={Chat} />
+
+
 
           <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
 
@@ -115,6 +115,8 @@ class App extends Component {
               :
               null
           }
+
+          {/* <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} /> */}
 
 
 

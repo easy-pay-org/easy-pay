@@ -27,7 +27,6 @@ class HomeOwner extends Component {
 
 
   render() {
-    console.log(this.props.loggedInUser)
 
     const restaurant = this.props.loggedInUser.restaurant
 

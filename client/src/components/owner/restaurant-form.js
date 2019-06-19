@@ -49,9 +49,7 @@ class RestaurantForm extends Component {
         this.services.postRestaurant(this.state.restaurant, this.props.loggedInUser)
             .then((user) => {
                 // console.log('restaurant creado en el usuario', user)
-                console.log('restaurant creado', user.restaurant)
 
-                console.log('mesas', user.restaurant.tables)
                 this.props.setTheUser(user)
                 this.setState({
                     restaurant: {

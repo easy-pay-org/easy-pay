@@ -46,7 +46,6 @@ class RestaurantEdit extends Component {
       redirect: false,
       show: false
     }
-    console.log(this.props.loggedInUser)
     this.services = new OwnerServices()
   }
 

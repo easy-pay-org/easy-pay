@@ -13,7 +13,6 @@ class CardOrder extends Component {
                 price: this.props.course.price,
                 description: this.props.course.description,
                 image: this.props.course.image,
-                quantity: this.props.course.quantity,
                 _id: this.props.course._id
             },
             show: false
@@ -59,7 +58,7 @@ class CardOrder extends Component {
                         <TextField
                             id="standard-number"
                             label="Quantity"
-                            value={this.state.course.quantity}
+                            value={this.props.course.quantity}
                             onChange={this.handlechange}
                             type="number"
                             InputLabelProps={{

@@ -27,7 +27,6 @@ class navigation extends Component {
       <div className="display">
 
         <Link to="/">Inicio</Link> <br></br>
-
         {/* <Link to="/signup">Registrarse</Link> <br></br>
         <Link to="/login">Iniciar sesión</Link> <br></br> */}
         <Link onClick={this.logout} to="/">Cerrar sesión</Link> <br></br>
