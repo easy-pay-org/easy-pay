@@ -27,8 +27,8 @@ class Payment extends Component {
     this.state = {
       productInfo: {
         uuid: 1,
-        productName: 'Soylent',
-        productDescription: 'Meal replacement that tastes like pancake batter.',
+        productName: 'menu',
+        productDescription: 'purchase',
         productPrice: 10.99,
 
         cardName: 'Pepe',
@@ -36,7 +36,6 @@ class Payment extends Component {
       },
       show: false
     }
-
     this.services = new PayServices()
   }
 
@@ -46,14 +45,12 @@ class Payment extends Component {
     ev.preventDefault()
 
 
-    let { token } = await this.props.stripe.createToken({ name: "Name" });
-    console.log(token)
+    let { token } = await this.props.stripe.createToken({ name: this.props.name, amount: 8000 });
     let response = await fetch(process.env.REACT_APP_URL + 'charge', {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
-      body: token.id
+      body: `${token.id} ${this.props.total}`,
     });
-    console.log('fetch')
 
     if (response.ok)
       console.log("Purchase Complete!")
@@ -91,6 +88,7 @@ class Payment extends Component {
 
   render() {
 
+    console.log('total', this.props.total)
     if (this.state.complete) return <h1>Purchase Complete</h1>;
 
     return (

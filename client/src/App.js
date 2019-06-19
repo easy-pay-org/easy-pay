@@ -34,7 +34,12 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { loggedInUser: null }
+    this.state = {
+      loggedInUser: null,
+      order: {
+        total: 0
+      }
+    }
     this.services = new AuthServices()
     this.fetchUser()
   }
@@ -53,8 +58,19 @@ class App extends Component {
     }
   }
 
+  updateTotal = (total) => {
+
+    this.setState({
+      order: {
+        total
+      }
+    })
+  }
+
 
   render() {
+
+    console.log(this.state.order.total)
 
     this.fetchUser()
 
@@ -63,19 +79,19 @@ class App extends Component {
       <div>
 
         {/* {this.state.loggedInUser && <p>Pepe</p>} */}
-        <Navigation setTheUser={this.setUser} />
+        < Navigation setTheUser={this.setUser} />
 
         <Switch>
 
-          <Route path="/pay" exact render={() =>
+          {/* <Route path="/pay" exact render={() =>
 
             <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
               <Elements>
-                <Payment />
+                <Payment total={this.state.order.total * 100} />
               </Elements>
             </StripeProvider>
 
-          } />
+          } /> */}
 
           <Route path="/qr" exact component={Qr} />
 
@@ -109,7 +125,7 @@ class App extends Component {
 
               (this.state.loggedInUser.role === 'user') ?
 
-                <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+                <ProtectedRouteClient user={this.state.loggedInUser} updateTotal={this.updateTotal} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
                 :
                 < ProtectedRoute user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={OrderTable} />
               :
@@ -119,18 +135,13 @@ class App extends Component {
           {/* <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} /> */}
 
 
-
           <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
           <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
 
 
-
-
-
-
         </Switch>
 
-      </div>
+      </div >
     )
   }
 }

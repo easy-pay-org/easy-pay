@@ -3,10 +3,15 @@ import TopNav from '../top-nav'
 import BottomNav from '../bottom-nav'
 import Product from '../owner/cards/card-order'
 import { Button, FormControl, InputLabel, NativeSelect, Input } from '@material-ui/core'
+import { Redirect } from 'react-router-dom'
 
 import OwnerServices from '../../service/owner-services'
 
 import { socketConfig } from "../socket-config/socket"
+import { Elements, StripeProvider } from 'react-stripe-elements';
+import Payment from '../../components/user/payment'
+
+
 
 
 class UserBag extends Component {
@@ -39,9 +44,11 @@ class UserBag extends Component {
             .then(theOrder => {
                 // console.log('La orden del usuario es', theOrder)
                 this.setState({
-                    order: theOrder
+                    order: theOrder,
+                    redirect: false
                 })
             })
+
     }
 
     totalPrice() {
@@ -80,17 +87,27 @@ class UserBag extends Component {
     }
 
 
+    handleSubmit = e => {
+        e.preventDefault()
+
+        this.props.updateTotal(this.totalPrice())
+
+        this.setState({ redirect: true })
+    }
+
 
     render() {
         // const { tables } = this.state
-        // console.log(tables)
-
+        // console.log(this.props)
 
         const { order } = this.state
 
+        // if (this.state.redirect) {
+        //     return <Redirect to={"/pay"} />
+        // }
 
+        // else {
         return (
-
 
             <div>
 
@@ -113,14 +130,11 @@ class UserBag extends Component {
                             }
 
 
-
                         </section>
                         <section className='footer-bag'>
 
                             {/* <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button> */}
                             <h1>Total: ${this.totalPrice()}</h1>
-
-
 
 
                             <Button onClick={this.socketNewMessage} variant="contained" className='btn-order'>Pedir</Button>
@@ -148,20 +162,25 @@ class UserBag extends Component {
                             </form>
                         </section>
 
-
                     </section>
+                    <div>
+                        {
+                            this.state.redirect ?
+                                <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
+                                    <Elements>
+                                        <Payment total={this.totalPrice() * 100} name={this.props.loggedInUser.username} />
+                                    </Elements>
+                                </StripeProvider>
+                                : null
+                        }
+                    </div>
 
                     <BottomNav user={this.props.loggedInUser} />
                 </div>
             </div>
 
-
-
-
-
-
-
         )
+        // }
 
     }
 
