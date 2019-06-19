@@ -17,7 +17,6 @@ class Tableslist extends Component {
 
   render() {
     const { restaurant, tables } = this.state
-    console.log("restaurante", restaurant)
     // console.log("mesa", tables[0])
 
     return (

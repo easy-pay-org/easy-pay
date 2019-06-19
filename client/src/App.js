@@ -27,9 +27,7 @@ import Redirects from './components/auth/redirects'
 import Qr from './components/scan-qr'
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
-import Chat from './components/chat/Chat'
-
-
+import Order from './components/sockets/Order'
 
 class App extends Component {
 
@@ -68,6 +66,7 @@ class App extends Component {
 
         <Switch>
 
+
           <Route path="/qr" exact component={Qr} />
 
           <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
@@ -84,9 +83,8 @@ class App extends Component {
 
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
-          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} />
 
-          <ProtectedRoute user={this.state.loggedInUser} path="/:table/:num/chat" exact component={Chat} />
+
 
 
           <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
@@ -94,7 +92,28 @@ class App extends Component {
 
           <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
           <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id" exact component={UserMenu} />
-          <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+
+
+
+
+
+          {
+            this.state.loggedInUser ?
+
+              (this.state.loggedInUser.role === 'user') ?
+
+                <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+                :
+                < ProtectedRoute user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={OrderTable} />
+              :
+              null
+          }
+
+          {/* <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} /> */}
+
+
+
+
 
 
 

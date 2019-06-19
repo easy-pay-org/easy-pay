@@ -6,6 +6,8 @@ import { Button, FormControl, InputLabel, NativeSelect, Input } from '@material-
 
 import OwnerServices from '../../service/owner-services'
 
+import { socketConfig } from "../socket-config/socket"
+
 
 class UserBag extends Component {
 
@@ -19,6 +21,16 @@ class UserBag extends Component {
         }
 
         this.services = new OwnerServices()
+
+
+        this.connectSocket = new socketConfig(this.socketMsg, { id: props.match.params.restaurant_id, num: props.match.params.table_id })
+
+
+        this.connectSocket.socket.on('subasta!', data => {
+            console.log('en socketconfig')
+            console.log(data)
+            this.setState({ order: data.message })
+        })
     }
 
 
@@ -48,7 +60,8 @@ class UserBag extends Component {
 
         this.services.updateOrder(this.state.order)
             .then(orderUpdated => {
-                console.log('order actualizado', orderUpdated)
+
+                console.log(this.props)
 
                 let orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
 
@@ -59,13 +72,22 @@ class UserBag extends Component {
     }
 
 
+    socketNewMessage = (e) => {
+
+        this.connectSocket.newMessage(this.state.order,
+            { id: this.props.match.params.restaurant_id, num: this.props.match.params.table_id })
+
+    }
+
+
 
     render() {
         // const { tables } = this.state
         // console.log(tables)
 
+
         const { order } = this.state
-        console.log('la orden', order)
+
 
         return (
 
@@ -95,8 +117,13 @@ class UserBag extends Component {
                         </section>
                         <section className='footer-bag'>
 
-                            <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button>
+                            {/* <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button> */}
                             <h1>Total: ${this.totalPrice()}</h1>
+
+
+
+
+                            <Button onClick={this.socketNewMessage} variant="contained" className='btn-order'>Pedir</Button>
                         </section>
 
 

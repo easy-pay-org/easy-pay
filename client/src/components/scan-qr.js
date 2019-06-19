@@ -14,13 +14,17 @@ class Test extends Component {
 
     this.handleScan = this.handleScan.bind(this)
   }
+
   handleScan(data) {
-
-
 
     if (data) {
       data = data.slice(7)
       console.log(data)
+
+      const restaurant_id = data.substring(0, data.indexOf('/'))
+      const table_id = data.substring(data.indexOf('/') + 1)
+
+      this.props.setTable(restaurant_id, table_id)
 
       this.setState({
         result: data,

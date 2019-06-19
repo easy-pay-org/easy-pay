@@ -15,7 +15,7 @@ class CardRestaurant extends Component {
     render() {
 
         const { restaurant } = this.props
-        console.log(this.props)
+
 
         return (
             <div className='cards'>
@@ -47,4 +47,3 @@ export default CardRestaurant
 // <img src={restaurant.logo} alt='logos'></img>
 // <Link to={`/owner/${restaurant._id}/tables`}>Go</Link>
 // <Link to={`/owner/${restaurant._id}/edit`}>Edit</Link> 
-

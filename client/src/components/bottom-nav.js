@@ -17,6 +17,8 @@ class SimpleBottomNavigation extends Component {
         super(props)
         this.state = {
             value: 'recents',
+            table_id: '',
+            restaurant_id: '',
             order: [],
             redirect: false
         }
@@ -41,7 +43,22 @@ class SimpleBottomNavigation extends Component {
         this.setState({ redirect: true })
     }
 
+    handleTable = (restaurant_id, table_id) => {
+        console.log(restaurant_id, table_id)
+
+        this.setState(
+            { table_id },
+            { restaurant_id }
+        )
+    }
+
+
+
     render() {
+
+        console.log('desde bottom', this.props.user.restaurant)
+        // const table_id = this.props.user.restaurant
+        // const restaurant_id = this.props.user.restaurant._id
 
         if (this.state.redirect) {
             return <Redirect to={"/5d07d8a8bc97aa0e25cdcbd7/1/bag"} />
@@ -73,6 +90,7 @@ class SimpleBottomNavigation extends Component {
                             component={Link}
                             to="/home" />
                         <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
+                            setTable={this.handleTable}
                             component={Link}
                             // to="/5d07d8a8bc97aa0e25cdcbd7/1" />
                             // to="localhost:5000/5d07d8a8bc97aa0e25cdcbd7/1" />
@@ -81,7 +99,7 @@ class SimpleBottomNavigation extends Component {
                         <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
                             // onClick={this.handlesubmit}
                             component={Link}
-                            to="/5d07e9358f0aa17b2c62cc32/1/order" />
+                            to={`/${this.state.restaurant_id}}/${this.state.table_id}/order`} />
 
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
                             to="/" />
