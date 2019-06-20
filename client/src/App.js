@@ -70,7 +70,7 @@ class App extends Component {
 
   render() {
 
-    console.log(this.state.order.total)
+
 
     this.fetchUser()
 
@@ -97,6 +97,11 @@ class App extends Component {
 
           <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
+
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/perfil_edit" exact component={PerfilEdit} />
+
+
+
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
 
 
@@ -104,6 +109,8 @@ class App extends Component {
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
           <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/:course_id/edit" exact component={MenuEdit} />
+          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/perfil_edit" exact component={PerfilEdit} />
+
 
           <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
 

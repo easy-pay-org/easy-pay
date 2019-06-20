@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Home, AccountBox, AspectRatio, ShoppingBasket, InsertChart } from '@material-ui/icons'
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom';
+
+
 
 // import OwnerServices from '../service/owner-services'
 
@@ -54,7 +55,7 @@ class SimpleBottomNavigation extends Component {
 
     render() {
 
-        console.log('desde bottom', this.props.user.restaurant)
+
         // const table_id = this.props.user.restaurant
         // const restaurant_id = this.props.user.restaurant._id
 
@@ -73,7 +74,7 @@ class SimpleBottomNavigation extends Component {
                             to="/home" />
                         <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to="/" />
+                            to="/owner/5d08d317b7405800178ce0d3/perfil_edit" />
                     </BottomNavigation>
 
                 )

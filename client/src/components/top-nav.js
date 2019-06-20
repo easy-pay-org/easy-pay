@@ -9,11 +9,6 @@ import Message from '@material-ui/icons/Message'
 const TopNav = (props) => {
 
 
-  
-
-
-
-
     if (props.user.match.url === '/owner/home')
         return (
             <AppBar position="static" color="default" >
