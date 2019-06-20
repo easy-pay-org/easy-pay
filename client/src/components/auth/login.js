@@ -9,7 +9,6 @@ const Body = styled.div`
     height: 100vh;
     width: 100vw;
     background: url('../../../img/login.jpg') center no-repeat/ cover;
-
 `
 
 class Login extends Component {
@@ -25,9 +24,10 @@ class Login extends Component {
             redirect: true
         })
     }
+
     renderRedirect = () => {
         if (this.state.redirect) {
-            return <Redirect to='/owner/restaurant/new' />
+            return <Redirect to='/' />
         }
     }
 

@@ -39,8 +39,6 @@ class CardOrder extends Component {
 
     }
 
-
-
     render() {
         const { course } = this.props
 
