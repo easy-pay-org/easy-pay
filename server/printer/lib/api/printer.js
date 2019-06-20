@@ -47,6 +47,7 @@ class Printer {
      * @returns {*}
      */
     setVoice(machineCode, content, aid = '', isFile = false) {
+
         if (_.isEmpty(String(machineCode))) {
             throw new Error('machine_code can not be empty');
         }
@@ -57,6 +58,7 @@ class Printer {
             throw new Error('is_file parameter type must be boolean');
         }
         return this.rpcClient.call('printer/setvoice', { machine_code: machineCode, content: content, is_file: isFile, aid: aid });
+
     }
 
     /**
