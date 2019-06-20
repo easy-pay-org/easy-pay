@@ -105,7 +105,7 @@ class UserBag extends Component {
 
 
     socketNewMessage = (e) => {
-
+        console.log('entra socket')
         this.connectSocket.newMessage(this.state.order,
             { id: this.props.match.params.restaurant_id, num: this.props.match.params.table_id })
 

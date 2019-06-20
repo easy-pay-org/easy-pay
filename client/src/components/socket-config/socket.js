@@ -14,7 +14,7 @@ export class socketConfig {
 
 
     newMessage = (msg, table) => {
-
+        console.log(msg, table)
         this.socket.emit("send message", { msg, table })
 
     }
