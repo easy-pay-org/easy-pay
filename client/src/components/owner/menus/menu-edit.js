@@ -84,10 +84,9 @@ class MenuEdit extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-
+        console.log('informacion enviada al back---------->', this.state.menu)
         this.services.updateMenu(this.state.menu)
             .then((user) => {
-                console.log("usario con menu actualizado", user.restaurant.menu)
 
                 this.props.setTheUser(user)
                 this.setState({
@@ -98,6 +97,7 @@ class MenuEdit extends Component {
 
     uploadImg = e => {
         e.preventDefault()
+
         document.getElementById('image').click()
     }
 
@@ -107,6 +107,7 @@ class MenuEdit extends Component {
 
         this.services.handleUpload(uploadData)
             .then(response => {
+                console.log('hola soy la respuesta', response)
                 this.setState({
                     menu: {
                         ...this.state.menu, image: response.secure_url

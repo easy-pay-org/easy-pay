@@ -113,6 +113,7 @@ class MenuForm extends Component {
 
         this.services.handleUpload(uploadData)
             .then(response => {
+                console.log(response)
                 this.setState({
                     menu: {
                         ...this.state.menu, image: response.secure_url
@@ -228,7 +229,7 @@ class MenuForm extends Component {
 
                     </form>
                 </section>
-                <BottomNav  user={this.props.loggedInUser}/>
+                <BottomNav user={this.props.loggedInUser} />
             </div>
         )
     }

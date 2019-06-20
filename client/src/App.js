@@ -40,6 +40,10 @@ class App extends Component {
       loggedInUser: null,
       order: {
         total: 0
+      },
+      menu: {
+        restaurant_id: '',
+        table_id: ''
       }
     }
     this.services = new AuthServices()
@@ -66,6 +70,7 @@ class App extends Component {
   }
 
 
+
   render() {
 
     this.fetchUser()
@@ -79,13 +84,16 @@ class App extends Component {
 
         <div>
 
-          <Navigation setTheUser={this.setUser} />
+          {/* <Navigation setTheUser={this.setUser} /> */}
 
           <Switch>
 
+            {/* redirecciones */}
             <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
+            <Route path="/login" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
-            <Route path="/qr" exact component={Qr} />
+            {/* <Route path="/qr" exact component={Qr} /> */}
+            <ProtectedRoute user={this.state.loggedInUser} path="/qr" exact component={Qr} />
 
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
             <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
@@ -142,7 +150,10 @@ class App extends Component {
             <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
             <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
 
+
+            {/* Redirecciones */}
             <Route path="/" exact component={RedirectsUnlogged} />
+            <Route path="/owner/:id/perfil_edit" exact component={RedirectsUnlogged} />
 
           </Switch>
 

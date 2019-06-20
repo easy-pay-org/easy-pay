@@ -53,7 +53,7 @@ class UserHome extends Component {
 
     render() {
 
-        console.log('home', this.props)
+        // console.log('home', this.props)
 
 
         if (this.state.redirect) {

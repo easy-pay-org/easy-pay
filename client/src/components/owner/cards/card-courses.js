@@ -43,6 +43,7 @@ class CardCourses extends Component {
     render() {
 
         const { course, restaurant } = this.props
+        // console.log('this props', this.props)
 
         if (this.state.redirect) {
             return <Redirect to={`/owner/${restaurant._id}/menu/${course._id}/edit`} />

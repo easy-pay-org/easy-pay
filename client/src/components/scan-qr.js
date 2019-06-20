@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import QrReader from 'react-qr-scanner'
 import { Redirect } from 'react-router-dom'
+import TopNav from '../components/bottom-nav'
+import BottomNav from '../components/bottom-nav'
 
 
 class Test extends Component {
@@ -24,10 +26,10 @@ class Test extends Component {
       const restaurant_id = data.substring(0, data.indexOf('/'))
       const table_id = data.substring(data.indexOf('/') + 1)
 
-      this.props.setTable(restaurant_id, table_id)
+      console.log(restaurant_id + '/' + table_id)
 
       this.setState({
-        result: data,
+        result: restaurant_id + '/' + table_id,
         redirect: true
       })
     }
@@ -43,6 +45,9 @@ class Test extends Component {
   }
   render() {
 
+    console.log('qr--------------->')
+
+
     console.log(this.props)
 
     const previewStyle = {
@@ -56,6 +61,7 @@ class Test extends Component {
     } else {
       return (
         <div>
+          <TopNav user={this.props} />
           <QrReader
             delay={this.state.delay}
             style={previewStyle}
@@ -63,6 +69,7 @@ class Test extends Component {
             onScan={this.handleScan}
           />
           <p>{this.state.result}</p>
+          <BottomNav user={this.props.loggedInUser} />
         </div>
       )
     }

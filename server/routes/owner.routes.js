@@ -151,17 +151,30 @@ router.post('/newPlate', (req, res) => {
 
 router.post('/updateMenu', (req, res) => {
 
-  const { name, price, description, id } = req.body.menu
+  const { name, price, image, description, id } = req.body.menu
+  console.log('el req.body', req.body.menu)
 
-  Menu.findByIdAndUpdate({ _id: id }, { name, price, description }, { new: true })
+  Menu.findByIdAndUpdate({ _id: id }, { name, price, image, description }, { new: true })
     .then(updatedCourse => {
       console.log('Menu actualizado', updatedCourse)
+      // console.log('usuario-------', req.user.restaurant.menu)
+      console.log('id--->', id)
+      // console.log('menu--->', req.user.restaurant.menu)
 
-      // Version 2: enviamos el usuario actualizado en vez del restaurante
+      req.user.restaurant.menu.forEach((course, index) => {
+        // console.log('course._id------------->', course._id)
+        // course._id === id ? req.user.restaurant.menu[index] = updatedCourse : null
+        // console.log(course._id == id)
+        if (course._id == id) {
+          console.log('antes---------------->', req.user.restaurant.menu[index])
+          req.user.restaurant.menu[index] = updatedCourse
+          console.log('despues---------------->', req.user.restaurant.menu[index])
+        }
+      })
 
+      // req.user.restaurant.menu[posRestaurantInArray] = updatedCourse
+      console.log('menu del usuario actualizado', req.user.restaurant.menu)
 
-      req.user.restaurant.menu.id = updatedCourse
-      console.log('menu del usuario actualizado', req.user.restaurant.menu.id)
       res.json(req.user)
     })
     .catch(err => console.log('Error:', err))
