@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-
-
-import OwnerServices from '../../service/owner-services'
 import TopNav from '../top-nav'
 import BottomNav from '../bottom-nav'
 import { Button, TextField } from '@material-ui/core'
-
+import AuthServices from '../../service/auth-services'
 
 
 
@@ -14,83 +11,39 @@ class PerfilEdit extends Component {
 
     constructor(props) {
         super(props)
-
+        this.service = new AuthServices()
         this.state = {
-
-            menu: {
-                type: 'first_courses',
-                name: '',
-                price: '',
-                image: '',
-                description: '',
-            },
-            restaurant: {
-                id: this.props.match.params.restaurant_id
-            },
-            redirect: false,
-            show: false
+            username: '',
+            password: '',
+            email: '',
+            phone: ''
         }
-
-        this.services = new OwnerServices()
-
 
     }
 
+
+    logout = e => {
+        this.service.logout()
+            .then(x => {
+                this.props.setTheUser(null)
+            })
+    }
 
     handlechange = e => {
         const { name, value } = e.target
         this.setState({
-            menu: {
-                ...this.state.menu,
-                [name]: value
-            }
+
+            [name]: value
+
         })
     }
 
-    handleSubmit = e => {
-        e.preventDefault()
 
-        this.services.postMenu(this.state.menu, this.state.restaurant.id)
-            .then((menu) => {
-
-                this.setState({
-                    menu: {
-                        ...this.state.menu,
-                        type: 'first_courses',
-                        name: '',
-                        price: '',
-                        image: '',
-                        description: '',
-                    }
-                })
-            })
-    }
-
-    uploadImg = e => {
-        e.preventDefault()
-        document.getElementById('image').click()
-    }
-
-    handleFileUpload = e => {
-
-        const uploadData = new FormData();
-        uploadData.append("imageUrl", e.target.files[0]);
-
-        this.services.handleUpload(uploadData)
-            .then(response => {
-                this.setState({
-                    menu: {
-                        ...this.state.menu, image: response.secure_url
-                    }
-                })
-
-            })
-            .catch(err => console.log(err))
-    }
 
 
     render() {
 
+        console.log('desde perfil edit', this.props)
         return (
 
             <div>
@@ -104,10 +57,10 @@ class PerfilEdit extends Component {
 
                         <TextField
 
-                            label="Username"
+                            label="Usuario"
                             id="username"
                             name="username"
-                            placeholder="username"
+                            placeholder="Introduzca un usuario"
                             value={this.state.username}
                             onChange={this.handlechange}
                             type="text"
@@ -119,10 +72,10 @@ class PerfilEdit extends Component {
                         />
                         <TextField
 
-                            label="New Password"
+                            label="Nueva contraseña"
                             id="password"
                             name="password"
-                            placeholder="new password"
+                            placeholder="Introduzca nueva contraseña"
                             value={this.state.password}
                             onChange={this.handlechange}
                             type="password"
@@ -137,10 +90,25 @@ class PerfilEdit extends Component {
                             label="Email"
                             id="email"
                             name="email"
-                            placeholder="email"
+                            placeholder="Introduzca email de contacto"
                             value={this.state.email}
                             onChange={this.handlechange}
                             type="text"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+
+                            id="phone"
+                            name="phone"
+                            label="Teléfono"
+                            placeholder="Introduzca un número de contacto"
+                            value={this.state.phone}
+                            onChange={this.handlechange}
+                            type="number"
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -153,7 +121,7 @@ class PerfilEdit extends Component {
                             {/* Agrega los platos al menu  */}
                             <Button variant="contained" type="submit" color="primary">Guardar
                         </Button>
-                            <Button variant="contained" className='logout' color="primary">Logout
+                            <Button onClick={this.logout} variant="contained" className='logout' color="primary">Logout
                         </Button>
                         </div>
 

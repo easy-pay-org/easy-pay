@@ -90,6 +90,8 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
             <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
 
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/perfil_edit" exact component={PerfilEdit} />
+
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />

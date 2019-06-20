@@ -130,36 +130,8 @@ class UserEdit extends Component {
                             margin="normal"
                             variant="outlined"
                         />
-                        <TextField
 
-                            label="Nombre"
-                            id="first_name"
-                            name="first_name"
-                            placeholder="Introduzca su nombre"
-                            value={this.state.first_name}
-                            onChange={this.handlechange}
-                            type="text"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
 
-                            label="Apellidos"
-                            id="last_name"
-                            name="last_name"
-                            placeholder="Introduzca su apellidos"
-                            value={this.state.last_name}
-                            onChange={this.handlechange}
-                            type="text"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            margin="normal"
-                            variant="outlined"
-                        />
                         <TextField
 
                             id="phone"
@@ -184,9 +156,8 @@ class UserEdit extends Component {
                                 input={<Input name="type" id="type" />}
                             >
                                 <option value="" />
-                                <option value={'first_courses'}>Paypal</option>
-                                <option value={'drinks'}>Tarjeta de crédito</option>
-                                <option value={'desserts'}>Efectivo</option>
+                                <option value={'visa'}>Tarjeta de crédito</option>
+                                <option value={'efectivo'}>Efectivo</option>
                             </NativeSelect>
                         </FormControl>
 
@@ -209,4 +180,3 @@ class UserEdit extends Component {
 
 
 export default UserEdit
-

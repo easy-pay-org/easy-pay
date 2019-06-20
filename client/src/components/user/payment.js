@@ -170,9 +170,9 @@ class Payment extends Component {
       //   </StripeProvider>
 
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
+        <p>Pago seguro y rápido</p>
         <CardElement />
-        <button onClick={this.submit}>Send</button>
+        <button onClick={this.submit}>Pagar</button>
       </div>
     )
   }
