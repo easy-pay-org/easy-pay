@@ -97,5 +97,11 @@ export default class services {
       .catch(err => console.log(err.response.data.msg))
   }
 
+  clearOrder = (order_id) => {
+    return this.service.post('clearOrder', { order_id }, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
 
 }

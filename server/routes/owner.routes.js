@@ -228,11 +228,6 @@ router.post('/newOrder', (req, res) => {
 
 
 
-
-
-
-
-
 router.post('/updateOrder', (req, res) => {
 
   const { order } = req.body
@@ -282,14 +277,6 @@ router.post('/updateOrder', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
 router.get('/getOrder', (req, res) => {
 
   const user = req.user
@@ -304,6 +291,21 @@ router.get('/getOrder', (req, res) => {
       res.json(user.order)
     })
     .catch(err => console.log('Error:', err))
+
+})
+
+
+router.post('/clearOrder', (req, res) => {
+
+  const { order_id } = req.body
+
+
+  User.findByIdAndUpdate({ _id: req.user._id }, { $pull: { order: order_id } }, { new: true })
+    .then(userUpdated => {
+      console.log('order actualizado', req.user.order)
+      res.json(req.user.order)
+    })
+    .catch(error => console.log(error))
 
 })
 

@@ -59,7 +59,10 @@ class UserBag extends Component {
 
         let orderCopy = [...this.state.order]
         orderCopy[idx] = courseUpdated
-        this.setState({ order: orderCopy })
+        this.setState(
+            { order: orderCopy },
+            () => this.handleOrder()
+        )
 
     }
 
@@ -68,15 +71,39 @@ class UserBag extends Component {
         this.services.updateOrder(this.state.order)
             .then(orderUpdated => {
 
-                console.log(this.props)
 
-                let orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
+                const orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
 
+                orderUpdated.forEach(course => {
+                    if (course.quantity <= 0)
+                        this.services.clearOrder(course._id)
+                            .then(orderUpdated => console.log('orderUpdated', orderUpdated))
+                })
+
+                // console.log(orderFiltered)
                 // let orderCopy = [...this.state.order]
                 // orderCopy.splice(0, 1)
                 this.setState({ order: orderFiltered })
             })
     }
+
+    // handleOrder = () => {
+
+    //     this.services.updateOrder(this.state.order)
+    //         .then(orderUpdated => {
+
+    //             console.log(this.props)
+
+    //             let orderFiltered = orderUpdated.filter(course => {
+
+    //                 return course.quantity !== 0
+    //             })
+
+    //             // let orderCopy = [...this.state.order]
+    //             // orderCopy.splice(0, 1)
+    //             this.setState({ order: orderFiltered })
+    //         })
+    // }
 
 
     socketNewMessage = (e) => {
@@ -101,6 +128,7 @@ class UserBag extends Component {
         // console.log(this.props)
 
         const { order } = this.state
+        // console.log(order)
 
         // if (this.state.redirect) {
         //     return <Redirect to={"/pay"} />
@@ -109,7 +137,7 @@ class UserBag extends Component {
         // else {
         return (
 
-            <div>
+            < div >
 
                 <div>
                     <TopNav user={this.props} />
@@ -177,7 +205,7 @@ class UserBag extends Component {
 
                     <BottomNav user={this.props.loggedInUser} />
                 </div>
-            </div>
+            </div >
 
         )
         // }

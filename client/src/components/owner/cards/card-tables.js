@@ -13,6 +13,7 @@ class CardTables extends Component {
     render() {
 
         const { table_id, restaurant_id } = this.props
+        console.log('id de restaurante', restaurant_id)
 
         return (
             <div className='cards'>
@@ -24,7 +25,7 @@ class CardTables extends Component {
                     <p>View your table order</p>
                     <div>
                         {/* <Link to={`/owner/${restaurant_id}}/${table_id}`}> Go </Link> */}
-                        <Link to={`/${restaurant_id}}/${table_id}/order`}> Go </Link>
+                        <Link to={`/${restaurant_id}/${table_id}/order`}> Go </Link>
                     </div>
                 </section>
 

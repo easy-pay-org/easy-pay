@@ -25,6 +25,8 @@ import UserBag from './components/user/user-bag'
 import Redirects from './components/auth/redirects'
 import Qr from './components/scan-qr'
 import Payment from './components/user/payment'
+import RedirectsUnlogged from './components/auth/RedirectsUnlogged'
+
 import { Elements, StripeProvider } from 'react-stripe-elements';
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
@@ -41,7 +43,7 @@ class App extends Component {
       }
     }
     this.services = new AuthServices()
-    this.fetchUser()
+    // this.fetchUser()
   }
 
   setUser = userObj => this.setState({ loggedInUser: userObj })
@@ -49,11 +51,7 @@ class App extends Component {
   fetchUser = () => {
     if (this.state.loggedInUser === null) {
       this.services.loggedin()
-        .then(response => {
-          this.setState({ loggedInUser: response }, () => {
-
-          })
-        })
+        .then(response => this.setState({ loggedInUser: response }))
         .catch(x => this.setState({ loggedInUser: false }))
     }
   }
@@ -70,79 +68,89 @@ class App extends Component {
 
   render() {
 
-    console.log(this.state.order.total)
-
     this.fetchUser()
 
-    return (
 
-      <div>
+    if (this.state.loggedInUser) {
 
-        {/* {this.state.loggedInUser && <p>Pepe</p>} */}
-        < Navigation setTheUser={this.setUser} />
+      console.log('logueado')
 
-        <Switch>
+      return (
 
-          {/* <Route path="/pay" exact render={() =>
+        <div>
 
-            <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
-              <Elements>
-                <Payment total={this.state.order.total * 100} />
-              </Elements>
-            </StripeProvider>
+          <Navigation setTheUser={this.setUser} />
 
-          } /> */}
+          <Switch>
 
-          <Route path="/qr" exact component={Qr} />
+            <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
-          <Route path="/" exact render={() => <Redirects user={this.state.loggedInUser} />} />
+            <Route path="/qr" exact component={Qr} />
 
-          <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
+            <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
 
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/:course_id/edit" exact component={MenuEdit} />
 
-          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
-          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
-          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
-          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/:course_id/edit" exact component={MenuEdit} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
-          <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
-
-          <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
+            <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id" exact component={UserMenu} />
 
 
+            {
+              this.state.loggedInUser ?
 
+                (this.state.loggedInUser.role === 'user') ?
 
-          <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
+                  <ProtectedRouteClient user={this.state.loggedInUser} updateTotal={this.updateTotal} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+                  :
+                  < ProtectedRoute user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={OrderTable} />
 
-
-          <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
-          <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id" exact component={UserMenu} />
-
-
-
-          {
-            this.state.loggedInUser ?
-
-              (this.state.loggedInUser.role === 'user') ?
-
-                <ProtectedRouteClient user={this.state.loggedInUser} updateTotal={this.updateTotal} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
                 :
-                < ProtectedRoute user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={OrderTable} />
-              :
-              null
-          }
+                null
+            }
 
-          {/* <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/:table_id" exact component={OrderTable} /> */}
-
-
-          <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
-          <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
+            {/* <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
+            <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} /> */}
 
 
-        </Switch>
+          </Switch>
 
-      </div >
-    )
+        </div >
+      )
+
+
+    } else {
+
+      console.log('no logueado')
+
+      return (
+
+        <div>
+
+          <Navigation setTheUser={this.setUser} />
+
+          <Switch>
+
+
+            <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
+            <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
+
+            <Route path="/" exact component={RedirectsUnlogged} />
+
+          </Switch>
+
+        </div >
+      )
+
+    }
+
+
+
   }
 }
 
