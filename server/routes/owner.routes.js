@@ -26,7 +26,7 @@ router.post('/newRestaurant', (req, res) => {
       let tables_array = []
       console.log('restaurante creado', restaurant)
 
-      createTables = () => Table.create({ table_id: indexTable, qr_url: `http://localhost:5000?restaurant=${restaurant._id}&table=${indexTable}` })
+      createTables = () => Table.create({ table_id: indexTable, qr_url: `${restaurant._id}/${indexTable}` })
 
       pupulateTables = () => {
         return Restaurant.findByIdAndUpdate({ _id: restaurant._id }, { tables: tables_array }, { new: true })
@@ -316,6 +316,20 @@ router.post('/clearOrder', (req, res) => {
   User.findByIdAndUpdate({ _id: req.user._id }, { $pull: { order: order_id } }, { new: true })
     .then(userUpdated => {
       console.log('order actualizado', req.user.order)
+      res.json(req.user.order)
+    })
+    .catch(error => console.log(error))
+
+})
+
+
+router.post('/clearAllOrder', (req, res) => {
+
+  // const { order_id } = req.body
+
+  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { order: [] } }, { new: true })
+    .then(userUpdated => {
+      console.log('order borrado', req.user.order)
       res.json(req.user.order)
     })
     .catch(error => console.log(error))

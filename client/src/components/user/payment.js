@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
 import PayServices from '../../service/payment-services'
+import { Redirect } from 'react-router-dom'
+
+import OwnerServices from '../../service/owner-services'
+
+
 
 // Stripe.setPublishableKey("pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap");
 // import Stripe from 'stripe';
@@ -32,10 +37,13 @@ class Payment extends Component {
         cardName: 'Pepe',
         cardNumber: 4242424242424242,
       },
-      show: false
+      redirect: false
     }
     this.services = new PayServices()
+    this.services = new OwnerServices()
+
   }
+
 
 
 
@@ -50,8 +58,23 @@ class Payment extends Component {
       body: `${token.id} ${this.props.total}`,
     });
 
-    if (response.ok)
+    if (response.ok) {
       console.log("Purchase Complete!")
+
+      // this.services.clearAllOrder()
+      //   .then(() => {
+      //     console.log('order borrado')
+          // console.log('La orden del usuario es', theOrder)
+          // this.setState({
+          //   order: theOrder,
+          //   // redirect: false
+          // })
+        // })
+
+      this.setState({
+        redirect: true
+      })
+    }
 
   }
 
@@ -86,93 +109,98 @@ class Payment extends Component {
 
   render() {
 
-    console.log('total', this.props.total)
+    // console.log('total', this.props.total)
     if (this.state.complete) return <h1>Purchase Complete</h1>;
 
-    return (
+    if (this.state.redirect) {
+      return <Redirect to={'paymentSucess'} />
 
-      //   <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
+    } else {
+      return (
 
-      //     {/* <form onSubmit={this.handleSubmit} role="form" id="product-form"> */}
-      //     <form onSubmit={this.submit} id="product-form">
-      //       <fieldset>
-      //         <legend>Payment</legend>
-      //         {/* <div> */}
-      //         <label htmlFor="cardName">Name on Card</label>
-      //         {/* <div> */}
-      //         <input type="text" name="cardName" id="cardName" value={this.state.productInfo.cardName} onChange={this.handleChange} />
-      //         {/* </div>
-      //         </div>
-      //         <div> */}
-      //         <label htmlFor="card-number">Card Number</label>
-      //         {/* <div> */}
-      //         <input type="text" name="card-number" id="card-number" value={this.state.productInfo.cardNumber} onChange={this.handleChange} />
-      //         {/* </div>
-      //           </div>
-      //           <div> */}
-      //         <label htmlFor="expiry-month">Expiration Date</label>
-      //         {/* <div>
-      //         <div>
-      //           <div> */}
-      //         <select name="expiry-month" id="expiry-month" onChange={this.handleChange}>
-      //           <option>Month</option>
-      //           <option value="01">Jan (01)</option>
-      //           <option value="02">Feb (02)</option>
-      //           <option value="03">Mar (03)</option>
-      //           <option value="04">Apr (04)</option>
-      //           <option value="05">May (05)</option>
-      //           <option value="06">June (06)</option>
-      //           <option value="07">July (07)</option>
-      //           <option value="08">Aug (08)</option>
-      //           <option value="09">Sep (09)</option>
-      //           <option value="10">Oct (10)</option>
-      //           <option value="11">Nov (11)</option>
-      //           <option value="12">Dec (12)</option>
-      //         </select>
-      //         {/* </div>
-      //                 <div> */}
-      //         <select name="expiry-year" id="expiry-year" onChange={this.handleChange}>
-      //           <option value="16">2016</option>
-      //           <option value="17">2017</option>
-      //           <option value="18">2018</option>
-      //           <option value="19">2019</option>
-      //           <option value="20">2020</option>
-      //           <option value="21">2021</option>
-      //           <option value="22">2022</option>
-      //           <option value="23">2023</option>
-      //         </select>
-      //         {/* </div>
-      //               </div>
-      //             </div>
-      //           </div>
-      //           <div>*/}
-      //         <label htmlFor="cvv">Card CVV</label>
-      //         {/* <div>  */}
-      //         <input type="text" name="cvv" id="cvv" value={this.state.productInfo.productPrice} onChange={this.handleChange} />
-      //         {/* </div>
-      //             </div> */}
-      //         {/* <input type="hidden" name="name" value={productInfo.productName} />
-      //       <input type="hidden" name="price" value={productInfo.productPrice} /> */}
-      //         <input type="hidden" name="name" value={this.state.productInfo.productName} onChange={this.handleChange} />
-      //         <input type="hidden" name="price" value={this.state.productInfo.productPrice} onChange={this.handleChange} />
-      //         {/* <div>
-      //                   <div> */}
-      //         {/* <button type="submit" id="submit-btn">Pay Now</button> */}
-      //         <button type='submit' >Pay Now</button>
-      //         {/* </div>
-      //                 </div>  */}
-      //       </fieldset>
-      //     </form>
+        //   <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
+
+        //     {/* <form onSubmit={this.handleSubmit} role="form" id="product-form"> */}
+        //     <form onSubmit={this.submit} id="product-form">
+        //       <fieldset>
+        //         <legend>Payment</legend>
+        //         {/* <div> */}
+        //         <label htmlFor="cardName">Name on Card</label>
+        //         {/* <div> */}
+        //         <input type="text" name="cardName" id="cardName" value={this.state.productInfo.cardName} onChange={this.handleChange} />
+        //         {/* </div>
+        //         </div>
+        //         <div> */}
+        //         <label htmlFor="card-number">Card Number</label>
+        //         {/* <div> */}
+        //         <input type="text" name="card-number" id="card-number" value={this.state.productInfo.cardNumber} onChange={this.handleChange} />
+        //         {/* </div>
+        //           </div>
+        //           <div> */}
+        //         <label htmlFor="expiry-month">Expiration Date</label>
+        //         {/* <div>
+        //         <div>
+        //           <div> */}
+        //         <select name="expiry-month" id="expiry-month" onChange={this.handleChange}>
+        //           <option>Month</option>
+        //           <option value="01">Jan (01)</option>
+        //           <option value="02">Feb (02)</option>
+        //           <option value="03">Mar (03)</option>
+        //           <option value="04">Apr (04)</option>
+        //           <option value="05">May (05)</option>
+        //           <option value="06">June (06)</option>
+        //           <option value="07">July (07)</option>
+        //           <option value="08">Aug (08)</option>
+        //           <option value="09">Sep (09)</option>
+        //           <option value="10">Oct (10)</option>
+        //           <option value="11">Nov (11)</option>
+        //           <option value="12">Dec (12)</option>
+        //         </select>
+        //         {/* </div>
+        //                 <div> */}
+        //         <select name="expiry-year" id="expiry-year" onChange={this.handleChange}>
+        //           <option value="16">2016</option>
+        //           <option value="17">2017</option>
+        //           <option value="18">2018</option>
+        //           <option value="19">2019</option>
+        //           <option value="20">2020</option>
+        //           <option value="21">2021</option>
+        //           <option value="22">2022</option>
+        //           <option value="23">2023</option>
+        //         </select>
+        //         {/* </div>
+        //               </div>
+        //             </div>
+        //           </div>
+        //           <div>*/}
+        //         <label htmlFor="cvv">Card CVV</label>
+        //         {/* <div>  */}
+        //         <input type="text" name="cvv" id="cvv" value={this.state.productInfo.productPrice} onChange={this.handleChange} />
+        //         {/* </div>
+        //             </div> */}
+        //         {/* <input type="hidden" name="name" value={productInfo.productName} />
+        //       <input type="hidden" name="price" value={productInfo.productPrice} /> */}
+        //         <input type="hidden" name="name" value={this.state.productInfo.productName} onChange={this.handleChange} />
+        //         <input type="hidden" name="price" value={this.state.productInfo.productPrice} onChange={this.handleChange} />
+        //         {/* <div>
+        //                   <div> */}
+        //         {/* <button type="submit" id="submit-btn">Pay Now</button> */}
+        //         <button type='submit' >Pay Now</button>
+        //         {/* </div>
+        //                 </div>  */}
+        //       </fieldset>
+        //     </form>
 
 
-      //   </StripeProvider>
+        //   </StripeProvider>
 
-      <div className="checkout">
-        <p>Pago seguro y rápido</p>
-        <CardElement />
-        <button onClick={this.submit}>Pagar</button>
-      </div>
-    )
+        <div className="checkout">
+          <p>Pago seguro y rápido</p>
+          <CardElement />
+          <button onClick={this.submit}>Pagar</button>
+        </div>
+      )
+    }
   }
 }
 

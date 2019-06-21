@@ -63,8 +63,8 @@ class Test extends Component {
   }
   render() {
 
-    console.log('--------------->')
-    console.log('current restaurant', this.state.restaurant)
+    // console.log('--------------->')
+    // console.log('current restaurant', this.state.restaurant)
 
     const previewStyle = {
       height: 240,
@@ -75,19 +75,19 @@ class Test extends Component {
       return <Redirect to={`/${this.state.result}`} />
 
     } else {
-    return (
-      <div>
-        <TopNav user={this.props} />
-        <QrReader
-          delay={this.state.delay}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
-        />
-        <p>{this.state.result}</p>
-        <BottomNav user={this.props.loggedInUser} />
-      </div>
-    )
+      return (
+        <div>
+          <TopNav user={this.props} />
+          <QrReader
+            delay={this.state.delay}
+            style={previewStyle}
+            onError={this.handleError}
+            onScan={this.handleScan}
+          />
+          <p>{this.state.result}</p>
+          <BottomNav user={this.props.loggedInUser} />
+        </div>
+      )
     }
   }
 }

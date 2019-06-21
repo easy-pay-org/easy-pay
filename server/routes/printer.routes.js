@@ -77,6 +77,7 @@ router.post('/printer', (req, res, next) => {
 
             // MRedis.set('tokenData', JSON.stringify(tokenData), 'EX', expiresTime)
             // MRedis.quit();
+            res.json({ msg: success })
         })
 
 

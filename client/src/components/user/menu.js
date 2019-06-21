@@ -39,14 +39,15 @@ class UserMenu extends Component {
 
     render() {
 
+        console.log(this.props)
         return (
 
-
-            <div>
+            < div >
                 <TopNav user={this.props} />
                 <section className="content-home">
                     <header className="hero-menu">
-                        <h1>Welcome to {this.state.menu.name}</h1>
+                        {/* <h1>Welcome to {this.state.name}</h1> */}
+                        <h1>Welcome to Casa Pepe</h1>
                     </header>
 
                     <UserTab menu={this.state.menu} />

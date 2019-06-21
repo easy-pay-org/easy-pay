@@ -20,7 +20,8 @@ class UserBag extends Component {
             // tables: "",
             order: [],
             totalAmount: 0,
-            // show: false
+            redirect: false,
+            redirect2: false
         }
 
         this.services = new OwnerServices()
@@ -37,8 +38,8 @@ class UserBag extends Component {
     }
 
 
-    printer = e => {
-        e.preventDefault()
+    printer = () => {
+        // e.preventDefault()
         const table_id = this.props.loggedInUser.currentRestaurant.table_id
         const order = this.props.loggedInUser.order[0]
         const time = this.props.loggedInUser.updatedAt
@@ -50,9 +51,11 @@ class UserBag extends Component {
         const totalPrice = this.totalPrice()
 
         this.orderPrinter.printer(table_id, order, time, username, product, totalPrice)
-            .then(() => console.log('Printer terminardos'))
-
+            .then(() => {
+                console.log('success')
+            })
     }
+
 
     componentDidMount() {
         this.services.getOrder()
@@ -60,7 +63,7 @@ class UserBag extends Component {
                 // console.log('La orden del usuario es', theOrder)
                 this.setState({
                     order: theOrder,
-                    redirect: false
+                    // redirect: false
                 })
             })
 
@@ -133,6 +136,8 @@ class UserBag extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
+        this.printer()
+
         this.props.updateTotal(this.totalPrice())
 
         this.setState({ redirect: true })
@@ -201,7 +206,7 @@ class UserBag extends Component {
                                         <option value={'efectivo'}>Efectivo</option>
                                     </NativeSelect>
                                 </FormControl>
-                                <Button variant="contained" type="submit" className='pay' onClick={this.printer}>continuar</Button>
+                                <Button variant="contained" type="submit" className='pay'>continuar</Button>
                             </form>
                             <div>
                                 {

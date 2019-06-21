@@ -104,6 +104,14 @@ export default class services {
   }
 
 
+  clearAllOrder = () => {
+    return this.service.post('clearOrder', { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
+
+
   // User
 
   setRestaurant = (restaurant_id, table_id) => {

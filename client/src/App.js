@@ -26,6 +26,9 @@ import Redirects from './components/auth/redirects'
 import Qr from './components/scan-qr'
 // import Payment from './components/user/payment'
 import RedirectsUnlogged from './components/auth/RedirectsUnlogged'
+import PaymentSuccess from './components/user/paymentSuccess'
+
+
 
 // import { Elements, StripeProvider } from 'react-stripe-elements';
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
@@ -100,7 +103,7 @@ class App extends Component {
 
         <div>
 
-          <Navigation setTheUser={this.setUser} />
+          {/* <Navigation setTheUser={this.setUser} /> */}
 
           <Switch>
 
@@ -127,6 +130,9 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
             <ProtectedRouteClient user={this.state.loggedInUser} restaurant={this.state.restaurant} path="/:restaurant_id/:table_id" exact component={Menu} />
+
+            <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/paymentSucess" exact component={PaymentSuccess} />
+
 
 
 
