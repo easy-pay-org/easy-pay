@@ -15,8 +15,8 @@ router.post('/printer', (req, res, next) => {
     console.log("IM PRINTER");
     const { table_id, order, time, username, product, totalPrice } = req.body
     const config = new yly.Config({
-        'cid': '1091202787',         //Id Usuario
-        'secret': '90bd7fda5e0a9f4589bbd7819ab38c70'       //API secret
+        'cid': '1066021322',         //Id Usuario
+        'secret': '695e18c9f33320552d71e95f30d9c798'       //API secret
     })
     const oauthClient = new yly.OauthClinet(config)
 
