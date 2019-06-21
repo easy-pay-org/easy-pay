@@ -6,8 +6,8 @@ const repeat = require('repeat-string')
 
 console.log("IM PRINTER");
 const config = new yly.Config({
-    'cid': '1082800728',         //Id Usuario
-    'secret': '524ba172fe80141659862095347255c7'       //API secret
+    'cid': '67441',         //Id Usuario
+    'secret': '1ddd04774cf2840d1f91be83a598230e435e182f'       //API secret
 })
 const oauthClient = new yly.OauthClinet(config)
 

@@ -100,7 +100,7 @@ class App extends Component {
 
         <div>
 
-          <Navigation setTheUser={this.setUser} />
+          {/* <Navigation setTheUser={this.setUser} /> */}
 
           <Switch>
 
