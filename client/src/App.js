@@ -6,7 +6,7 @@ import './App.css';
 import HomeOwner from './components/owner/home'
 import RestaurantForm from './components/owner/restaurant-form'
 import MenuForm from './components/owner/menus/menu-form'
-import Navigation from './components/navigation'
+// import Navigation from './components/navigation'
 import AuthServices from './service/auth-services'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
@@ -16,7 +16,7 @@ import RestaurantEdit from './components/owner/restaurant-edit'
 import TablesList from './components/owner/tables-list'
 import OrderTable from './components/owner/order-table'
 import MenuEdit from './components/owner/menus/menu-edit'
-import PerfilEdit from './components/owner/perfil-edit'
+import OwnerEdit from './components/owner/perfil-edit'
 import CoursesList from './components/owner/courses/courses-list'
 import UserHome from './components/user/home'
 import UserEdit from './components/user/user-edit'
@@ -24,13 +24,13 @@ import UserMenu from './components/user/menu'
 import UserBag from './components/user/user-bag'
 import Redirects from './components/auth/redirects'
 import Qr from './components/scan-qr'
-import Payment from './components/user/payment'
+// import Payment from './components/user/payment'
 import RedirectsUnlogged from './components/auth/RedirectsUnlogged'
 
-import { Elements, StripeProvider } from 'react-stripe-elements';
+// import { Elements, StripeProvider } from 'react-stripe-elements';
 // Si no usamos un this.states, deberiamos ser funcional en vez de clase. Noah
 
-import Order from './components/sockets/Order'
+// import Order from './components/sockets/Order'
 
 class App extends Component {
 
@@ -78,7 +78,7 @@ class App extends Component {
 
     if (this.state.loggedInUser) {
 
-      console.log('logueado')
+      // console.log('logueado')
 
       return (
 
@@ -98,7 +98,9 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
             <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
 
-            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/perfil_edit" exact component={PerfilEdit} />
+            <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:_id/perfil_edit" exact component={OwnerEdit} />
+            <ProtectedRouteClient user={this.state.loggedInUser} setUser={this.setUser} path="/:_id/user_edit" exact component={UserEdit} />
+
 
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
@@ -109,6 +111,7 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
             <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id" exact component={UserMenu} />
+
 
 
             {
@@ -136,7 +139,7 @@ class App extends Component {
 
     } else {
 
-      console.log('no logueado')
+      // console.log('no logueado')
 
       return (
 
@@ -154,6 +157,7 @@ class App extends Component {
             {/* Redirecciones */}
             <Route path="/" exact component={RedirectsUnlogged} />
             <Route path="/owner/:id/perfil_edit" exact component={RedirectsUnlogged} />
+            <Route path="/:id/user_edit" exact component={RedirectsUnlogged} />
 
           </Switch>
 

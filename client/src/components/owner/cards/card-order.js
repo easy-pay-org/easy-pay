@@ -20,7 +20,7 @@ class CardOrder extends Component {
     }
 
     handlechange = e => {
-        const { name, value } = e.target
+        const { value } = e.target
 
         const theCourse = this.state.course
         theCourse.quantity = value

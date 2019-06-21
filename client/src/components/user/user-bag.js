@@ -4,11 +4,11 @@ import BottomNav from '../bottom-nav'
 import Product from '../owner/cards/card-order'
 import { Button, FormControl, InputLabel, NativeSelect, Input } from '@material-ui/core'
 import OwnerServices from '../../service/owner-services'
-
 import { socketConfig } from "../socket-config/socket"
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import Payment from '../../components/user/payment'
 
+import Printer from '../../service/printer-services'
 
 
 
@@ -24,7 +24,7 @@ class UserBag extends Component {
         }
 
         this.services = new OwnerServices()
-
+        this.orderPrinter = new Printer()
 
         this.connectSocket = new socketConfig(this.socketMsg, { id: props.match.params.restaurant_id, num: props.match.params.table_id })
 
@@ -36,6 +36,23 @@ class UserBag extends Component {
         })
     }
 
+
+    printer = e => {
+        e.preventDefault()
+        const table_id = this.props.loggedInUser.currentRestaurant.table_id
+        const order = this.props.loggedInUser.order[0]
+        const time = this.props.loggedInUser.updatedAt
+        const username = this.props.loggedInUser.username
+        const product = this.state.order.map(elm => {
+            return `${elm.name} x${elm.quantity} ${elm.price}.00$`
+
+        })
+        const totalPrice = this.totalPrice()
+
+        this.orderPrinter.printer(table_id, order, time, username, product, totalPrice)
+            .then(() => console.log('Printer terminardos'))
+
+    }
 
     componentDidMount() {
         this.services.getOrder()
@@ -105,7 +122,8 @@ class UserBag extends Component {
 
 
     socketNewMessage = (e) => {
-        console.log('entra socket')
+        console.log(this.state.order)
+
         this.connectSocket.newMessage(this.state.order,
             { id: this.props.match.params.restaurant_id, num: this.props.match.params.table_id })
 
@@ -183,7 +201,7 @@ class UserBag extends Component {
                                         <option value={'efectivo'}>Efectivo</option>
                                     </NativeSelect>
                                 </FormControl>
-                                <Button variant="contained" type="submit" className='pay'>continuar</Button>
+                                <Button variant="contained" type="submit" className='pay' onClick={this.printer}>continuar</Button>
                             </form>
                             <div>
                                 {

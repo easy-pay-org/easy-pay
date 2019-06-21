@@ -96,7 +96,7 @@ app.use('/api', payRoutes)
 
 // Printer 
 const printer = require('./routes/printer.routes')
-app.use('/', printer)
+app.use('/api', printer)
 
 
 app.use((req, res) => {

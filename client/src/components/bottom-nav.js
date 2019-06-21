@@ -4,13 +4,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Home, AccountBox, AspectRatio, ShoppingBasket, InsertChart } from '@material-ui/icons'
 import { Link, Redirect } from 'react-router-dom';
 
-
-
 // import OwnerServices from '../service/owner-services'
-
-
-
-
 
 class SimpleBottomNavigation extends Component {
 
@@ -56,9 +50,6 @@ class SimpleBottomNavigation extends Component {
     render() {
 
 
-        // const table_id = this.props.user.restaurant
-        // const restaurant_id = this.props.user.restaurant._id
-
         if (this.state.redirect) {
             return <Redirect to={"/5d07d8a8bc97aa0e25cdcbd7/1/bag"} />
         }
@@ -74,7 +65,7 @@ class SimpleBottomNavigation extends Component {
                             to="/home" />
                         <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to="/owner/5d08d317b7405800178ce0d3/perfil_edit" />
+                            to={`/owner/${this.props.user._id}/perfil_edit`} />
                     </BottomNavigation>
 
                 )
@@ -100,7 +91,7 @@ class SimpleBottomNavigation extends Component {
 
 
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to="/" />
+                            to={`/${this.props.user._id}/user_edit`} />
 
                     </BottomNavigation>
                 )
