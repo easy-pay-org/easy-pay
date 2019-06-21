@@ -22,7 +22,11 @@ const userSchema = new Schema({
   order: [{
     type: Schema.Types.ObjectId,
     ref: "Order"
-  }]
+  }],
+  currentRestaurant: {
+    restaurant_id: String,
+    table_id: Number
+  }
 }, {
     timestamps: true
   })

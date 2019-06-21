@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const protectedRoute = ({ component: Component, user, setUser, ...rest }) => {
+const protectedRoute = ({ component: Component, user, setUser, setRestaurant, ...rest }) => {
 
     return (
         <Route
@@ -10,7 +10,7 @@ const protectedRoute = ({ component: Component, user, setUser, ...rest }) => {
 
                 // if (user && user.role === 'owner') {
                 if (user) {
-                    return <Component {...props} loggedInUser={user} setTheUser={setUser} />
+                    return <Component {...props} loggedInUser={user} setTheUser={setUser} setRestaurant={setRestaurant} />
                 } else {
                     return <Redirect to={{ pathname: '/' }} />
                 }

@@ -104,7 +104,20 @@ export default class services {
   }
 
 
-  // Owner Perfil Update
+  // User
+
+  setRestaurant = (restaurant_id, table_id) => {
+    console.log('en servicios')
+    return this.service.post('setRestaurant', { restaurant_id, table_id }, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
+  getCurrentRestaurant = () => {
+    return this.service.get('getCurrentRestaurant', { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
 
 
 

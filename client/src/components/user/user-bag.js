@@ -126,7 +126,7 @@ class UserBag extends Component {
         // console.log(this.props)
 
         const { order } = this.state
-        // console.log(order)
+        console.log(this.props.restaurant)
 
         // if (this.state.redirect) {
         //     return <Redirect to={"/pay"} />

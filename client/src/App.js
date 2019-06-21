@@ -20,7 +20,7 @@ import PerfilEdit from './components/owner/perfil-edit'
 import CoursesList from './components/owner/courses/courses-list'
 import UserHome from './components/user/home'
 import UserEdit from './components/user/user-edit'
-import UserMenu from './components/user/menu'
+import Menu from './components/user/menu'
 import UserBag from './components/user/user-bag'
 import Redirects from './components/auth/redirects'
 import Qr from './components/scan-qr'
@@ -44,7 +44,11 @@ class App extends Component {
       menu: {
         restaurant_id: '',
         table_id: ''
-      }
+      },
+      restaurant: {
+        restaurant_id: '',
+        table_id: 0
+      },
     }
     this.services = new AuthServices()
     // this.fetchUser()
@@ -69,11 +73,23 @@ class App extends Component {
     })
   }
 
+  // setRestaurant = (restaurant_id, table_id) => {
+
+  //   this.setState({
+  //     restaurant: {
+  //       ...this.state.restaurant,
+  //       restaurant_id, table_id
+  //     }
+  //   })
+  // }
+
 
 
   render() {
 
     this.fetchUser()
+
+    console.log('restaurante App.js', this.state.restaurant)
 
 
     if (this.state.loggedInUser) {
@@ -84,7 +100,7 @@ class App extends Component {
 
         <div>
 
-          {/* <Navigation setTheUser={this.setUser} /> */}
+          <Navigation setTheUser={this.setUser} />
 
           <Switch>
 
@@ -93,10 +109,10 @@ class App extends Component {
             <Route path="/login" exact render={() => <Redirects user={this.state.loggedInUser} />} />
 
             {/* <Route path="/qr" exact component={Qr} /> */}
-            <ProtectedRoute user={this.state.loggedInUser} path="/qr" exact component={Qr} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/qr" setRestaurant={this.setRestaurant} exact component={Qr} />
 
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
-            <ProtectedRouteClient user={this.state.loggedInUser} path="/home" exact component={UserHome} />
+            <ProtectedRouteClient user={this.state.loggedInUser} path="/home" restaurant={this.state.restaurant} exact component={UserHome} />
 
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/perfil_edit" exact component={PerfilEdit} />
 
@@ -108,7 +124,7 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
 
-            <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id" exact component={UserMenu} />
+            <ProtectedRouteClient user={this.state.loggedInUser} restaurant={this.state.restaurant} path="/:restaurant_id/:table_id" exact component={Menu} />
 
 
             {
@@ -116,7 +132,7 @@ class App extends Component {
 
                 (this.state.loggedInUser.role === 'user') ?
 
-                  <ProtectedRouteClient user={this.state.loggedInUser} updateTotal={this.updateTotal} path="/:restaurant_id/:table_id/order" exact component={UserBag} />
+                  <ProtectedRouteClient user={this.state.loggedInUser} updateTotal={this.updateTotal} path="/:restaurant_id/:table_id/order" restaurant={this.state.restaurant} exact component={UserBag} />
                   :
                   < ProtectedRoute user={this.state.loggedInUser} path="/:restaurant_id/:table_id/order" exact component={OrderTable} />
 
@@ -142,7 +158,7 @@ class App extends Component {
 
         <div>
 
-          <Navigation setTheUser={this.setUser} />
+          {/* <Navigation setTheUser={this.setUser} /> */}
 
           <Switch>
 

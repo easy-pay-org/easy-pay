@@ -324,6 +324,32 @@ router.post('/clearOrder', (req, res) => {
 
 
 
+// User
+
+router.post('/setRestaurant', (req, res) => {
+  const currentRestaurant = req.body
+  console.log('currentRestaurant actualizado---------->', currentRestaurant)
+
+  User.findByIdAndUpdate({ _id: req.user._id }, { currentRestaurant }, { new: true })
+    .then(user => {
+      console.log('current Restaurant', user.currentRestaurant)
+      res.json(user.currentRestaurant)
+    })
+    .catch(error => console.log(error))
+
+})
+
+
+router.get('/getCurrentRestaurant'), (req, res) => {
+
+  User.findById({ _id: req.user._id })
+    .then(user => {
+      console.log('el restaurante actual del user es', user.currentRestaurant)
+      res.json(user.currentRestaurant)
+    })
+    .catch(err => console.log('Error:', err))
+}
+
 
 
 

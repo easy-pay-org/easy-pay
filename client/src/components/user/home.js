@@ -18,7 +18,9 @@ class UserHome extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { username: '', password: '', redirect: false }
+        this.state = {
+            username: '', password: '', redirect: false
+        }
         this.services = new AuthServices()
     }
 
@@ -51,9 +53,11 @@ class UserHome extends Component {
             .catch(error => console.log(error.response.data.message))
     }
 
+
+
     render() {
 
-        // console.log('home', this.props)
+        console.log('restaurant---->', this.props.restaurant)
 
 
         if (this.state.redirect) {
@@ -67,7 +71,7 @@ class UserHome extends Component {
                         <p>"scans the QR of the table and orders "</p>
 
                     </div>
-                    <BottomNav user={this.props.loggedInUser} />
+                    <BottomNav user={this.props.loggedInUser} restaurant={this.props.restaurant} />
                 </Body>
             )
         }

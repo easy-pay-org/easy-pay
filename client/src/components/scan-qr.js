@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom'
 import TopNav from '../components/bottom-nav'
 import BottomNav from '../components/bottom-nav'
 
+import OwnerServices from '../service/owner-services'
+
+
 
 class Test extends Component {
   constructor(props) {
@@ -11,9 +14,13 @@ class Test extends Component {
     this.state = {
       delay: 100,
       result: 'No result',
+      restaurant: {
+        restaurant_id: '',
+        table_id: 0
+      },
       redirect: false
     }
-
+    this.services = new OwnerServices()
     this.handleScan = this.handleScan.bind(this)
   }
 
@@ -21,22 +28,33 @@ class Test extends Component {
 
     if (data) {
       data = data.slice(7)
-      console.log(data)
+      // console.log(data)
 
       const restaurant_id = data.substring(0, data.indexOf('/'))
       const table_id = data.substring(data.indexOf('/') + 1)
 
-      console.log(restaurant_id + '/' + table_id)
+      // this.props.setRestaurant(restaurant_id, table_id)
+      console.log('en scan')
+
+      this.services.setRestaurant(restaurant_id, table_id)
+        .then(currentRestaurant => {
+          console.log('Restaurante actual', currentRestaurant)
+
+          this.setState({
+            restaurant: {
+              ...this.state.restaurant,
+              restaurant_id,
+              table_id
+            }
+          })
+        })
+
 
       this.setState({
         result: restaurant_id + '/' + table_id,
         redirect: true
       })
     }
-
-    // this.setState({
-    //   result: data,
-    // })
 
   }
 
@@ -45,10 +63,8 @@ class Test extends Component {
   }
   render() {
 
-    console.log('qr--------------->')
-
-
-    console.log(this.props)
+    console.log('--------------->')
+    console.log('current restaurant', this.state.restaurant)
 
     const previewStyle = {
       height: 240,
@@ -59,19 +75,19 @@ class Test extends Component {
       return <Redirect to={`/${this.state.result}`} />
 
     } else {
-      return (
-        <div>
-          <TopNav user={this.props} />
-          <QrReader
-            delay={this.state.delay}
-            style={previewStyle}
-            onError={this.handleError}
-            onScan={this.handleScan}
-          />
-          <p>{this.state.result}</p>
-          <BottomNav user={this.props.loggedInUser} />
-        </div>
-      )
+    return (
+      <div>
+        <TopNav user={this.props} />
+        <QrReader
+          delay={this.state.delay}
+          style={previewStyle}
+          onError={this.handleError}
+          onScan={this.handleScan}
+        />
+        <p>{this.state.result}</p>
+        <BottomNav user={this.props.loggedInUser} />
+      </div>
+    )
     }
   }
 }
