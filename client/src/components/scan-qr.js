@@ -67,8 +67,8 @@ class Test extends Component {
     // console.log('current restaurant', this.state.restaurant)
 
     const previewStyle = {
-      height: 240,
-      width: 320,
+      height: 540,
+      width: 420,
     }
 
     if (this.state.redirect) {
@@ -84,7 +84,7 @@ class Test extends Component {
             onError={this.handleError}
             onScan={this.handleScan}
           />
-          <p>{this.state.result}</p>
+          <p className='qr'>Escanea la QR, para ver el menu</p>
           <BottomNav user={this.props.loggedInUser} />
         </div>
       )

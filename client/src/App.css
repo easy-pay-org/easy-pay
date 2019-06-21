@@ -647,3 +647,10 @@ input,
     position: relative !important;
     opacity: 1 !important;
 }
+
+.qr {
+    font-size: 1.2em;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
