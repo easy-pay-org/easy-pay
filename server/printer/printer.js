@@ -17,6 +17,8 @@ const oauthClient = new yly.OauthClinet(config)
 
 oauthClient.getToken()
     .then(responsoOAUTHTOKEN => {
+        console.log(responsoOAUTHTOKEN.error)
+        console.log(responsoOAUTHTOKEN.error_description)
         if (
             responsoOAUTHTOKEN.error != 0 &&
             responsoOAUTHTOKEN.error_description != 'success'
