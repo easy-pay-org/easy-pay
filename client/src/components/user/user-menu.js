@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Button } from '@material-ui/core'
+
 // import OwnerServices from '../../service/owner-services'
-import { Redirect } from 'react-router-dom'
 
 
 import UserCard from './user-card'

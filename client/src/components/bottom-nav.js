@@ -54,11 +54,13 @@ class SimpleBottomNavigation extends Component {
     // }
 
     render() {
-        console.log('props user----------->', this.props.user)
-        console.log('Current restaurant--------->', this.props.user.currentRestaurant)
+        // console.log('props user----------->', this.props.user)
+        // console.log('Current restaurant--------->', this.props.user.currentRestaurant)
         // console.log('Restaurante nav---->', this.state.restaurant_id, this.state.table_id)
         // const table_id = this.props.user.restaurant
         // const restaurant_id = this.props.user.restaurant._id
+
+
         if (this.state.redirect) {
             return <Redirect to={"/5d07d8a8bc97aa0e25cdcbd7/1/bag"} />
         }
@@ -74,7 +76,7 @@ class SimpleBottomNavigation extends Component {
                             to="/home" />
                         <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to="/owner/5d08d317b7405800178ce0d3/perfil_edit" />
+                            to={`/owner/${this.props.user._id}/perfil_edit`} />
                     </BottomNavigation>
 
                 )
@@ -108,7 +110,7 @@ class SimpleBottomNavigation extends Component {
                         }
 
                         <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to="/" />
+                            to={`/${this.props.user._id}/user_edit`} />
 
                     </BottomNavigation>
                 )

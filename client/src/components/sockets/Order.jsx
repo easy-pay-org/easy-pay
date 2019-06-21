@@ -4,7 +4,7 @@ import { socketConfig } from "../socket-config/socket"
 
 
 import Product from '../owner/cards/card-order'
-import { Button, FormControl, InputLabel, NativeSelect, Input } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 export default class Table extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export default class Table extends Component {
 
         this.connectSocket = new socketConfig(this.socketMsg, { id: props.match.params.restaurant_id, num: props.match.params.table_id })
 
-       
+
         this.state = {
             order: [],
             totalAmount: 0,
@@ -22,7 +22,7 @@ export default class Table extends Component {
     }
 
     componentDidMount() {
-       
+
     }
     handleOrder = () => {
 

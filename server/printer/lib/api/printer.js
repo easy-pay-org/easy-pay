@@ -46,7 +46,7 @@ class Printer {
      * @param isFile true or false
      * @returns {*}
      */
-    setVoice(machineCode, content, aid = '', isFile = false) {
+    setVoice(machineCode, content, aid = '', isFile = true) {
 
         if (_.isEmpty(String(machineCode))) {
             throw new Error('machine_code can not be empty');

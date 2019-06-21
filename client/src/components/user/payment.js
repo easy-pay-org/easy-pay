@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import styled from 'styled-components'
-
 
 import PayServices from '../../service/payment-services'
 

@@ -24,7 +24,7 @@ class CardCourses extends Component {
     }
 
     handlechange = e => {
-        const { name, value } = e.target
+        const { value } = e.target
 
         this.setState({
             menu: {
