@@ -78,11 +78,13 @@ class Test extends Component {
       return (
         <div className='qr-conteiner'>
           <TopNav user={this.props} />
+
           <QrReader
             delay={this.state.delay}
             style={previewStyle}
             onError={this.handleError}
             onScan={this.handleScan}
+            className='qr-camara'
           />
           {/* <p className='qr'>{this.state.result}</p> */}
           <p className='qr'>Escanea la QR, para ver el menu</p>
