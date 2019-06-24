@@ -179,7 +179,7 @@ div.MuiFormControl-root {
 /* Login  */
 .section-1 {
     display: flex;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
