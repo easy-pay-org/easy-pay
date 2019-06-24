@@ -8,7 +8,7 @@ import BottomNav from '../bottom-nav'
 
 
 const Body = styled.div`
-    height: calc(100vh - 50px);
+    height: calc(100vh - 70px);
     width: 100vw;
     background: url('../../../img/userhome.jpg') center no-repeat/ cover;
    `
