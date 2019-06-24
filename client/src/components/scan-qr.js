@@ -78,7 +78,7 @@ class Test extends Component {
 
           <QrReader
             delay={this.state.delay}
-            style={{ height: "50vh", width: "90%", display: "block", margin: "30px auto" }}
+            style={{ height: "50vh", width: "100%", display: "block", margin: "30px auto" }}
             onError={this.handleError}
             onScan={this.handleScan}
           />

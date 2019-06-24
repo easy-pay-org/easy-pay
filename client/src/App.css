@@ -660,3 +660,7 @@ input,
     height: calc(100vh - 100px);
 
 }
+
+.contenido-home {
+    height: 80vh;
+}
