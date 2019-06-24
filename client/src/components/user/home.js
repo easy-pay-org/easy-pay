@@ -11,7 +11,7 @@ const Body = styled.div`
     height: 100vh;
     width: 100vw;
     background: url('../../../img/userhome.jpg') center no-repeat/ cover;
-    overflow:hidden;`
+   `
 
 class UserHome extends Component {
 
@@ -63,17 +63,16 @@ class UserHome extends Component {
             return <Redirect to='/' />
         } else {
             return (
-
-                <Body>
-                    <TopNav user={this.props} />
-                    <div className='section-1'>
-                        <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
-                        <p>"scans the QR of the table and orders "</p>
-
-                    </div>
+                <div>
+                    <Body>
+                        <TopNav user={this.props} />
+                        <div className='section-1'>
+                            <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
+                            <p>"scans the QR of the table and orders "</p>
+                        </div>
+                    </Body>
                     <BottomNav user={this.props.loggedInUser} restaurant={this.props.restaurant} />
-                </Body>
-
+                </div>
             )
         }
     }
