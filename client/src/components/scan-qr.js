@@ -76,7 +76,7 @@ class Test extends Component {
 
     } else {
       return (
-        <div>
+        <div className='qr-conteiner'>
           <TopNav user={this.props} />
           <QrReader
             delay={this.state.delay}
