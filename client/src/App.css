@@ -653,11 +653,10 @@ input,
     text-align: center;
     letter-spacing: 1px;
     font-weight: 600;
-    margin-bottom: 30px;
 }
 
 .qr-conteiner {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 100px);
 
 }
