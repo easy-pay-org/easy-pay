@@ -8,7 +8,7 @@ import BottomNav from '../bottom-nav'
 
 
 const Body = styled.div`
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     background: url('../../../img/userhome.jpg') center no-repeat/ cover;
 

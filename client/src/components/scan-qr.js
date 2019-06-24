@@ -81,10 +81,9 @@ class Test extends Component {
             style={{ height: "100%", width: "90%", display: "block", margin: "0 auto" }}
             onError={this.handleError}
             onScan={this.handleScan}
-
           />
           {/* <p className='qr'>{this.state.result}</p> */}
-          <p className='qr'>Escanea la QR, para ver el menu</p>
+          <p className='qr' >Escanea la QR, para ver el menu</p>
           <BottomNav user={this.props.loggedInUser} />
         </div>
       )
