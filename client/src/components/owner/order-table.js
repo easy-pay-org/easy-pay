@@ -45,6 +45,8 @@ class OrderTable extends Component {
         this.setState({ order: orderFiltered })
       })
   }
+
+  
   updateOrder = (courseUpdated, idx) => {
 
     let orderCopy = [...this.state.order]

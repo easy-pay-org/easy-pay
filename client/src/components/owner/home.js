@@ -30,7 +30,6 @@ class HomeOwner extends Component {
 
     const restaurant = this.props.loggedInUser.restaurant
 
-
     if (this.state.redirect) {
       return <Redirect to={`/owner/restaurant/new`} />
 

@@ -99,9 +99,9 @@ const printer = require('./routes/printer.routes')
 app.use('/api', printer)
 
 
-app.use((req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
+// app.use((req, res) => {
+//   res.sendFile(__dirname + "/public/index.html");
+// });
 
 
 module.exports = app;

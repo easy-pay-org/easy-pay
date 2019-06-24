@@ -354,15 +354,14 @@ router.post('/setRestaurant', (req, res) => {
 })
 
 
-router.get('/getCurrentRestaurant'), (req, res) => {
-
+router.get('/getCurrentRestaurant', (req, res) => {
   User.findById({ _id: req.user._id })
     .then(user => {
-      console.log('el restaurante actual del user es', user.currentRestaurant)
+      console.log('el restaurante actual del user es', user)
       res.json(user.currentRestaurant)
     })
     .catch(err => console.log('Error:', err))
-}
+})
 
 
 
