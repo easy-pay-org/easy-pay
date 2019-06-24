@@ -66,10 +66,7 @@ class Test extends Component {
     // console.log('--------------->')
     // console.log('current restaurant', this.state.restaurant)
 
-    const previewStyle = {
-      height: 540,
-      width: 420,
-    }
+
 
     if (this.state.redirect) {
       return <Redirect to={`/${this.state.result}`} />
@@ -81,10 +78,10 @@ class Test extends Component {
 
           <QrReader
             delay={this.state.delay}
-            style={previewStyle}
+            style={{ height: "100%", width: "90%", display: "block", margin: "0 auto" }}
             onError={this.handleError}
             onScan={this.handleScan}
-            className='qr-camara'
+
           />
           {/* <p className='qr'>{this.state.result}</p> */}
           <p className='qr'>Escanea la QR, para ver el menu</p>

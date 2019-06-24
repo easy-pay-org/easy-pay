@@ -657,8 +657,5 @@ input,
 
 .qr-conteiner {
     width: 100vw;
-}
-
-.qr-camar {
-    width: 100%;
+    height: 100vh;
 }
