@@ -10,14 +10,14 @@ class Tableslist extends Component {
     this.state = {
       restaurant: this.props.loggedInUser.restaurant,
       tables: this.props.loggedInUser.restaurant.tables,
-      show: false
     }
   }
 
 
   render() {
-    const { restaurant, tables } = this.state
-    // console.log("mesa", tables[0])
+    // const { restaurant, tables } = this.state
+    const restaurant = this.props.loggedInUser.restaurant
+    const tables = this.props.loggedInUser.restaurant.tables
 
     return (
 

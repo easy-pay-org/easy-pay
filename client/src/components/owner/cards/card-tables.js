@@ -11,9 +11,7 @@ class CardTables extends Component {
     }
 
     render() {
-
         const { table_id, restaurant_id } = this.props
-        console.log('id de restaurante', restaurant_id)
 
         return (
             <div className='cards'>

@@ -27,6 +27,7 @@ passport.use(new LocalStrategy((username, password, next) => {
 
         .populate({
             path: 'restaurant',
+            populate: { path: 'tables menu' }
         })
 
         .exec((err, foundUser) => {

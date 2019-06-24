@@ -66,9 +66,9 @@ class UserBag extends Component {
                     // redirect: false
                 })
             })
-
     }
 
+    
     totalPrice() {
         return this.state.order.reduce((acc, course) => acc + (course.price * course.quantity), 0)
     }
@@ -136,11 +136,8 @@ class UserBag extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        
         this.printer()
-
         this.props.updateTotal(this.totalPrice())
-
         this.setState({ redirect: true })
     }
 
