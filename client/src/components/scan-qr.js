@@ -84,7 +84,8 @@ class Test extends Component {
             onError={this.handleError}
             onScan={this.handleScan}
           />
-          <p className='qr'>{this.state.result}</p>
+          {/* <p className='qr'>{this.state.result}</p> */}
+          <p className='qr'>Escanea la QR, para ver el menu</p>
           <BottomNav user={this.props.loggedInUser} />
         </div>
       )
