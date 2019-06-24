@@ -11,6 +11,7 @@ const Body = styled.div`
     height: 100vh;
     width: 100vw;
     background: url('../../../img/userhome.jpg') center no-repeat/ cover;
+        overflow: scroll;
 
 `
 

@@ -179,10 +179,11 @@ div.MuiFormControl-root {
 /* Login  */
 .section-1 {
     display: flex;
-    height: calc(100vh - 120px);
+    height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: scroll;
 }
 
 .section-1 img {
@@ -658,5 +659,5 @@ input,
 
 .qr-conteiner {
     width: 100vw;
-    height: calc(100vh - 150px);
+    max-height: 50vh;
 }
