@@ -136,6 +136,7 @@ class UserBag extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
+        
         this.printer()
 
         this.props.updateTotal(this.totalPrice())

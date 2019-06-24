@@ -7,21 +7,22 @@ router.use(require("body-parser").text());
 
 
 router.post('/charge', async (req, res) => {
-  try {
-    let { status } = await stripe.charges.create({
-      amount: req.body.split(' ')[1],
-      currency: "usd",
-      description: "An example charge",
-      source: req.body.split(' ')[0]
-    });
-
-    res.json({ status });
-  } catch (err) {
-    console.log(err)
-    res.status(500).end();
-  }
+  let { status } = await stripe.charges.create({
+    amount: req.body.split(' ')[1],
+    currency: "usd",
+    description: "An example charge",
+    source: req.body.split(' ')[0]
+  })
+    .then(res => res.json({ status }))
+    .catch(error => error.response.data)
 })
 
+
+
+// catch (err) {
+//   console.log(err)
+//   res.status(500).end();
+// }
 
 // router.post("/charge", async (req, res) => {
 //   try {

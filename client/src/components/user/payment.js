@@ -51,7 +51,8 @@ class Payment extends Component {
     ev.preventDefault()
 
 
-    let { token } = await this.props.stripe.createToken({ name: this.props.name, amount: 8000 });
+    let { token } = await this.props.stripe.createToken({ name: this.props.name });
+    // let { token } = await this.props.stripe.createToken({ name: this.props.name, amount: 8000 });
     let response = await fetch(process.env.REACT_APP_URL + 'charge', {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
@@ -64,12 +65,12 @@ class Payment extends Component {
       // this.services.clearAllOrder()
       //   .then(() => {
       //     console.log('order borrado')
-          // console.log('La orden del usuario es', theOrder)
-          // this.setState({
-          //   order: theOrder,
-          //   // redirect: false
-          // })
-        // })
+      // console.log('La orden del usuario es', theOrder)
+      // this.setState({
+      //   order: theOrder,
+      //   // redirect: false
+      // })
+      // })
 
       this.setState({
         redirect: true
