@@ -61,60 +61,58 @@ class SimpleBottomNavigation extends Component {
         // const restaurant_id = this.props.user.restaurant._id
 
 
-        if (this.state.redirect) {
-            return <Redirect to={"/5d07d8a8bc97aa0e25cdcbd7/1/bag"} />
-        }
-
-        else {
-            if (this.props.user.role === 'owner')
-
-                return (
-
-                    <BottomNavigation value={this.state.value} onChange={this.handleChange}>
-                        <BottomNavigationAction label="Home" value="home" icon={<Home />}
-                            component={Link}
-                            to="/home" />
-                        <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
-                        <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to={`/owner/${this.props.user._id}/perfil_edit`} />
-                    </BottomNavigation>
-
-                )
-            else
-                return (
-
-                    <BottomNavigation value={this.state.value} onChange={this.handleChange}>
-
-                        <BottomNavigationAction label="Home" value="home" icon={<Home />}
-                            component={Link}
-                            to="/home" />
-
-                        <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
-                            component={Link}
-                            // setTable={this.handleTable}
-                            // to="/5d0b71b492e7f12960a87976/1" />
-                            to="/qr" />
 
 
-                        {
-                            this.props.user.currentRestaurant && this.props.user.currentRestaurant.restaurant_id !== '' ?
 
-                                <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
-                                    // onClick={this.handlesubmit}
-                                    component={Link}
-                                    // to={`/${this.state.restaurant_id}}/${this.state.table_id}/order`} />
-                                    to={`/${this.props.user.currentRestaurant.restaurant_id}/${this.props.user.currentRestaurant.table_id}/order`} />
+        if (this.props.user.role === 'owner')
 
-                                :
-                                null
-                        }
+            return (
 
-                        <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
-                            to={`/${this.props.user._id}/user_edit`} />
+                <BottomNavigation value={this.state.value} onChange={this.handleChange}>
+                    <BottomNavigationAction label="Home" value="home" icon={<Home />}
+                        component={Link}
+                        to="/home" />
+                    <BottomNavigationAction label="Detalles" value="detalles" icon={<InsertChart />} />
+                    <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
+                        to={`/owner/${this.props.user._id}/perfil_edit`} />
+                </BottomNavigation>
 
-                    </BottomNavigation>
-                )
-        }
+            )
+        else
+            return (
+
+                <BottomNavigation value={this.state.value} onChange={this.handleChange}>
+
+                    <BottomNavigationAction label="Home" value="home" icon={<Home />}
+                        component={Link}
+                        to="/home" />
+
+                    <BottomNavigationAction label="QR" value="qr" icon={<AspectRatio />}
+                        component={Link}
+                        // setTable={this.handleTable}
+                        // to="/5d0b71b492e7f12960a87976/1" />
+                        to="/qr" />
+
+
+                    {
+                        this.props.user.currentRestaurant && this.props.user.currentRestaurant.restaurant_id !== '' ?
+
+                            <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
+                                // onClick={this.handlesubmit}
+                                component={Link}
+                                // to={`/${this.state.restaurant_id}}/${this.state.table_id}/order`} />
+                                to={`/${this.props.user.currentRestaurant.restaurant_id}/${this.props.user.currentRestaurant.table_id}/order`} />
+
+                            :
+                            null
+                    }
+
+                    <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
+                        to={`/${this.props.user._id}/user_edit`} />
+
+                </BottomNavigation>
+            )
+
 
     }
 

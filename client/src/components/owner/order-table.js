@@ -22,14 +22,14 @@ class OrderTable extends Component {
     this.services = new OwnerServices()
 
     this.connectSocket = new socketConfig(this.socketMsg, { id: props.match.params.restaurant_id, num: props.match.params.table_id })
-
+    console.log('Hollaaaa', props.match.params.table_id)
     this.connectSocket.socket.on('subasta!', data => {
       console.log('en socketconfig')
       console.log(data)
       this.setState({ order: data.message })
     })
   }
- 
+
 
   handleOrder = () => {
 
