@@ -584,6 +584,10 @@ button.pay {
     margin: 30px;
 }
 
+.checkout {
+    margin: 20px 0;
+}
+
 .checkout p {
     text-transform: uppercase;
     font-weight: 600;
