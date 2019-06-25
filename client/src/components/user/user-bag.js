@@ -68,41 +68,72 @@ class UserBag extends Component {
             })
     }
 
-    
+
     totalPrice() {
         return this.state.order.reduce((acc, course) => acc + (course.price * course.quantity), 0)
     }
 
+
     updateOrder = (courseUpdated, idx) => {
 
-        let orderCopy = [...this.state.order]
-        orderCopy[idx] = courseUpdated
-        this.setState(
-            { order: orderCopy },
-            () => this.handleOrder()
-        )
+        const orderCopy = [...this.state.order]
+
+        console.log('quantity', courseUpdated.quantity)
+
+        if (courseUpdated.quantity == 0) {
+            console.log('igual a 0')
+
+            this.services.clearOrder(courseUpdated._id)
+                .then((orderUpdated) => {
+                    console.log('orderUpdated', orderUpdated)
+
+                    orderCopy.splice(idx, 1)
+                    this.setState({
+                        order: orderCopy
+                    })
+                })
+        }
+
+        else {
+            console.log('diferente a 0')
+
+            this.services.updateCourse(courseUpdated)
+                .then(orderUpdated => {
+                    console.log('orderUpdated', orderUpdated)
+
+                    orderCopy[idx] = courseUpdated
+                    this.setState({
+                        order: orderCopy
+                    })
+                })
+        }
 
     }
 
+
     handleOrder = () => {
 
-        this.services.updateOrder(this.state.order)
-            .then(orderUpdated => {
+
+        // const orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
+
+        // const orderFiltered = this.state.order.filter(course => course.quantity > 0)
+        // console.log('orderUpdated---->', orderFiltered)
 
 
-                const orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
 
-                orderUpdated.forEach(course => {
-                    if (course.quantity <= 0)
-                        this.services.clearOrder(course._id)
-                            .then(orderUpdated => console.log('orderUpdated', orderUpdated))
-                })
+        // this.services.updateOrder(this.state.order, orderFiltered)
+        //     .then(orderUpdated => {
+        //         this.setState({ order: orderUpdated })
+        //     })
 
-                // console.log(orderFiltered)
-                // let orderCopy = [...this.state.order]
-                // orderCopy.splice(0, 1)
-                this.setState({ order: orderFiltered })
-            })
+
+
+
+        // console.log(orderFiltered)
+        // let orderCopy = [...this.state.order]
+        // orderCopy.splice(0, 1)
+        // this.setState({ order: orderFiltered })
+        // })
     }
 
     // handleOrder = () => {

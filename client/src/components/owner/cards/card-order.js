@@ -12,6 +12,7 @@ class CardOrder extends Component {
                 name: this.props.course.name,
                 price: this.props.course.price,
                 description: this.props.course.description,
+                quantity: this.props.course.quantity,
                 image: this.props.course.image,
                 _id: this.props.course._id
             },
@@ -22,21 +23,20 @@ class CardOrder extends Component {
     handlechange = e => {
         const { value } = e.target
 
-        const theCourse = this.state.course
+        const theCourse = this.props.course
         theCourse.quantity = value
 
-        console.log('El plato modificado', theCourse)
-        console.log('index', this.props.index)
-
-        this.props.updateOrder(theCourse, this.props.index)
+        // console.log('El plato modificado', theCourse)
+        // console.log('index', this.props.index)
 
         this.setState({
             course: {
                 ...this.state.course,
                 quantity: value
             }
+        }, () => {
+            this.props.updateOrder(theCourse, this.props.index)
         })
-
     }
 
     render() {

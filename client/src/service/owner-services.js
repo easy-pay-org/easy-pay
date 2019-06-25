@@ -84,8 +84,8 @@ export default class services {
       .catch(err => console.log(err))
   }
 
-  updateOrder = (order) => {
-    return this.service.post('updateOrder', { order }, { withCredentials: true })
+  updateOrder = (order, orderFiltered) => {
+    return this.service.post('updateOrder', { order, orderFiltered }, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err))
   }
@@ -106,6 +106,13 @@ export default class services {
 
   clearAllOrder = () => {
     return this.service.post('clearOrder', { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err.response.data.msg))
+  }
+
+
+  updateCourse = (order) => {
+    return this.service.post('updateCourse', { order }, { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err.response.data.msg))
   }

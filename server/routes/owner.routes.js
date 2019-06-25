@@ -277,6 +277,7 @@ router.post('/updateOrder', (req, res) => {
   // } else {
   //   res.status(401).json({ msg: 'Tienes que añadir al menos un plato' })
   // }
+
   Promise.all(order.map(o => Order.findByIdAndUpdate({ _id: o._id }, { quantity: +(o.quantity) }, { new: true })))
     .then(arrOrder => res.json(arrOrder))
     .catch(err => {
@@ -285,7 +286,15 @@ router.post('/updateOrder', (req, res) => {
     })
 
 
+})
 
+
+router.post('/updateCourse', (req, res) => {
+  console.log('req body of updateCourse', req.body)
+  const { order } = req.body
+
+  Order.findByIdAndUpdate({ _id: order._id }, { quantity: +(order.quantity) }, { new: true })
+    .then(courseUpdated => res.json(courseUpdated))
 })
 
 
@@ -300,7 +309,7 @@ router.get('/getOrder', (req, res) => {
     })
     .then(user => {
 
-      console.log('el menu del usuario', user.order)
+      // console.log('el menu del usuario', user.order)
       res.json(user.order)
     })
     .catch(err => console.log('Error:', err))
@@ -311,11 +320,17 @@ router.get('/getOrder', (req, res) => {
 router.post('/clearOrder', (req, res) => {
 
   const { order_id } = req.body
+  console.log('order_id----->', order_id)
+  console.log('user id----->', req.user._id)
+  console.log('req.user.order antes--->', req.user.order)
 
 
   User.findByIdAndUpdate({ _id: req.user._id }, { $pull: { order: order_id } }, { new: true })
     .then(userUpdated => {
-      console.log('order actualizado', req.user.order)
+      console.log('req.user.order despues--->', req.user.order)
+      console.log('userUpdated.order--->', userUpdated.order)
+      req.user.order = userUpdated.order
+      console.log('order actualizado--->', req.user.order)
       res.json(req.user.order)
     })
     .catch(error => console.log(error))
@@ -355,10 +370,6 @@ router.post('/setRestaurant', (req, res) => {
 
 
 router.get('/getCurrentRestaurant', (req, res) => {
-<<<<<<< HEAD
-=======
-
->>>>>>> 4902a27fdafc058c8027222741ee1459c224d3ec
   User.findById({ _id: req.user._id })
     .then(user => {
       console.log('el restaurante actual del user es', user)
