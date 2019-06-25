@@ -584,6 +584,10 @@ button.pay {
     margin: 30px;
 }
 
+.checkout {
+    margin-bottom: 50px;
+}
+
 .checkout p {
     text-transform: uppercase;
     font-weight: 600;
@@ -653,4 +657,10 @@ input,
     text-align: center;
     letter-spacing: 1px;
     font-weight: 600;
+}
+
+.qr-conteiner {
+    width: 100vw;
+    height: calc(100vh - 100px);
+
 }

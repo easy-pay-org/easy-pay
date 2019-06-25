@@ -376,7 +376,7 @@ router.get('/getCurrentRestaurant', (req, res) => {
       res.json(user.currentRestaurant)
     })
     .catch(err => console.log('Error:', err))
-})
+}); 
 
 
 

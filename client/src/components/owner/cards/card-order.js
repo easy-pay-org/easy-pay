@@ -14,7 +14,8 @@ class CardOrder extends Component {
                 description: this.props.course.description,
                 quantity: this.props.course.quantity,
                 image: this.props.course.image,
-                _id: this.props.course._id
+                _id: this.props.course._id,
+
             },
             show: false
         }
@@ -38,6 +39,10 @@ class CardOrder extends Component {
             this.props.updateOrder(theCourse, this.props.index)
         })
     }
+
+
+
+
 
     render() {
         const { course } = this.props
@@ -64,7 +69,6 @@ class CardOrder extends Component {
                             }}
                             margin="normal"
                         />
-
                     </div>
 
                 </section>

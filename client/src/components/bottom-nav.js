@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Home, AccountBox, AspectRatio, ShoppingBasket, InsertChart } from '@material-ui/icons'
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import OwnerServices from '../service/owner-services'
 

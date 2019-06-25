@@ -83,7 +83,7 @@ class Payment extends Component {
 
 
   handleChange = e => {
-    console.log('-----')
+
     const { name, value } = e.target
     this.setState({
       productInfo: {
