@@ -13,7 +13,8 @@ class CardOrder extends Component {
                 price: this.props.course.price,
                 description: this.props.course.description,
                 image: this.props.course.image,
-                _id: this.props.course._id
+                _id: this.props.course._id,
+
             },
             show: false
         }
@@ -38,6 +39,10 @@ class CardOrder extends Component {
         })
 
     }
+
+
+
+
 
     render() {
         const { course } = this.props
@@ -64,7 +69,6 @@ class CardOrder extends Component {
                             }}
                             margin="normal"
                         />
-
                     </div>
 
                 </section>

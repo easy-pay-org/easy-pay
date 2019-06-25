@@ -68,7 +68,7 @@ class UserBag extends Component {
             })
     }
 
-    
+
     totalPrice() {
         return this.state.order.reduce((acc, course) => acc + (course.price * course.quantity), 0)
     }
