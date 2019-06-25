@@ -544,7 +544,7 @@ div.MuiTabs-flexContainer {
 
 
 .sum div.MuiFormControl-root {
-    width: 20%;
+    width: 80%;
 }
 
 /*User bag*/
@@ -571,9 +571,7 @@ div.MuiTabs-flexContainer {
 
 }
 
-.form2 {
-    /* margin: 20px 50px; */
-}
+
 
 button.btn-order {
     width: 80%;
@@ -697,4 +695,8 @@ input,
     -webkit-tap-highlight-color: transparent;
     text-align: center;
     font-size: 0.9em !important;
+}
+
+.sum .amount .MuiFormControl-root {
+    width: 20%;
 }
