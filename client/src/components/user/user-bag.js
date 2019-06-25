@@ -212,7 +212,7 @@ class UserBag extends Component {
                         <section className='footer-bag'>
 
                             {/* <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button> */}
-                            <h1>Total: {this.totalPrice()}€</h1>
+                            <h1>Total: {this.totalPrice()}.00€</h1>
 
 
                             <Button onClick={this.socketNewMessage} variant="contained" className='btn-order'>Pedir</Button>

@@ -87,6 +87,7 @@ class CardOrder extends Component {
                     <p>{course.description}.</p>
 
                     <div className='sum'>
+                        <h6>{course.price * course.quantity}.00€</h6>
                         {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
                         <div className='amount'>
                             <button onClick={this.lessItem}>-</button>
@@ -101,7 +102,7 @@ class CardOrder extends Component {
                             />
                             <button onClick={this.addItem}>+</button>
                         </div>
-                        <h6>subtotal: {course.price}€</h6>
+
 
                     </div>
 
