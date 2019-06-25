@@ -83,10 +83,10 @@ class CardOrder extends Component {
                     <img src={course.image} alt='restaurant' />
                 </figure>
                 <section>
-                    <h2>{course.name} <span>${course.price}</span></h2>
+                    <h2>{course.name} / {course.price}.<span>00</span>€</h2>
                     <p>{course.description}.</p>
+
                     <div className='sum'>
-                        <h6>Total: {course.price}$</h6>
                         {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
                         <div className='amount'>
                             <button onClick={this.lessItem}>-</button>
@@ -101,6 +101,7 @@ class CardOrder extends Component {
                             />
                             <button onClick={this.addItem}>+</button>
                         </div>
+                        <h6>subtotal: {course.price}€</h6>
 
                     </div>
 
