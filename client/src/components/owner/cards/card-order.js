@@ -21,15 +21,44 @@ class CardOrder extends Component {
         }
     }
 
-    handlechange = e => {
-        const { value } = e.target
+    lessItem = () => {
 
+        if (this.props.course.quantity <= 0) {
+
+            let value = this.props.course.quantity
+            const theCourse = this.props.course
+
+            this.setState({
+                course: {
+                    ...this.state.course,
+                    quantity: value
+                }
+            }, () => {
+                this.props.updateOrder(theCourse, this.props.index)
+            })
+
+        } else {
+            let value = this.props.course.quantity--
+            const theCourse = this.props.course
+
+            this.setState({
+                course: {
+                    ...this.state.course,
+                    quantity: value
+                }
+            }, () => {
+                this.props.updateOrder(theCourse, this.props.index)
+            })
+
+        }
+
+
+    }
+
+    addItem = () => {
+
+        let value = this.props.course.quantity++
         const theCourse = this.props.course
-        theCourse.quantity = value
-
-        // console.log('El plato modificado', theCourse)
-        // console.log('index', this.props.index)
-
         this.setState({
             course: {
                 ...this.state.course,
@@ -38,6 +67,7 @@ class CardOrder extends Component {
         }, () => {
             this.props.updateOrder(theCourse, this.props.index)
         })
+
     }
 
 
@@ -58,17 +88,20 @@ class CardOrder extends Component {
                     <div className='sum'>
                         <h6>Total: {course.price}$</h6>
                         {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
-                        <TextField
-                            id="standard-number"
-                            label="Quantity"
-                            value={this.props.course.quantity}
-                            onChange={this.handlechange}
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            margin="normal"
-                        />
+                        <div className='amount'>
+                            <button onClick={this.lessItem}>-</button>
+                            <TextField
+                                id="standard-number"
+                                value={this.props.course.quantity}
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                margin="normal"
+                            />
+                            <button onClick={this.addItem}>+</button>
+                        </div>
+
                     </div>
 
                 </section>
