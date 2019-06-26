@@ -28,7 +28,7 @@ class SimpleBottomNavigation extends Component {
     componentDidMount() {
         this.services.getCurrentRestaurant()
             .then(currentRestaurant => {
-                console.log('currentRestaurant', currentRestaurant)
+                // console.log('currentRestaurant', currentRestaurant)
                 this.setState({
                     restaurant_id: currentRestaurant.restaurant_id,
                     table_id: currentRestaurant.table_id

@@ -40,17 +40,19 @@ class CardCourses extends Component {
         const { menu } = this.state
 
         if (!this.props.inOrder(menu)) {
-            console.log('NOOOOOOO-------------------------------------------------------------')
-            this.services.postOrder(menu)
-                .then((order) => {
 
-                    // console.log('La orden', order)
-                })
+            if (menu.quantity != '') {
+
+                this.services.postOrder(menu)
+                    .then((order) => {
+                        this.props.updateOrder()
+                    })
+            }
         }
 
         else {
-            console.log('else--->', this.props.inOrder(menu))
-            this.services.updateCourse(this.props.inOrder(menu))
+            if (menu.quantity != '')
+                this.services.updateCourse(this.props.inOrder(menu))
         }
     }
 

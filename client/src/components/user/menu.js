@@ -19,33 +19,62 @@ class UserMenu extends Component {
         this.services = new OwnerServices()
     }
 
+    // stateUpdated = true
 
     componentDidMount() {
         this.services.getMenu(this.props.match.params.restaurant_id)
-            .then(menu => this.setState({ menu }))
-
-        this.services.getOrder()
-            .then(order => {
-                this.setState({ order })
-                // console.log('order---->', order)
+            .then(menu => {
+                this.setState({ menu })
             })
+        this.services.getOrder()
+            .then(theOrder => {
+                this.setState({ order: theOrder })
+            })
+
     }
 
 
     inOrder = course => {
+        // console.log('................................................', this.stateUpdated)
+        // console.log('this.state.order', this.state.order)
+
         let menuIncludes
 
+        // if (this.stateUpdated) {
+        console.log('entra')
+
         this.state.order.forEach(theCourse => {
+            // console.log('---->', theCourse.name, course.name)
+
             if (theCourse.name === course.name) {
-                // menuIncludes = course
                 menuIncludes = theCourse
                 menuIncludes.quantity = course.quantity
-                console.log('menuIncludes--->', menuIncludes)
+                // console.log('menuIncludes--->', menuIncludes)
             }
         })
-        if (menuIncludes)
+
+        this.stateUpdated = false
+        // }
+
+        // console.log('................................................')
+        if (menuIncludes) {
             return menuIncludes
-        // return menuIncludes
+        }
+
+    }
+
+
+    updateOrder = () => {
+
+        this.services.getOrder()
+            .then(theOrder => {
+                this.setState({
+                    order: theOrder
+                    // stateUpdated: true
+                })
+            })
+
+        this.stateUpdated = true
     }
 
 
@@ -72,8 +101,7 @@ class UserMenu extends Component {
                     <header className="hero-menu">
                         <h1>Welcome to Casa Pepe</h1>
                     </header>
-
-                    <UserTab menu={this.state.menu} inOrder={this.inOrder} />
+                    <UserTab menu={this.state.menu} inOrder={this.inOrder} updateOrder={this.updateOrder} />
 
                     <section className="container">
 
