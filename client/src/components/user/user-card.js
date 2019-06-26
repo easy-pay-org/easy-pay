@@ -41,7 +41,7 @@ class CardCourses extends Component {
 
         if (!this.props.inOrder(menu)) {
 
-            if (menu.quantity != '') {
+            if (menu.quantity !== '') {
 
                 this.services.postOrder(menu)
                     .then((order) => {
@@ -51,7 +51,7 @@ class CardCourses extends Component {
         }
 
         else {
-            if (menu.quantity != '')
+            if (menu.quantity !== '')
                 this.services.updateCourse(this.props.inOrder(menu))
         }
     }
