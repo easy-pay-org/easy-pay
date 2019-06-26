@@ -21,12 +21,44 @@ class CardOrder extends Component {
         }
     }
 
-    handlechange = e => {
-        const { value } = e.target
+    lessItem = () => {
 
+        if (this.props.course.quantity <= 0) {
+
+            let value = this.props.course.quantity
+            const theCourse = this.props.course
+
+            this.setState({
+                course: {
+                    ...this.state.course,
+                    quantity: value
+                }
+            }, () => {
+                this.props.updateOrder(theCourse, this.props.index)
+            })
+
+        } else {
+            let value = this.props.course.quantity--
+            const theCourse = this.props.course
+
+            this.setState({
+                course: {
+                    ...this.state.course,
+                    quantity: value
+                }
+            }, () => {
+                this.props.updateOrder(theCourse, this.props.index)
+            })
+
+        }
+
+
+    }
+
+    addItem = () => {
+
+        let value = this.props.course.quantity++
         const theCourse = this.props.course
-        theCourse.quantity = value
-
         this.props.updateOrder(theCourse, this.props.index)
 
         this.setState({
@@ -35,6 +67,7 @@ class CardOrder extends Component {
                 quantity: value
             }
         })
+
     }
 
 
@@ -50,22 +83,27 @@ class CardOrder extends Component {
                     <img src={course.image} alt='restaurant' />
                 </figure>
                 <section>
-                    <h2>{course.name} <span>${course.price}</span></h2>
+                    <h2>{course.name} / {course.price}.<span>00</span>€</h2>
                     <p>{course.description}.</p>
+
                     <div className='sum'>
-                        <h6>Total: {course.price}$</h6>
+                        <h6>{course.price * course.quantity}.00€</h6>
                         {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
-                        <TextField
-                            id="standard-number"
-                            label="Quantity"
-                            value={this.props.course.quantity}
-                            onChange={this.handlechange}
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            margin="normal"
-                        />
+                        <div className='amount'>
+                            <button onClick={this.lessItem}>-</button>
+                            <TextField
+                                id="standard-number"
+                                value={this.props.course.quantity}
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                margin="normal"
+                            />
+                            <button onClick={this.addItem}>+</button>
+                        </div>
+
+
                     </div>
 
                 </section>

@@ -14,6 +14,7 @@ h6 {
     display: flex;
     align-items: center;
     font-size: 1em;
+    width: 50%;
 }
 
 .upload {
@@ -351,6 +352,9 @@ section.container .MuiFab-primary:hover {
     width: 65%;
     padding-left: 10px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .cards section p {
@@ -567,12 +571,10 @@ div.MuiTabs-flexContainer {
 
 }
 
-.form2 {
-    /* margin: 20px 50px; */
-}
+
 
 button.btn-order {
-    width: 80%;
+    width: 50%;
     background: #eed391;
     color: white;
 }
@@ -663,4 +665,38 @@ input,
     width: 100vw;
     height: calc(100vh - 100px);
 
+}
+
+.amount {
+    justify-content: space-evenly;
+}
+
+.amount button {
+
+    width: 25%;
+    border: 1px solid #9f9f9f;
+    background: white;
+    font-size: 1.5em;
+
+}
+
+.amount .MuiInputBase-input {
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    height: 1.1875em;
+    margin: 0;
+    display: block;
+    padding: 10px 0;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    -webkit-tap-highlight-color: transparent;
+    text-align: center;
+    font-size: 0.9em !important;
+}
+
+.sum .amount .MuiFormControl-root {
+    width: 20%;
 }

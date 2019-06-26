@@ -80,7 +80,7 @@ class UserBag extends Component {
 
         console.log('quantity', courseUpdated.quantity)
 
-        if (courseUpdated.quantity == 0) {
+        if (courseUpdated.quantity === 0) {
             console.log('igual a 0')
 
             this.services.clearOrder(courseUpdated._id)
@@ -212,7 +212,7 @@ class UserBag extends Component {
                         <section className='footer-bag'>
 
                             {/* <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button> */}
-                            <h1>Total: ${this.totalPrice()}</h1>
+                            <h1>Total: {this.totalPrice()}.00€</h1>
 
 
                             <Button onClick={this.socketNewMessage} variant="contained" className='btn-order'>Pedir</Button>

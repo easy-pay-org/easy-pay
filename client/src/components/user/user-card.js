@@ -68,9 +68,9 @@ class CardCourses extends Component {
                 </figure>
                 <section>
 
-                    <h2>{course.name} <span>${course.price}</span></h2>
+                    <h2>{course.name} <span>{course.price}€</span></h2>
 
-                    <p>{course.description}.</p>
+                    <p>{course.description}</p>
 
                     <div className='sum'>
                         <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
@@ -88,6 +88,8 @@ class CardCourses extends Component {
                             />
                             <Button variant="contained" type="submit" color="primary">Añadir</Button>
                         </form>
+
+
                     </div>
                 </section>
 
