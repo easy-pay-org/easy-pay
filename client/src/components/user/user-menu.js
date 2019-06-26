@@ -25,11 +25,7 @@ class UserMenu extends Component {
 
 
         const { menu, coursesType } = this.props
-        // console.log('coursesType', coursesType)
-        // console.log('menu', menu)
-
         const filteredMenu = menu.filter(course => course.type === coursesType)
-        // console.log('filteredMenu', filteredMenu)
 
         if (menu.length) {
 
@@ -40,8 +36,8 @@ class UserMenu extends Component {
                     {/* <form onSubmit={this.handleSubmit} className="form" autoComplete="off"> */}
                     <section className='container'>
                         {filteredMenu.map((course, idx) => {
-                            console.log('id del plato enviado---->', course._id)
-                            return <UserCard key={idx} course={course} />
+                            // console.log('id del plato enviado---->', course._id)
+                            return <UserCard key={idx} course={course} inOrder={this.props.inOrder} />
                         })}
                     </section>
 

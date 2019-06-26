@@ -223,6 +223,7 @@ router.post('/newOrder', (req, res) => {
   const { name, price, description, image, quantity } = req.body.order
   const user = req.user
 
+
   Order.create({ name, price, description, image, quantity })
     .then(order => {
       console.log('La orden', order)
@@ -376,7 +377,7 @@ router.get('/getCurrentRestaurant', (req, res) => {
       res.json(user.currentRestaurant)
     })
     .catch(err => console.log('Error:', err))
-}); 
+});
 
 
 

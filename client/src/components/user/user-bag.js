@@ -166,8 +166,8 @@ class UserBag extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-
-        this.printer()
+        // -------------------------------DESCOMENTAR---------------------------
+        // this.printer() 
         this.props.updateTotal(this.totalPrice())
         this.setState({ redirect: true })
     }

@@ -171,7 +171,6 @@ class App extends Component {
 
           <Switch>
 
-
             <Route path="/signup" exact render={() => <Signup setTheUser={this.setUser} />} />
             <Route path="/login" exact render={() => <Login setTheUser={this.setUser} />} />
 
@@ -187,9 +186,6 @@ class App extends Component {
       )
 
     }
-
-
-
   }
 }
 

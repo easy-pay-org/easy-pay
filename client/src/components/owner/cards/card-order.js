@@ -27,16 +27,13 @@ class CardOrder extends Component {
         const theCourse = this.props.course
         theCourse.quantity = value
 
-        // console.log('El plato modificado', theCourse)
-        // console.log('index', this.props.index)
+        this.props.updateOrder(theCourse, this.props.index)
 
         this.setState({
             course: {
                 ...this.state.course,
                 quantity: value
             }
-        }, () => {
-            this.props.updateOrder(theCourse, this.props.index)
         })
     }
 

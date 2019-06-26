@@ -38,18 +38,26 @@ class CardCourses extends Component {
         e.preventDefault()
 
         const { menu } = this.state
-        console.log('--------------------->', menu)
-        this.services.postOrder(menu)
-            .then((order) => {
 
-                console.log('La orden', order)
-            })
+        if (!this.props.inOrder(menu)) {
+            console.log('NOOOOOOO-------------------------------------------------------------')
+            this.services.postOrder(menu)
+                .then((order) => {
+
+                    // console.log('La orden', order)
+                })
+        }
+
+        else {
+            console.log('else--->', this.props.inOrder(menu))
+            this.services.updateCourse(this.props.inOrder(menu))
+        }
     }
 
 
     render() {
 
-        console.log('props del plato recibido', this.props)
+        // console.log('props del plato recibido', this.props)
 
         const { course } = this.props
 
