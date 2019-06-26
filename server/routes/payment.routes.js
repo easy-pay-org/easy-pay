@@ -24,20 +24,41 @@ router.use(require("body-parser").text());
 //   res.status(500).end();
 // }
 
-router.post("/charge", async (req, res) => {
+
+
+router.post('/charge', async (req, res) => {
   try {
     let { status } = await stripe.charges.create({
-      amount: 2000,
+      amount: req.body.split(' ')[1],
       currency: "usd",
       description: "An example charge",
-      source: req.body
+      source: req.body.split(' ')[0]
     });
+
     res.json({ status });
   } catch (err) {
-    res.status(500).end();
     console.log(err)
+    res.status(500).end();
   }
-});
+})
+
+
+
+
+// router.post("/charge", async (req, res) => {
+//   try {
+//     let { status } = await stripe.charges.create({
+//       amount: 2000,
+//       currency: "usd",
+//       description: "An example charge",
+//       source: req.body
+//     });
+//     res.json({ status });
+//   } catch (err) {
+//     res.status(500).end();
+//     console.log(err)
+//   }
+// });
 
 
 

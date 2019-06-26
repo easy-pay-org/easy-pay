@@ -51,9 +51,8 @@ class CardOrder extends Component {
             })
 
         }
-
-
     }
+
 
     addItem = () => {
 
@@ -69,9 +68,6 @@ class CardOrder extends Component {
         })
 
     }
-
-
-
 
 
     render() {

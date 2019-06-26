@@ -51,7 +51,7 @@ class Payment extends Component {
     ev.preventDefault()
 
 
-    let { token } = await this.props.stripe.createToken({ name: this.props.name });
+    let { token } = await this.props.stripe.createToken({ name: this.props.name, amount: 8000 });
     // let { token } = await this.props.stripe.createToken({ name: this.props.name, amount: 8000 });
     let response = await fetch(process.env.REACT_APP_URL + 'charge', {
       method: "POST",
