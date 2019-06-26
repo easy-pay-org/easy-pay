@@ -240,7 +240,6 @@ class UserBag extends Component {
                             <div>
                                 {
                                     this.state.redirect ?
-                                        // <StripeProvider apiKey="pk_test_RpU4gUbkBjJ9YrTtKhNs1nYx006uRaolap">
                                         <StripeProvider apiKey="pk_test_j4uqh758WtoDfv0vVGdeH2XP00hz2ZHNJd">
                                             <Elements>
                                                 <Payment total={this.totalPrice() * 100} name={this.props.loggedInUser.username} />
