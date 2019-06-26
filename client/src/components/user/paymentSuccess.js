@@ -20,10 +20,11 @@ class paymentSuccess extends Component {
         <TopNav user={this.props} />
         <section className="content-home">
           <header className="hero-menu">
-            <h1>Success</h1>
+            <h1>Pago Exitoso</h1>
           </header>
+          <section className="success">
 
-          <section className="container">
+            <p>Nunca pagar ha sido tan fácil</p>
 
           </section>
         </section>

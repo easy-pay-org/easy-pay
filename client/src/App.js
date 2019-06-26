@@ -113,25 +113,26 @@ class App extends Component {
 
             {/* <Route path="/qr" exact component={Qr} /> */}
             <ProtectedRoute user={this.state.loggedInUser} path="/qr" setRestaurant={this.setRestaurant} exact component={Qr} />
-
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/home" exact component={HomeOwner} />
-            <ProtectedRouteClient user={this.state.loggedInUser} path="/home" restaurant={this.state.restaurant} exact component={UserHome} />
-
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:_id/perfil_edit" exact component={OwnerEdit} />
-            <ProtectedRouteClient user={this.state.loggedInUser} setUser={this.setUser} path="/:_id/user_edit" exact component={UserEdit} />
-
-
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/restaurant/new" exact component={RestaurantForm} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/edit" exact component={RestaurantEdit} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/new" exact component={MenuForm} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/menu/:course_id/edit" exact component={MenuEdit} />
-
             <ProtectedRoute user={this.state.loggedInUser} path="/owner/:restaurant_id/tables" exact component={TablesList} />
             <ProtectedRoute user={this.state.loggedInUser} setUser={this.setUser} path="/owner/:restaurant_id/courses" exact component={CoursesList} />
+
+
+
+            <ProtectedRouteClient user={this.state.loggedInUser} setUser={this.setUser} path="/:_id/user_edit" exact component={UserEdit} />
+
+            <ProtectedRouteClient user={this.state.loggedInUser} path="/home" restaurant={this.state.restaurant} exact component={UserHome} />
 
             <ProtectedRouteClient user={this.state.loggedInUser} restaurant={this.state.restaurant} path="/:restaurant_id/:table_id" exact component={Menu} />
 
             <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/paymentSucess" exact component={PaymentSuccess} />
+
+
 
 
 
