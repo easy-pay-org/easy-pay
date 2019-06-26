@@ -39,7 +39,7 @@ class UserMenu extends Component {
                     <section className='container'>
                         {filteredMenu.map((course, idx) => {
                             // console.log('id del plato enviado---->', course._id)
-                            return <UserCard key={idx} course={course} inOrder={this.props.inOrder} />
+                            return <UserCard key={idx} course={course} inOrder={this.props.inOrder} updateOrder={this.props.updateOrder} />
                         })}
                     </section>
 

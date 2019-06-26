@@ -111,30 +111,32 @@ class UserBag extends Component {
     }
 
 
-    handleOrder = () => {
 
+    // handleOrder = () => {
 
-        // const orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
+    // const orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
 
-        // const orderFiltered = this.state.order.filter(course => course.quantity > 0)
-        // console.log('orderUpdated---->', orderFiltered)
-
-
-
-        // this.services.updateOrder(this.state.order, orderFiltered)
-        //     .then(orderUpdated => {
-        //         this.setState({ order: orderUpdated })
-        //     })
+    // const orderFiltered = this.state.order.filter(course => course.quantity > 0)
+    // console.log('orderUpdated---->', orderFiltered)
 
 
 
+    // this.services.updateOrder(this.state.order, orderFiltered)
+    //     .then(orderUpdated => {
+    //         this.setState({ order: orderUpdated })
+    //     })
 
-        // console.log(orderFiltered)
-        // let orderCopy = [...this.state.order]
-        // orderCopy.splice(0, 1)
-        // this.setState({ order: orderFiltered })
-        // })
-    }
+
+
+
+    // console.log(orderFiltered)
+    // let orderCopy = [...this.state.order]
+    // orderCopy.splice(0, 1)
+    // this.setState({ order: orderFiltered })
+    // })
+    // }
+
+
 
     // handleOrder = () => {
 

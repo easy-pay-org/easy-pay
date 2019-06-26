@@ -33,10 +33,10 @@ export default function SimpleTabs(props) {
                 </Tabs>
             </AppBar>
 
-            {value === 0 && <TabContainer><UserMenu menu={menu} coursesType={'first_courses'} inOrder={props.inOrder} /> </TabContainer>}
-            {value === 1 && <TabContainer><UserMenu menu={menu} coursesType={'second_courses'} inOrder={props.inOrder} /></TabContainer>}
-            {value === 2 && <TabContainer><UserMenu menu={menu} coursesType={'drinks'} inOrder={props.inOrder} /></TabContainer>}
-            {value === 3 && <TabContainer><UserMenu menu={menu} coursesType={'desserts'} inOrder={props.inOrder} /></TabContainer>}
+            {value === 0 && <TabContainer><UserMenu menu={menu} coursesType={'first_courses'} inOrder={props.inOrder} updateOrder={props.updateOrder} /> </TabContainer>}
+            {value === 1 && <TabContainer><UserMenu menu={menu} coursesType={'second_courses'} inOrder={props.inOrder} updateOrder={props.updateOrder}/></TabContainer>}
+            {value === 2 && <TabContainer><UserMenu menu={menu} coursesType={'drinks'} inOrder={props.inOrder} updateOrder={props.updateOrder}/></TabContainer>}
+            {value === 3 && <TabContainer><UserMenu menu={menu} coursesType={'desserts'} inOrder={props.inOrder} updateOrder={props.updateOrder}/></TabContainer>}
         </div>
     )
 }

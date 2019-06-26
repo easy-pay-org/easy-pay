@@ -92,8 +92,6 @@ class App extends Component {
 
     this.fetchUser()
 
-    console.log('restaurante App.js', this.state.restaurant)
-
 
     if (this.state.loggedInUser) {
 
@@ -129,7 +127,6 @@ class App extends Component {
             <ProtectedRouteClient user={this.state.loggedInUser} path="/home" restaurant={this.state.restaurant} exact component={UserHome} />
 
             <ProtectedRouteClient user={this.state.loggedInUser} restaurant={this.state.restaurant} path="/:restaurant_id/:table_id" exact component={Menu} />
-
             <ProtectedRouteClient user={this.state.loggedInUser} path="/:restaurant_id/:table_id/paymentSucess" exact component={PaymentSuccess} />
 
 
