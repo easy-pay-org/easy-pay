@@ -68,7 +68,7 @@ class UserHome extends Component {
                     <TopNav user={this.props} />
                     <div className='section-1'>
                         <img src="../../../img/logoWHITE.png" alt="logo white" className="logowhite" />
-                        <p>"scans the QR of the table and orders "</p>
+                        <p>"Escanea la QR para abrir la carta del restaurante"</p>
                     </div>
                     <BottomNav user={this.props.loggedInUser} restaurant={this.props.restaurant} />
                 </Body>

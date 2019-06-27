@@ -72,7 +72,7 @@ class UserMenu extends Component {
 
     }
 
-    
+
 
     updateOrder = (course) => {
 
@@ -116,13 +116,11 @@ class UserMenu extends Component {
                 <TopNav user={this.props} />
                 <section className="content-home">
                     <header className="hero-menu">
-                        <h1>Welcome to EasyPay</h1>
+                        <h1>Bienvenidos a EasyPay</h1>
                     </header>
                     <UserTab menu={this.state.menu} inOrder={this.inOrder} updateOrder={this.updateOrder} />
 
-                    <section className="container">
 
-                    </section>
                 </section>
 
                 <BottomNav user={this.props.loggedInUser} />

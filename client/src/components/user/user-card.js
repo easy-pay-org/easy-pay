@@ -14,7 +14,7 @@ class CardCourses extends Component {
                 price: this.props.course.price,
                 description: this.props.course.description,
                 image: this.props.course.image,
-                quantity: '',
+                quantity: 0,
             },
             redirect: false,
             show: false
@@ -62,6 +62,47 @@ class CardCourses extends Component {
     }
 
 
+    lessItem = () => {
+
+        if (this.state.menu.quantity <= 0) {
+
+            let value = this.state.menu.quantity
+
+            this.setState({
+                course: {
+                    ...this.state.course,
+                    quantity: value
+                }
+            })
+
+        } else {
+            let value = this.state.menu.quantity--
+
+            this.setState({
+                course: {
+                    ...this.state.course,
+                    quantity: value
+                }
+            })
+
+        }
+    }
+
+
+    addItem = () => {
+
+        let value = this.state.menu.quantity++
+
+        this.setState({
+            course: {
+                ...this.state.course,
+                quantity: value
+            }
+        })
+
+    }
+
+
     render() {
 
         // console.log('props del plato recibido', this.props)
@@ -79,25 +120,26 @@ class CardCourses extends Component {
 
                     <p>{course.description}</p>
 
+
                     <div className='sum'>
+                        <button className="btn-add" onClick={this.lessItem}>-</button>
                         <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
                             <TextField
                                 id="quantity"
                                 name="quantity"
-                                label="Cantidad"
                                 value={this.state.menu.quantity}
-                                onChange={this.handlechange}
                                 type="number"
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
                                 margin="normal"
                             />
-                            <Button variant="contained" type="submit" color="primary">Añadir</Button>
+
                         </form>
-
-
+                        <button className="btn-add" onClick={this.addItem}>+</button>
+                        <Button variant="contained" type="submit" color="primary" onClick={this.handleSubmit}>Añadir</Button>
                     </div>
+
                 </section>
 
             </div>

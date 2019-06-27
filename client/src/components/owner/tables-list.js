@@ -26,11 +26,11 @@ class Tableslist extends Component {
 
         <section className="content-home">
           <header className="hero-tables">
-            <h1>Your Tables</h1>
+            <h1>Sus mesas</h1>
           </header>
           <section className="container">
 
-            <h2>Choose the table</h2>
+            <h2>Elige una mesa</h2>
 
             {tables.map((table, idx) => <TableCard key={idx} table_id={table.table_id} restaurant_id={restaurant._id} />)}
 
