@@ -24,7 +24,7 @@ class paymentSuccess extends Component {
           </header>
           <section className="success">
 
-            <p>Nunca pagar ha sido tan fácil</p>
+            <p>Pagar nunca ha sido tan fácil</p>
 
           </section>
         </section>

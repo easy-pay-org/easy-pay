@@ -19,11 +19,11 @@ class CardTables extends Component {
                     <img src='../../img/tables.jpg' alt='restaurant' />
                 </figure>
                 <section>
-                    <h2>Table {table_id}</h2>
-                    <p>View your table order</p>
+                    <h2>Mesa {table_id}</h2>
+                    <p>Ver los pedidos de esta mesa</p>
                     <div>
                         {/* <Link to={`/owner/${restaurant_id}}/${table_id}`}> Go </Link> */}
-                        <Link to={`/${restaurant_id}/${table_id}/order`}> Go </Link>
+                        <Link to={`/${restaurant_id}/${table_id}/order`}> Ver </Link>
                     </div>
                 </section>
 

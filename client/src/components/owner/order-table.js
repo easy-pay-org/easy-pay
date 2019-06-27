@@ -46,7 +46,7 @@ class OrderTable extends Component {
       })
   }
 
-  
+
   updateOrder = (courseUpdated, idx) => {
 
     let orderCopy = [...this.state.order]
@@ -80,11 +80,11 @@ class OrderTable extends Component {
           <TopNav user={this.props} />
           <section className="content-home">
             <header className="hero-order">
-              <h1>Order in tables 1</h1>
+              <h1>Pedido en mesa {this.props.match.params.table_id}</h1>
             </header>
             <section className="container">
 
-              <h2>Order Details</h2>
+              <h2>Detalles de pedidos</h2>
 
 
               {
@@ -98,7 +98,7 @@ class OrderTable extends Component {
             <section className='footer-bag'>
 
               {/* <Button onClick={this.handleOrder} variant="contained" className='btn-order'>Pedir</Button> */}
-              <h1>Total: ${this.totalPrice()}</h1>
+              <h1>Total: {this.totalPrice()}.00€</h1>
 
 
               <Button onClick={this.socketNewMessage} variant="contained" className='btn-order'>Guardar</Button>

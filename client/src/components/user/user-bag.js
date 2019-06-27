@@ -150,11 +150,11 @@ class UserBag extends Component {
                     <TopNav user={this.props} />
                     <section className="content-home">
                         <header className="hero-bag">
-                            <h1>Thank you</h1>
+                            <h1>Muchas gracias</h1>
                         </header>
                         <section className="container">
 
-                            <h2>Su comanda...</h2>
+                            <h2>Su pedido...</h2>
 
                             {
                                 order.map((course, idx) => {

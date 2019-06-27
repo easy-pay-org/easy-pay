@@ -42,14 +42,14 @@ class HomeOwner extends Component {
             <TopNav user={this.props} />
             <section className="content-home">
               <header className="hero">
-                <h1>Welcome to Easypay</h1>
+                <h1>Bienvenidos a Easypay</h1>
               </header>
 
               <div>
                 {
                   restaurant ?
                     <section className="container">
-                      <h2>Your restaurant</h2>
+                      <h2>Sus restaurantes</h2>
                       <CardRestaurant restaurant={restaurant} />
                     </section> :
                     <section className="container">
