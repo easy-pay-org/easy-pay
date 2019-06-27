@@ -105,7 +105,7 @@ export default class services {
 
 
   clearAllOrder = () => {
-    return this.service.post('clearOrder', { withCredentials: true })
+    return this.service.get('clearAllOrder', { withCredentials: true })
       .then(res => res.data)
       .catch(err => console.log(err.response.data.msg))
   }

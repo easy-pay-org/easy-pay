@@ -13,7 +13,9 @@ class UserMenu extends Component {
         super(props)
         this.state = {
             menu: [],
-            order: []
+            order: [],
+            restaurant_id: '',
+            table_id: 0
         }
 
         this.services = new OwnerServices()
@@ -30,7 +32,14 @@ class UserMenu extends Component {
             .then(theOrder => {
                 this.setState({ order: theOrder })
             })
-
+        // this.services.getCurrentRestaurant()
+        //     .then(currentRestaurant => {
+        //         console.log('componentDidMount, restaurante actual', currentRestaurant)
+        //         this.setState({
+        //             restaurant_id: currentRestaurant.restaurant_id,
+        //             table_id: currentRestaurant.table_id
+        //         })
+        //     })
     }
 
 
@@ -63,16 +72,24 @@ class UserMenu extends Component {
 
     }
 
+    
 
-    updateOrder = () => {
+    updateOrder = (course) => {
 
-        this.services.getOrder()
-            .then(theOrder => {
-                this.setState({
-                    order: theOrder
-                    // stateUpdated: true
-                })
-            })
+        // this.services.getOrder()
+        //     .then(theOrder => {
+        //         this.setState({
+        //             order: theOrder
+        //             // stateUpdated: true
+        //         })
+        //     })
+
+        const orderCopy = [...this.state.order]
+        orderCopy.push(course)
+
+        this.setState({
+            order: orderCopy
+        })
 
         this.stateUpdated = true
     }

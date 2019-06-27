@@ -28,7 +28,7 @@ class SimpleBottomNavigation extends Component {
     componentDidMount() {
         this.services.getCurrentRestaurant()
             .then(currentRestaurant => {
-                // console.log('currentRestaurant', currentRestaurant)
+                // console.log('componentDidMount', currentRestaurant)
                 this.setState({
                     restaurant_id: currentRestaurant.restaurant_id,
                     table_id: currentRestaurant.table_id
@@ -54,14 +54,7 @@ class SimpleBottomNavigation extends Component {
         this.setState({ redirect: true })
     }
 
-    // handleTable = (restaurant_id, table_id) => {
-    //     console.log(restaurant_id, table_id)
 
-    //     this.setState({ 
-    //         table_id ,
-    //         restaurant_id 
-    //     })
-    // }
 
     render() {
 
@@ -77,7 +70,6 @@ class SimpleBottomNavigation extends Component {
                     <BottomNavigationAction label="Perfil" value="perfil" icon={<AccountBox />} component={Link}
                         to={`/owner/${this.props.user._id}/perfil_edit`} />
                 </BottomNavigation>
-
             )
         else
             return (
@@ -93,12 +85,12 @@ class SimpleBottomNavigation extends Component {
                         to="/qr" />
 
                     {
+                        // TODO: esta linea creo que ha de cambiar de prop a state
                         this.props.user.currentRestaurant && this.props.user.currentRestaurant.restaurant_id !== '' ?
 
                             <BottomNavigationAction label="Cart" value="cart" icon={<ShoppingBasket />}
                                 // onClick={this.handlesubmit}
                                 component={Link}
-                                // to={`/${this.state.restaurant_id}}/${this.state.table_id}/order`} />
                                 // to={`/${this.props.user.currentRestaurant.restaurant_id}/${this.props.user.currentRestaurant.table_id}/order`} />
                                 to={`/${this.state.restaurant_id}/${this.state.table_id}/order`} />
 

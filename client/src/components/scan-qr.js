@@ -32,9 +32,11 @@ class Test extends Component {
 
       const restaurant_id = data.substring(0, data.indexOf('/'))
       const table_id = data.substring(data.indexOf('/') + 1)
-
+      console.log('table_id', table_id)
       // this.props.setRestaurant(restaurant_id, table_id)
-      console.log('en scan')
+
+      this.services.clearAllOrder()
+        .then()
 
       this.services.setRestaurant(restaurant_id, table_id)
         .then(currentRestaurant => {
@@ -45,15 +47,17 @@ class Test extends Component {
               ...this.state.restaurant,
               restaurant_id,
               table_id
-            }
+            },
+            result: restaurant_id + '/' + table_id,
+            redirect: true
           })
         })
+        
+      // this.setState({
+      //   result: restaurant_id + '/' + table_id,
+      //   redirect: true
+      // })
 
-
-      this.setState({
-        result: restaurant_id + '/' + table_id,
-        redirect: true
-      })
     }
 
   }
@@ -62,9 +66,6 @@ class Test extends Component {
     console.error(err)
   }
   render() {
-
-    // console.log('--------------->')
-    // console.log('current restaurant', this.state.restaurant)
 
 
 

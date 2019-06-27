@@ -29,7 +29,7 @@ class UserBag extends Component {
 
         this.connectSocket = new socketConfig(this.socketMsg, { id: props.match.params.restaurant_id, num: props.match.params.table_id })
 
-        console.log('Front Holaa', props.match.params.table_id)
+        // console.log('Front Holaa', props.match.params.table_id)
         this.connectSocket.socket.on('subasta!', data => {
             console.log('en socketconfig')
             console.log(data)
@@ -78,14 +78,14 @@ class UserBag extends Component {
 
         const orderCopy = [...this.state.order]
 
-        console.log('quantity', courseUpdated.quantity)
+        // console.log('quantity', courseUpdated.quantity)
 
         if (courseUpdated.quantity === 0) {
-            console.log('igual a 0')
+            // console.log('igual a 0')
 
             this.services.clearOrder(courseUpdated._id)
                 .then((orderUpdated) => {
-                    console.log('orderUpdated', orderUpdated)
+                    // console.log('orderUpdated', orderUpdated)
 
                     orderCopy.splice(idx, 1)
                     this.setState({
@@ -95,11 +95,11 @@ class UserBag extends Component {
         }
 
         else {
-            console.log('diferente a 0')
+            // console.log('diferente a 0')
 
             this.services.updateCourse(courseUpdated)
                 .then(orderUpdated => {
-                    console.log('orderUpdated', orderUpdated)
+                    // console.log('orderUpdated', orderUpdated)
 
                     orderCopy[idx] = courseUpdated
                     this.setState({
@@ -112,53 +112,8 @@ class UserBag extends Component {
 
 
 
-    // handleOrder = () => {
-
-    // const orderFiltered = orderUpdated.filter(course => course.quantity !== 0)
-
-    // const orderFiltered = this.state.order.filter(course => course.quantity > 0)
-    // console.log('orderUpdated---->', orderFiltered)
-
-
-
-    // this.services.updateOrder(this.state.order, orderFiltered)
-    //     .then(orderUpdated => {
-    //         this.setState({ order: orderUpdated })
-    //     })
-
-
-
-
-    // console.log(orderFiltered)
-    // let orderCopy = [...this.state.order]
-    // orderCopy.splice(0, 1)
-    // this.setState({ order: orderFiltered })
-    // })
-    // }
-
-
-
-    // handleOrder = () => {
-
-    //     this.services.updateOrder(this.state.order)
-    //         .then(orderUpdated => {
-
-    //             console.log(this.props)
-
-    //             let orderFiltered = orderUpdated.filter(course => {
-
-    //                 return course.quantity !== 0
-    //             })
-
-    //             // let orderCopy = [...this.state.order]
-    //             // orderCopy.splice(0, 1)
-    //             this.setState({ order: orderFiltered })
-    //         })
-    // }
-
-
     socketNewMessage = (e) => {
-        console.log(this.state.order)
+        // console.log(this.state.order)
 
         this.connectSocket.newMessage(this.state.order,
             { id: this.props.match.params.restaurant_id, num: this.props.match.params.table_id })
@@ -180,7 +135,7 @@ class UserBag extends Component {
         // console.log(this.props)
 
         const { order } = this.state
-        console.log(this.props.restaurant)
+        // console.log(this.props.restaurant)
 
         // if (this.state.redirect) {
         //     return <Redirect to={"/pay"} />

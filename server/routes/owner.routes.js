@@ -216,6 +216,7 @@ router.get('/getRestaurantMenu/:menu_id', (req, res) => {
 })
 
 
+
 // Order
 
 router.post('/newOrder', (req, res) => {
@@ -339,12 +340,13 @@ router.post('/clearOrder', (req, res) => {
 })
 
 
-router.post('/clearAllOrder', (req, res) => {
+router.get('/clearAllOrder', (req, res) => {
 
   // const { order_id } = req.body
+  console.log('clear order del usuario', req.user._id)
 
   User.findByIdAndUpdate({ _id: req.user._id }, { $set: { order: [] } }, { new: true })
-    .then(userUpdated => {
+    .then(() => {
       console.log('order borrado', req.user.order)
       res.json(req.user.order)
     })
@@ -373,7 +375,7 @@ router.post('/setRestaurant', (req, res) => {
 router.get('/getCurrentRestaurant', (req, res) => {
   User.findById({ _id: req.user._id })
     .then(user => {
-      console.log('el restaurante actual del user es', user)
+      console.log('el restaurante actual del user es', user.currentRestaurant)
       res.json(user.currentRestaurant)
     })
     .catch(err => console.log('Error:', err))
